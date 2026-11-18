@@ -20,12 +20,12 @@
     fr2_k: "code", fr2_t: "Code and repositories",
     fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
     fr3_k: "computer", fr3_t: "The computer you work on",
-    fr3_p: "Malware in new files, system posture, exposed services and local network traffic.<br>Works alongside Defender and XProtect as a second opinion.",
+    fr3_p: "Malware in files, programs with known flaws, modified critical files and local network traffic.<br>Works alongside Defender and XProtect and can block the threats it finds.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
     mp_p: "Each agent has a single job and does it well. It wakes up only when its skill is needed for the analysis, the others stay dormant.<br>CORVUS coordinates, hands each one the skills from its library and writes the report. Drag the map and zoom to see the whole team.",
     rg_label: "log", rg_t: "Every step, right before your eyes",
     rg_p: "The live log shows what each agent is testing, what it found and why.<br>At the end you get a PDF report with your branding, in English or Italian.",
-    rg_l1: "alerts in the dashboard, on your computer and by email", rg_l2: "automatic comparison with the previous scan", rg_l3: "a 0 to 100 score and a badge for your website",
+    rg_l1: "alerts in the dashboard, on your computer and by email", rg_l2: "comparison with the previous scan and attack chains between linked issues", rg_l3: "a 0 to 100 score and a badge for your website",
     fx_label: "fixes_ready", fx_t: "It doesn't just find. It fixes",
     fx_p: "For many issues the fix is already written.<br>You approve it and Corvex applies it while keeping a copy of the original, or it opens a pull request on a separate branch.",
     fx_l1: "no change without your consent", fx_l2: "dependencies upgraded to the first safe version", fx_l3: "works with Claude Code, Cursor and Windsurf through MCP",
@@ -33,10 +33,10 @@
     fx_del: '- res.cookie("session", token)', fx_add: '+ res.cookie("session", token, {', sev_alta: "high",
     pc_label: "this_computer", pc_t: "And it protects the machine you work on",
     pc_p: "Five agents watch over the computer running Corvex.<br>No file ever leaves the machine.",
-    pc1_t: "Malware in files", pc1_p: "Downloads, Desktop, temporary folders and startup items, even inside .zip archives.<br>Corvex signatures updated every week.",
-    pc2_t: "In real time", pc2_p: "Every new file is checked as soon as it finishes writing.<br>If you want, it goes straight into a restorable quarantine.",
-    pc3_t: "System posture", pc3_p: "Antivirus, firewall, disk encryption, updates and operating system protections, with the steps to fix them.",
-    pc4_t: "Network", pc4_p: "Services reachable from the local network and connections to known malicious addresses.",
+    pc1_t: "Malware in files", pc1_p: "Downloads, Desktop, temporary folders and startup items, even inside .zip archives.<br>It also flags changed critical files: startup items, SSH keys, hosts, browser extensions.",
+    pc2_t: "In real time", pc2_p: "Every new file is checked as soon as it finishes writing, and critical files are rechecked every 10 minutes.<br>If you want, dangerous files go straight into a restorable quarantine.",
+    pc3_t: "System posture", pc3_p: "Antivirus, firewall, disk encryption, updates and operating system protections.<br>It also finds installed programs with known flaws and tells you which version to update to.",
+    pc4_t: "Network", pc4_p: "Services reachable from the local network and connections to known malicious addresses.<br>It can stop the connected program and block the address, always undoable.",
     pc5_t: "Traffic", pc5_p: "Router, DNS and Wi-Fi on every scan.<br>In network captures it looks for clear-text passwords, DNS tunnels, malware calling home and attacks on the local network.",
     pc_note: "// alongside Defender and XProtect, never instead of them",
     cv_label: "corvus_ai", cv_t: "Ask CORVUS, in plain words",
@@ -54,6 +54,8 @@
     end_label: "status · polishing", end_t: "Coming soon",
     end_p: "We're putting the finishing touches on it.<br>Downloads and plans open soon, with a free version to try it on your own projects.",
     cta_piani: "plans()", foot: "© 2026 Corvex · platform defense",
+    vd_label: "preview · 25s", vd_t: "Watch Corvex at work", vd_lang: "// english video",
+    vd_p: "One command, a team at work, issues found and fixed.<br>Twenty-five seconds of the real dashboard, on a test website.",
   };
   const META = {
     it: ["Corvex · difesa delle piattaforme", "Corvex mette alla prova le tue dashboard, il tuo codice e il tuo computer. Una squadra di agenti trova le falle, ti avvisa e le corregge. In arrivo."],
@@ -80,6 +82,7 @@
     if (map) { map.key = ""; tickMap(); }
     if ($("term").childElementCount) { $("term").textContent = ""; for (let i = 0; i < 6; i++) logLine(); }  // il registro riparte nella lingua scelta
     chatStart();
+    if (previewLabel) previewLabel();
   }
   document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; set("corvex-sito-lang", lang); applyLang(); });
   const T = (it, en) => lang === "en" ? en : it;
@@ -140,6 +143,8 @@
     ["09:46", "ok", ["completata", "completed"], ["pannello.esempio.it", "panel.example.com"], ["Difese 86/100 · +14 dalla scorsa scansione", "Defenses 86/100 · +14 since the last scan"]],
     ["09:47", "crit", ["falla", "issue"], ["questo computer", "this computer"], ["Firewall spento", "Firewall turned off"]],
     ["09:48", "crit", ["falla", "issue"], ["questo computer", "this computer"], ["Password FTP in chiaro sulla rete", "FTP password sent in clear text"]],
+    ["09:48", "warn", ["falla", "issue"], ["questo computer", "this computer"], ["Zoom con 12 vulnerabilità note: aggiorna", "Zoom with 12 known vulnerabilities: update it"]],
+    ["09:48", "ok", ["bloccata", "blocked"], ["questo computer", "this computer"], ["Programma collegato a un server malevolo fermato", "Program connected to a malicious server stopped"]],
     ["09:49", "ok", ["corretta", "fixed"], ["api-ordini", "orders-api"], ["Pull request aperta: corvex/fix-segreti", "Pull request opened: corvex/fix-secrets"]],
     ["09:52", "warn", ["falla", "issue"], ["app-mobile", "mobile-app"], ["Chiave API scritta nel codice", "API key hardcoded in the source"]],
   ];
@@ -339,6 +344,34 @@
     setInterval(tickMap, 700);
     for (let i = 0; i < 6; i++) logLine();
     if (!reduce) setInterval(() => { if (!document.hidden) logLine(); }, 1300);
+    preview();
   }
+
+  // ================================================================ anteprima video
+  // Parte da sola senza audio quando entra nello schermo e si ferma quando esce. Il pulsante la fa ripartire dall'inizio con l'audio.
+  // Con «riduci movimento» non parte da sola: resta la copertina con il pulsante.
+  function preview() {
+    const v = $("vid"), play = $("vid-play"), snd = $("vid-snd");
+    if (!v) return;
+    let seen = false;
+    const label = () => {
+      $("vid-play-t").textContent = T("guarda_anteprima()", "watch_preview()");
+      snd.textContent = v.muted ? T("attiva_audio()", "sound_on()") : T("togli_audio()", "sound_off()");
+      v.setAttribute("aria-label", T("Anteprima video di Corvex, in inglese", "Corvex preview video"));
+    };
+    previewLabel = label;
+    const withSound = () => { v.muted = false; v.currentTime = 0; v.controls = true; play.hidden = true; snd.hidden = false; v.play().catch(() => {}); label(); };
+    play.onclick = withSound;
+    snd.onclick = () => { if (v.muted) withSound(); else { v.muted = true; label(); } };
+    label();
+    if (reduce || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        if (!seen) { seen = true; v.preload = "auto"; }
+        if (v.paused && (v.muted || v.dataset.on)) { v.play().then(() => { play.hidden = true; snd.hidden = false; v.dataset.on = "1"; }).catch(() => {}); }
+      } else if (!v.paused) v.pause();
+    }), { threshold: 0.45 }).observe(v);
+  }
+  let previewLabel = null;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

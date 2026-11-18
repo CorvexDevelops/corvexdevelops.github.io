@@ -1003,7 +1003,7 @@ textarea.input.mono { font: 12.5px/1.55 var(--mono); }
   background-color: var(--black); background-image: linear-gradient(var(--charcoal) 1px, transparent 1px), linear-gradient(90deg, var(--charcoal) 1px, transparent 1px); background-size: 44px 44px; outline: none; }
 .opmap-vp:focus-visible { box-shadow: inset 0 0 0 1px var(--t3); }
 .opmap-vp.dragging { cursor: grabbing; }
-.opmap-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.opmap-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
 .opmap-world .opmap-svg { position: absolute; left: 0; top: 0; overflow: visible; }
 .opmap-world .op-target { width: 230px; }
 .opmap-world .op-node .op-card { width: 205px; max-width: 205px; }
@@ -1043,8 +1043,10 @@ textarea.input.mono { font: 12.5px/1.55 var(--mono); }
 .op-hint { transition: color .2s, background .2s; padding: 4px 8px; border-radius: 5px; }
 .op-hint.flash { color: var(--white); background: rgba(12,12,12,.94); border: 1px solid var(--line-2); }
 
-/* Mappa fluida: livello composto a parte, e durante il gesto niente animazioni interne che costringano a ridisegnarlo. */
-.opmap-world { will-change: transform; backface-visibility: hidden; contain: layout style; }
+/* Mappa fluida e nitida: livello composto a parte solo durante il gesto, senza animazioni interne che costringano a ridisegnarlo.
+   A gesto finito il livello torna normale e il browser ridisegna testi e bordi alla scala vera, quindi nitidi a ogni zoom. */
+.opmap-world { contain: layout style; }
+.opmap-vp.moving .opmap-world { will-change: transform; }
 .opmap-vp.moving .opmap-world *, .opmap-vp.moving .opmap-world *::before, .opmap-vp.moving .opmap-world *::after { animation-play-state: paused !important; transition: none !important; }
 .opmap-vp.moving .op-node, .opmap-vp.moving .op-hub { pointer-events: none; }
 @media (max-width: 1200px) and (min-width: 721px) {

@@ -14,13 +14,15 @@
   <meta property="og:image:height" content="640">
   <meta name="twitter:card" content="summary_large_image">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css?v=52d0da5ce3">
-  <link rel="stylesheet" href="sito.css?v=0dafb2b55f">
-  <script defer src="assets/viste.js?v=4c5601cba3"></script>
-  <script defer src="sito.js?v=30aee8e368"></script>
+  <link rel="stylesheet" href="assets/corvex.css?v=6813367b00">
+  <link rel="stylesheet" href="sito.css?v=34b23cdccf">
+  <script defer src="assets/viste.js?v=2539c2c7bb"></script>
+  <script defer src="sito.js?v=8bf5d78710"></script>
 </head>
 <body class="s-body">
 
@@ -71,7 +73,7 @@
       <p data-k="fr2_p">Segreti nel codice e nella cronologia git, crittografia debole, dipendenze vulnerabili e licenze incompatibili, infrastruttura come codice.<br>Un audit AI cerca le falle di logica e controllo accessi, e ogni pull request viene controllata prima del merge.</p></article>
     <article class="s-card s-rv"><span class="px s-n">03</span><span class="label"><i>■</i><span data-k="fr3_k">computer</span></span>
       <h3 data-k="fr3_t">Il computer su cui lavori</h3>
-      <p data-k="fr3_p">Malware nei file nuovi, postura del sistema, servizi esposti e traffico della rete locale.<br>Lavora accanto a Defender e XProtect come seconda opinione.</p></article>
+      <p data-k="fr3_p">Malware nei file, programmi con falle note, file critici modificati e traffico della rete locale.<br>Lavora accanto a Defender e XProtect e può bloccare le minacce che trova.</p></article>
   </div>
 </section>
 
@@ -90,7 +92,7 @@
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="rg_label">registro</span></span>
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="rg_t">Ogni passo, sotto i tuoi occhi</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="rg_p">Il registro dal vivo mostra cosa sta provando ogni agente, cosa ha trovato e perché.<br>Alla fine ricevi un rapporto PDF col tuo marchio, in italiano o in inglese.</p>
-    <ul class="s-ticks"><li data-k="rg_l1">avvisi nella dashboard, sul computer e via email</li><li data-k="rg_l2">confronto automatico con la scansione precedente</li><li data-k="rg_l3">voto da 0 a 100 e badge per il tuo sito</li></ul>
+    <ul class="s-ticks"><li data-k="rg_l1">avvisi nella dashboard, sul computer e via email</li><li data-k="rg_l2">confronto con la scansione precedente e catene d'attacco tra le falle collegate</li><li data-k="rg_l3">voto da 0 a 100 e badge per il tuo sito</li></ul>
     <div class="s-badges"><img id="badge-a" src="assets/badge-92-it.svg" alt="Corvex 92/100" height="28"><img id="badge-b" src="assets/badge-64-it.svg" alt="Corvex 64/100" height="28"></div></div>
   <div class="term s-term s-rv"><div class="term-h"><span class="dots"><i></i><i></i><i></i></span><span data-k="rg_url">corvex://registro/shop.esempio.it</span><span class="r"><span class="status live s-live"><i></i><span>live</span></span></span></div>
     <div class="term-b s-term-b" id="term"></div></div>
@@ -115,10 +117,10 @@
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="pc_t">E poi protegge la macchina su cui lavori</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="pc_p">Cinque agenti controllano il computer che esegue Corvex.<br>Nessun file lascia la macchina.</p></div>
   <div class="s-four s-five">
-    <article class="s-card s-rv"><span class="s-ag">WARDEN</span><h3 data-k="pc1_t">Malware nei file</h3><p data-k="pc1_p">Download, Scrivania, cartelle temporanee e avvio automatico, anche dentro gli archivi .zip.<br>Firme Corvex aggiornate ogni settimana.</p></article>
-    <article class="s-card s-rv"><span class="s-ag">VIGIL</span><h3 data-k="pc2_t">In tempo reale</h3><p data-k="pc2_p">Ogni file nuovo viene controllato appena finisce di scriversi.<br>Se vuoi, finisce subito in una quarantena ripristinabile.</p></article>
-    <article class="s-card s-rv"><span class="s-ag">BASTION</span><h3 data-k="pc3_t">Postura del sistema</h3><p data-k="pc3_p">Antivirus, firewall, cifratura del disco, aggiornamenti e protezioni del sistema operativo, con i passi per sistemarli.</p></article>
-    <article class="s-card s-rv"><span class="s-ag">SONAR</span><h3 data-k="pc4_t">Rete</h3><p data-k="pc4_p">Servizi raggiungibili dalla rete locale e connessioni verso indirizzi malevoli noti.</p></article>
+    <article class="s-card s-rv"><span class="s-ag">WARDEN</span><h3 data-k="pc1_t">Malware nei file</h3><p data-k="pc1_p">Download, Scrivania, cartelle temporanee e avvio automatico, anche dentro gli archivi .zip.<br>Segnala anche i file critici cambiati: avvio automatico, chiavi SSH, hosts, estensioni del browser.</p></article>
+    <article class="s-card s-rv"><span class="s-ag">VIGIL</span><h3 data-k="pc2_t">In tempo reale</h3><p data-k="pc2_p">Ogni file nuovo viene controllato appena finisce di scriversi, e ogni 10 minuti ricontrolla i file critici.<br>Se vuoi, i file pericolosi finiscono subito in una quarantena ripristinabile.</p></article>
+    <article class="s-card s-rv"><span class="s-ag">BASTION</span><h3 data-k="pc3_t">Postura del sistema</h3><p data-k="pc3_p">Antivirus, firewall, cifratura del disco, aggiornamenti e protezioni del sistema operativo.<br>In più trova i programmi installati con falle note e ti dice a quale versione aggiornare.</p></article>
+    <article class="s-card s-rv"><span class="s-ag">SONAR</span><h3 data-k="pc4_t">Rete</h3><p data-k="pc4_p">Servizi raggiungibili dalla rete locale e connessioni verso indirizzi malevoli noti.<br>Può fermare il programma collegato e bloccare l'indirizzo, sempre annullabile.</p></article>
     <article class="s-card s-rv"><span class="s-ag">TIDE</span><h3 data-k="pc5_t">Traffico</h3><p data-k="pc5_p">Router, DNS e Wi-Fi a ogni scansione.<br>Nelle catture di rete cerca password in chiaro, tunnel DNS, malware che chiama casa e attacchi sulla rete locale.</p></article>
   </div>
   <p class="s-os s-rv mono"><span>windows</span><span>macos</span><em data-k="pc_note">// accanto a Defender e XProtect, mai al loro posto</em></p>
@@ -165,6 +167,21 @@
       <span class="btn s-locked" aria-disabled="true"><span data-k="cta_piani">piani()</span><em data-k="presto">presto</em></span>
     </div>
     <div class="s-boot mono" id="boot" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============================================================ anteprima video -->
+<section class="s-sec s-vid" id="anteprima">
+  <div class="s-head s-rv"><span class="label"><i>▶</i><span data-k="vd_label">anteprima · 25s</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="vd_t">Guarda Corvex al lavoro</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-k="vd_p">Un comando, una squadra al lavoro, le falle trovate e corrette.<br>Venticinque secondi dalla dashboard vera, su un sito di prova.</p></div>
+  <div class="s-video s-rv">
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex://anteprima.mp4<span class="r"><span class="s-vlang" data-k="vd_lang">// video in inglese</span></span></div>
+    <div class="s-vbox">
+      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-preview.jpg"><source src="assets/corvex-preview.mp4" type="video/mp4"></video>
+      <button class="s-vplay" id="vid-play" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span id="vid-play-t">guarda_anteprima()</span></button>
+      <button class="btn sm s-vsnd" id="vid-snd" type="button" hidden></button>
+    </div>
   </div>
 </section>
 

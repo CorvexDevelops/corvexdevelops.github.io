@@ -322,7 +322,8 @@
     }
     _write() {
       const v = this.v;
-      this.world.style.transform = `translate3d(${v.x}px, ${v.y}px, 0) scale(${v.k})`;
+      // Durante il gesto translate3d sul livello composto, da fermo translate 2D su pixel interi: il browser ridisegna nitido alla scala vera.
+      this.world.style.transform = this.moving ? `translate3d(${v.x}px, ${v.y}px, 0) scale(${v.k})` : `translate(${Math.round(v.x)}px, ${Math.round(v.y)}px) scale(${v.k})`;
       const pct = Math.round(v.k * 100);
       if (this.kEl && this._pct !== pct) { this._pct = pct; this.kEl.textContent = pct + "%"; }
       this.vp.style.backgroundSize = `${44 * v.k}px ${44 * v.k}px`;
@@ -338,6 +339,7 @@
         if (this._held || this.anim || this.glide) return this._busy();
         this.moving = false;
         if (this.vp) this.vp.classList.remove("moving");
+        if (this.v && this.world) this._write();  // riscrive in 2D: la tela torna nitida
         if (this._pending) { const s = this._pending; this._pending = null; this.update(s); }
       }, 160);
     }
