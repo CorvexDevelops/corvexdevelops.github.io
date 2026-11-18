@@ -18,7 +18,7 @@
     fr1_k: "web", fr1_t: "Dashboards and websites",
     fr1_p: "Headers, TLS, cookies, CORS, exposed files, injections, outdated libraries, open APIs, spoofable email and hijackable subdomains.<br>Gentle checks, only on what's yours.",
     fr2_k: "code", fr2_t: "Code and repositories",
-    fr2_p: "Secrets in the code and in git history, weak cryptography, dangerous settings, dependencies with known vulnerabilities.<br>Fixes arrive as pull requests.",
+    fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
     fr3_k: "computer", fr3_t: "The computer you work on",
     fr3_p: "Malware in new files, system posture, services exposed on the network.<br>Works alongside Defender and XProtect as a second opinion.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
@@ -99,6 +99,9 @@
     ["DAEMON", "code", "debug attivo, CORS aperto, container come root", "debug left on, open CORS, containers running as root"],
     ["CHAIN", "code", "dipendenze vulnerabili, con aggiornamento automatico", "vulnerable dependencies, with automatic upgrades"],
     ["REWIND", "code", "segreti rimasti nella cronologia git", "secrets left in git history"],
+    ["BLUEPRINT", "code", "GitHub Actions, Docker Compose, Kubernetes e Terraform", "GitHub Actions, Docker Compose, Kubernetes and Terraform"],
+    ["LEDGER", "code", "SBOM CycloneDX e licenze incompatibili delle dipendenze", "CycloneDX SBOM and incompatible dependency licences"],
+    ["ORACLE", "code", "audit AI: logica, controllo accessi, falle confermate due volte", "AI audit: logic, access control, issues confirmed twice"],
     ["BASTION", "pc", "postura: antivirus, firewall, cifratura, aggiornamenti", "posture: antivirus, firewall, encryption, updates"],
     ["WARDEN", "pc", "malware nei file, anche dentro gli archivi", "malware in files, even inside archives"],
     ["SONAR", "pc", "servizi esposti e connessioni sospette", "exposed services and suspicious connections"],
@@ -220,7 +223,7 @@
   function boot() {
     const el = $("boot");
     const lines = [["$ corvex --stato", ""], [T("firme_corvex ........... pronte", "corvex_signatures ...... ready"), "ok"],
-      [T("agenti ................. 22/22", "agents ................. 22/22"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
+      [T("agenti ................. 25/25", "agents ................. 25/25"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
     el.innerHTML = "";
     lines.forEach(([t, c], i) => setTimeout(() => {
       const d = document.createElement("div");
