@@ -70,8 +70,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 .s-os em { font-style: normal; color: var(--t3); }
 
 /* mappa e squadra */
-.s-map { padding: 14px; overflow: hidden; }
-.s-map .opmap { width: 100%; min-width: 0; }
+.s-map { padding: 0; overflow: hidden; }
+.s-map .opmap-vp { height: clamp(460px, 72vh, 760px); }
 .s-map .op-node, .s-map .op-hub { cursor: default; }
 .s-agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); border-left: 1px solid var(--line); }
 .s-agents div { background: var(--black); padding: 14px 16px; display: grid; gap: 4px; align-content: start; min-width: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s; }
@@ -155,7 +155,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   .s-four, .s-pol { grid-template-columns: 1fr; }
   .s-card { padding: 24px 18px; }
   .s-n { font-size: 64px; }
-  .s-map { padding: 8px; }
+  .s-map { padding: 0; }
   .s-term-b { height: 340px; }
   .s-term .term-h .r { display: none; }
   .s-chat-b { padding: 14px; }

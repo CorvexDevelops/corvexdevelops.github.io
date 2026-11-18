@@ -17,10 +17,10 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css">
-  <link rel="stylesheet" href="sito.css">
-  <script defer src="assets/viste.js"></script>
-  <script defer src="sito.js"></script>
+  <link rel="stylesheet" href="assets/corvex.css?v=0fc512014b">
+  <link rel="stylesheet" href="sito.css?v=9c40d99b87">
+  <script defer src="assets/viste.js?v=c808aa15d6"></script>
+  <script defer src="sito.js?v=a415316393"></script>
 </head>
 <body class="s-body">
 
@@ -79,7 +79,7 @@
 <section class="s-sec" id="squadra">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="mp_label">mappa_operativa · demo</span></span>
     <h2 class="cm"><span class="g">/*</span> <span data-k="mp_t">Una squadra che lavora mentre tu scrivi codice</span> <span class="g">*/</span></h2>
-    <p class="s-lead" data-k="mp_p">Ogni agente ha un solo compito e lo fa bene.<br>CORVUS coordina, confronta i risultati con la scansione precedente e compila il rapporto.</p></div>
+    <p class="s-lead" data-k="mp_p">Ogni agente ha un solo compito e lo fa bene. Si attiva solo se la sua competenza serve all'analisi, gli altri restano dormienti.<br>CORVUS coordina, passa a ciascuno le skill della sua biblioteca e compila il rapporto. Trascina la mappa e usa lo zoom per vedere tutta la squadra.</p></div>
   <div class="map-box s-map s-rv" id="map"></div>
   <div class="s-agents s-rv" id="agents"></div>
 </section>
@@ -126,7 +126,8 @@
 <section class="s-sec s-split">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="cv_label">corvus_ai</span></span>
     <h2 class="cm"><span class="g">/*</span> <span data-k="cv_t">Chiedi a CORVUS, in parole semplici</span> <span class="g">*/</span></h2>
-    <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, un modello specializzato in sicurezza che gira sulla tua infrastruttura.</p></div>
+    <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, un modello specializzato in sicurezza che gira sulla tua infrastruttura.</p>
+    <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 650 procedure di sicurezza difensiva</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li></ul></div>
   <div class="s-chat s-rv" id="chat">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvus_ai · corvexai-1.0</div>
     <div class="s-chat-b">

@@ -22,7 +22,7 @@
     fr3_k: "computer", fr3_t: "The computer you work on",
     fr3_p: "Malware in new files, system posture, services exposed on the network.<br>Works alongside Defender and XProtect as a second opinion.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
-    mp_p: "Each agent has a single job and does it well.<br>CORVUS coordinates, compares the results with the previous scan and writes the report.",
+    mp_p: "Each agent has a single job and does it well. It wakes up only when its skill is needed for the analysis, the others stay dormant.<br>CORVUS coordinates, hands each one the skills from its library and writes the report. Drag the map and zoom to see the whole team.",
     rg_label: "log", rg_t: "Every step, right before your eyes",
     rg_p: "The live log shows what each agent is testing, what it found and why.<br>At the end you get a PDF report with your branding, in English or Italian.",
     rg_l1: "alerts in the dashboard, on your computer and by email", rg_l2: "automatic comparison with the previous scan", rg_l3: "a 0 to 100 score and a badge for your website",
@@ -40,6 +40,8 @@
     cv_label: "corvus_ai", cv_t: "Ask CORVUS, in plain words",
     cv_p: "The assistant knows the results of the open scan and tells you where to start.<br>It answers with corvexai, a security-specialised model that runs on your own infrastructure.",
     cv_q: "Where do I start?",
+    cv_l1: "a library of more than 650 defensive security procedures", cv_l2: "at every scan it hands each agent the skills it needs",
+    cv_l3: "every issue with a deep dive and MITRE ATT&amp;CK and NIST references",
     pv_label: "security_and_privacy", pv_t: "A security tool should be secure first",
     pv1_t: "Only what's yours", pv1_p: "Corvex only tests platforms you own or are authorised to test, and for public websites it checks before starting.",
     pv2_t: "Gentle checks", pv2_p: "Agents observe and probe without changing or deleting data, at a light pace that doesn't disturb your users.",
@@ -65,6 +67,7 @@
       el.innerHTML = lang === "en" && EN[el.dataset.k] ? EN[el.dataset.k] : el.dataset.it;
     });
     document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+    if (map) { map.key += "~"; tickMap(); } // stessa scansione: si ridisegna nella nuova lingua e la vista resta dov'era
     document.title = META[lang][0];
     const d = document.querySelector('meta[name="description"]');
     if (d) d.setAttribute("content", META[lang][1]);
@@ -81,7 +84,7 @@
 
   // ================================================================ la squadra
   const TEAM = [
-    ["CORVUS", "*", "coordina, confronta con la scansione precedente, scrive il rapporto", "coordinates, compares with the previous scan, writes the report"],
+    ["CORVUS", "*", "coordina, passa a ogni agente le skill della sua biblioteca, scrive il rapporto", "coordinates, hands each agent the skills from its library, writes the report"],
     ["SPECTER", "web", "ricognizione di pagine, parametri, script e versioni esposte", "reconnaissance of pages, parameters, scripts and exposed versions"],
     ["VECTOR", "web", "CSP, clickjacking, HSTS e intestazioni di sicurezza", "CSP, clickjacking, HSTS and security headers"],
     ["HANDSHAKE", "web", "HTTPS, redirect, certificato e versione TLS", "HTTPS, redirects, certificate and TLS version"],
@@ -131,6 +134,7 @@
   }
 
   // ================================================================ mappa operativa (demo)
+  // Tutta la squadra sulla stessa tela della dashboard: per un sito si sveglia la squadra web, gli altri restano dormienti.
   const MAP_AGENTS = [
     ["specter", "SPECTER", ["Ricognizione", "Reconnaissance"], [["Bussa alla porta", "Knocking on the door"], ["Legge robots.txt", "Reading robots.txt"], ["Mappa 41 parametri", "Mapping 41 parameters"]], 0],
     ["vector", "VECTOR", ["Intestazioni", "Headers"], [["Legge le intestazioni", "Reading the headers"], ["Prova a incorniciare la pagina", "Trying to frame the page"]], 2],
@@ -140,32 +144,49 @@
     ["mirror", "MIRROR", ["CORS", "CORS"], [["Si presenta da un altro sito", "Posing as another site"], ["Prova l'origine null", "Trying the null origin"]], 0],
     ["payload", "PAYLOAD", ["Iniezioni", "Injections"], [["Inietta un marcatore innocuo", "Injecting a harmless marker"], ["Prova i parametri della ricerca", "Testing the search parameters"]], 0],
     ["relic", "RELIC", ["Librerie JavaScript", "JavaScript libraries"], [["Riconosce jQuery 1.12", "Spotting jQuery 1.12"], ["Confronta con le falle note", "Matching known flaws"]], 1],
+    ["hammer", "HAMMER", ["Tentativi di accesso", "Sign-in attempts"], [["Conta i tentativi permessi", "Counting allowed attempts"], ["Cerca il blocco dopo gli errori", "Looking for a lockout"]], 0],
+    ["schema", "SCHEMA", ["API", "APIs"], [["Cerca OpenAPI e GraphQL", "Looking for OpenAPI and GraphQL"], ["Chiama le API senza chiave", "Calling the APIs without a key"]], 1],
+    ["spoof", "SPOOF", ["Email del dominio", "Domain email"], [["Legge SPF e DMARC", "Reading SPF and DMARC"], ["Cerca i selettori DKIM", "Looking for DKIM selectors"]], 0],
+    ["hijack", "HIJACK", ["Sottodomini", "Subdomains"], [["Elenca i sottodomini", "Listing subdomains"], ["Segue i CNAME", "Following the CNAMEs"]], 0],
   ];
+  const DORMANT = [
+    ["skeleton", "SKELETON", "code", ["Segreti e chiavi", "Secrets and keys"]], ["cipher", "CIPHER", "code", ["Crittografia", "Cryptography"]],
+    ["daemon", "DAEMON", "code", ["Configurazione", "Configuration"]], ["chain", "CHAIN", "code", ["Dipendenze", "Dependencies"]],
+    ["rewind", "REWIND", "code", ["Cronologia git", "Git history"]], ["blueprint", "BLUEPRINT", "code", ["Infrastruttura come codice", "Infrastructure as code"]],
+    ["ledger", "LEDGER", "code", ["SBOM e licenze", "SBOM and licences"]], ["oracle", "ORACLE", "code", ["Audit AI del codice", "AI code audit"]],
+    ["bastion", "BASTION", "pc", ["Postura del sistema", "System posture"]], ["warden", "WARDEN", "pc", ["Antimalware sui file", "File antimalware"]],
+    ["sonar", "SONAR", "pc", ["Porte e connessioni", "Ports and connections"]], ["vigil", "VIGIL", "pc", ["Protezione in tempo reale", "Real-time protection"]],
+  ];
+  const MAP_EN = {
+    "bersaglio": "target", "piattaforme web": "web platforms", "codice": "code", "questo computer": "this computer",
+    "dormienti": "dormant", "attivi": "active", "ingrandisci": "zoom in", "rimpicciolisci": "zoom out", "adatta": "fit",
+    "// trascina per spostarti · ⌘ + rotella o pizzico per lo zoom": "// drag to move · ⌘ + wheel or pinch to zoom",
+    "// trascina per spostarti · Ctrl + rotella o pizzico per lo zoom": "// drag to move · Ctrl + wheel or pinch to zoom",
+    "mappa della squadra: trascina per spostarti, pulsanti più e meno o pizzico per lo zoom": "team map: drag to move, plus and minus buttons or pinch to zoom",
+    "Gli agenti si attivano solo se la loro competenza serve all'analisi, gli altri restano dormienti.": "Agents wake up only when their skill is needed for the analysis, the others stay dormant.",
+  };
   let map = null, t0 = performance.now();
-  const CYCLE = 19;
+  const CYCLE = 21;
   function scanAt(sec) {
-    const narrow = window.innerWidth < 880;
-    const list = narrow ? MAP_AGENTS.filter((a, i) => [0, 1, 3, 4, 6].includes(i)) : MAP_AGENTS;
     let done = 0, found = 0;
-    const agents = list.map(([id, name, role, acts, f], i) => {
-      const start = 1 + i * 0.8, work = 4 + (i % 3) * 1.4, think = 1.6;
+    const agents = MAP_AGENTS.map(([id, name, role, acts, f], i) => {
+      const start = 0.8 + i * 0.7, work = 3.6 + (i % 3) * 1.3, think = 1.5;
       let status = "coda", activity = T("In coda", "Queued");
       if (sec >= start) { status = "lavoro"; activity = T(...acts[Math.floor((sec - start) / 1.9) % acts.length]); }
       if (sec >= start + work) { status = "pensa"; activity = T("Ci ragiona sopra", "Thinking it over"); }
       if (sec >= start + work + think) { status = "finito"; activity = f ? T(`${f} da vedere`, `${f} to review`) : T("Tutto in ordine", "All clear"); done++; found += f; }
-      return { id, name, role: T(role[0], role[1]), status, activity, found: status === "finito" ? f : 0 };
-    });
-    const all = done === agents.length;
+      return { id, name, group: "web", role: T(role[0], role[1]), status, activity, found: status === "finito" ? f : 0 };
+    }).concat(DORMANT.map(([id, name, group, role]) => ({ id, name, group, role: T(role[0], role[1]), status: "fuori", found: 0,
+      activity: T("Dormiente: si attiva quando serve la sua competenza", "Dormant: wakes up when its skill is needed") })));
+    const all = done === MAP_AGENTS.length;
     const lead = { id: "corvo", name: "CORVUS", lead: true, status: "lavoro",
-      activity: all ? T(`Rapporto pronto · ${found} falle`, `Report ready · ${found} issues`) : sec < 1 ? T("Studia il bersaglio", "Studying the target") : T("Smista i compiti", "Assigning tasks") };
+      activity: all ? T(`Rapporto pronto · ${found} falle`, `Report ready · ${found} issues`) : sec < 1 ? T("Studia il bersaglio", "Studying the target") : T("Sveglia la squadra web", "Waking the web team") };
     return { id: "scn_demo00", target_name: "shop.esempio.it", location: "https://shop.esempio.it", status: all ? "completata" : "in_corso", agents: [lead].concat(agents) };
   }
   function tickMap() {
     if (!map) return;
     const sec = reduce ? 30 : ((performance.now() - t0) / 1000) % CYCLE;
     map.update(scanAt(sec));
-    const tag = $("map").querySelector(".op-target .tag");
-    if (tag) tag.textContent = T("bersaglio", "target");
   }
 
   // ================================================================ registro (demo)
@@ -269,11 +290,9 @@
     reveal();
     V.asciiArt($("hero-ascii"), { fill: true, shape: "brackets", cx: 0.46, scale: 0.84, narrowScale: 0.86, narrowCy: -0.32, bg: 0.05 });
     V.asciiArt($("end-ascii"), { fill: true, shape: "brackets", cx: 0.58, scale: 0.7, narrowScale: 0.7, narrowCy: 0, bg: 0.03 });
-    map = new V.MapView($("map"));
+    map = new V.MapView($("map"), { label: k => (lang === "en" && MAP_EN[k]) || k });
     tickMap();
     setInterval(tickMap, 700);
-    let rs;
-    window.addEventListener("resize", () => { clearTimeout(rs); rs = setTimeout(tickMap, 150); });
     for (let i = 0; i < 6; i++) logLine();
     if (!reduce) setInterval(() => { if (!document.hidden) logLine(); }, 1300);
   }

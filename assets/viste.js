@@ -138,70 +138,220 @@
   }
 
   // ============================================================ MAPPA OPERATIVA
+  // Una tela unica con tutta la squadra: si trascina, si ingrandisce e si rimpicciolisce (rotella, pizzico, pulsanti, tastiera).
+  // Gli agenti sono raggruppati per squadra, ogni colonna ha la sua conduttura: nessun tubo passa sopra un altro agente.
+  const GROUPS = [["web", "piattaforme web"], ["code", "codice"], ["pc", "questo computer"]];
+  const COL_W = 250, ROW_H = 100, MAX_ROWS = 6, GROUP_GAP = 70, TOP = 330, BUS_Y = 236, HUB_Y = 104, K_MIN = 0.2, K_MAX = 2.2;
+  const trT = s => (window.C && C.tr ? C.tr(s) : s);
+
   class MapView {
-    constructor(el) { this.el = el; this.packets = []; this.key = ""; this._loop = this._loop.bind(this); }
-    layout(n, compact) {
-      if (compact) {
-        // Su schermo stretto la mappa si rimpicciolisce: più spazio verticale tra bersaglio, CORVUS e agenti.
-        const W = 420, H = 380 + n * 120, pts = [];
-        for (let i = 0; i < n; i++) pts.push([70, 370 + i * 120]);
-        return { W, H, target: [210, 66], hub: [210, 225], pts, compact: true };
-      }
-      // Le righe delle due colonne sono sfalsate: le condutture della seconda passano tra i nodi della prima.
-      const W = 1100, H = 600, pts = [];
-      const c0 = Math.ceil(n / 2), c1 = n - c0, gap = (H - 120) / Math.max(1, c0 - 1);
-      for (let i = 0; i < c0; i++) pts.push([470, 50 + i * gap]);
-      for (let i = 0; i < c1; i++) pts.push([760, 50 + gap / 2 + i * gap]);
-      return { W, H, target: [60, 300], hub: [300, 300], pts, bus: [420, 710] };
+    constructor(el, opts) {
+      this.el = el; this.opts = opts || {}; this.packets = []; this.key = ""; this.v = null; this.touched = false;
+      this._loop = this._loop.bind(this);
+      this._bind();
+    }
+    label(k) { return this.opts.label ? this.opts.label(k) : trT(k); }
+    layout(agents) {
+      const by = new Map();
+      agents.forEach(a => { const g = a.group || "web"; if (!by.has(g)) by.set(g, []); by.get(g).push(a); });
+      // La squadra al lavoro viene per prima, accanto a CORVUS, le dormienti dopo.
+      const awake = g => by.get(g).some(a => a.status !== "fuori");
+      const order = GROUPS.map(g => g[0]).filter(g => by.has(g)).concat([...by.keys()].filter(g => !GROUPS.some(x => x[0] === g)))
+        .sort((x, y) => awake(y) - awake(x));
+      const pos = {}, groups = [];
+      let x = 70, rows = 1;
+      order.forEach(g => {
+        const list = by.get(g), nc = Math.ceil(list.length / MAX_ROWS), per = Math.ceil(list.length / nc), gx = x;
+        for (let c = 0; c < nc; c++) {
+          list.slice(c * per, (c + 1) * per).forEach((a, r) => { pos[a.id] = [x, TOP + r * ROW_H]; rows = Math.max(rows, r + 1); });
+          x += COL_W;
+        }
+        const name = (GROUPS.find(y => y[0] === g) || [g, g])[1];
+        groups.push({ id: g, name, x: gx, n: list.length, end: x - COL_W });
+        x += GROUP_GAP;
+      });
+      const W = Math.max(x - GROUP_GAP - COL_W + 290, 900), H = TOP + (rows - 1) * ROW_H + 170; // margine sotto: la nota sui dormienti non copre l'ultima riga
+      // CORVUS sta sopra la prima squadra (quella al lavoro), il bersaglio alla sua sinistra.
+      const hub = [Math.max(560, Math.min(W / 2, (groups[0] ? groups[0].end : 0) + 120)), HUB_Y];
+      return { W, H, pos, groups, hub, target: [Math.max(40, hub[0] - 470), HUB_Y] };
     }
     build(scan) {
       const agents = scan.agents.filter(a => !a.lead);
       const lead = scan.agents.find(a => a.lead) || { id: "corvo", name: "CORVUS" };
-      const L = this.layout(agents.length, this.compact);
-      const pipes = [];
-      const pipe = (id, d) => pipes.push(`<path id="${id}" class="pipe" d="${d}"/>`);
-      if (L.compact) {
-        pipe("p-t", `M${L.target[0]} ${L.target[1] + 40} V${L.hub[1] - 46}`);
-        agents.forEach((a, i) => pipe("p-" + a.id, `M${L.hub[0]} ${L.hub[1] + 74} V${L.hub[1] + 104} H30 V${L.pts[i][1]} H${L.pts[i][0] - 10}`));
-      } else {
-        pipe("p-t", `M${L.target[0] + 150} ${L.target[1]} H${L.hub[0] - 40}`);
-        agents.forEach((a, i) => {
-          const mx = i < Math.ceil(agents.length / 2) ? L.bus[0] : L.bus[1];
-          pipe("p-" + a.id, `M${L.hub[0] + 40} ${L.hub[1]} H${mx} V${L.pts[i][1]} H${L.pts[i][0] - 10}`);
-        });
-      }
-      const px = x => (x / L.W * 100).toFixed(2) + "%", py = y => (y / L.H * 100).toFixed(2) + "%";
+      const L = this.L = this.layout(agents);
+      const pipes = [], [hx, hy] = L.hub, bx = hx + 120;
+      const pipe = (id, d, cls) => pipes.push(`<path id="${id}" class="pipe ${cls || ""}" d="${d}"/>`);
+      pipe("p-t", `M${L.target[0] + 230} ${hy} H${hx - 50}`);
+      // Collettore: dal fianco di CORVUS scende al bus orizzontale che corre sopra tutte le squadre.
+      const xs = Object.values(L.pos).map(p => p[0]);
+      pipe("p-bus", `M${hx + 50} ${hy} H${bx} V${BUS_Y} M${Math.min(...xs, bx)} ${BUS_Y} H${Math.max(...xs, bx)}`, "bus");
+      agents.forEach(a => { const [x, y] = L.pos[a.id]; pipe("p-" + a.id, `M${hx + 50} ${hy} H${bx} V${BUS_Y} H${x} V${y}`); });
       // corvex-ignore-next-line xss-dom: verificato, i dati dinamici passano da esc() o sono testi fissi/numeri
       this.el.innerHTML = `
-        <div class="opmap-scroll"><div class="opmap ${L.compact ? "compact" : ""}" style="aspect-ratio:${L.W} / ${L.H}">
-          <svg class="opmap-svg" viewBox="0 0 ${L.W} ${L.H}" preserveAspectRatio="none"><g class="pipes">${pipes.join("")}</g><g class="packets"></g></svg>
-          <div class="op-target" style="left:${px(L.compact ? L.target[0] : L.target[0] - 40)};top:${py(L.target[1])}">
-            <span class="tag">bersaglio</span><b>${esc(scan.target_name)}</b><code>${esc((scan.location || "").replace(/^https?:\/\//, "").slice(0, 34))}</code>
-            <span class="lock">tls · ${hexBytes(4)}</span></div>
-          <div class="op-hub" style="left:${px(L.hub[0])};top:${py(L.hub[1])}" data-agent="${esc(lead.id)}">
-            ${cube("lead", "spin")}<span class="chip-lead">${esc(lead.name)} · lead</span><small class="act"></small></div>
-          ${agents.map((a, i) => `<div class="op-node" id="n-${esc(a.id)}" data-agent="${esc(a.id)}" style="left:${px(L.pts[i][0])};top:${py(L.pts[i][1])}">
-              <span class="pin"></span>
-              <div class="op-card"><span class="nm">${esc(a.name)}<span class="badge"></span></span>
-                <span class="role">// ${esc(a.role.toLowerCase())}</span><span class="act"></span><span class="hex"></span></div></div>`).join("")}
-        </div></div>`;
+        <div class="opmap-vp" tabindex="0" aria-label="${esc(this.label("mappa della squadra: trascina per spostarti, pulsanti più e meno o pizzico per lo zoom"))}">
+          <div class="opmap-world" style="width:${L.W}px;height:${L.H}px">
+            <svg class="opmap-svg" viewBox="0 0 ${L.W} ${L.H}" width="${L.W}" height="${L.H}"><g class="pipes">${pipes.join("")}</g><g class="packets"></g></svg>
+            <div class="op-target" style="left:${L.target[0]}px;top:${L.target[1]}px">
+              <span class="tag">${esc(this.label("bersaglio"))}</span><b>${esc(scan.target_name)}</b><code>${esc((scan.location || "").replace(/^https?:\/\//, "").slice(0, 40))}</code>
+              <span class="lock">tls · ${hexBytes(4)}</span></div>
+            <div class="op-hub" style="left:${hx}px;top:${hy}px" data-agent="${esc(lead.id)}">
+              ${cube("lead", "spin")}<span class="chip-lead">${esc(lead.name)} · lead</span><small class="act"></small></div>
+            ${L.groups.map(g => `<div class="op-group" data-group="${esc(g.id)}" style="left:${g.x}px;top:${BUS_Y + 30}px"><b>// ${esc(this.label(g.name))}</b><span class="gn"></span></div>`).join("")}
+            ${agents.map(a => `<div class="op-node" id="n-${esc(a.id)}" data-agent="${esc(a.id)}" style="left:${L.pos[a.id][0]}px;top:${L.pos[a.id][1]}px">
+                <span class="pin"></span>
+                <div class="op-card"><span class="nm">${esc(a.name)}<span class="badge"></span></span>
+                  <span class="role">// ${esc(String(a.role || "").toLowerCase())}</span><span class="act"></span><span class="hex"></span></div></div>`).join("")}
+          </div>
+          <div class="op-ctrl" role="toolbar">
+            <button type="button" data-z="in" aria-label="${esc(this.label("ingrandisci"))}">+</button>
+            <span class="op-k">100%</span>
+            <button type="button" data-z="out" aria-label="${esc(this.label("rimpicciolisci"))}">−</button>
+            <button type="button" data-z="fit" class="fit">${esc(this.label("adatta"))}</button>
+          </div>
+          <div class="op-note"><i></i>${esc(this.label("Gli agenti si attivano solo se la loro competenza serve all'analisi, gli altri restano dormienti."))}</div>
+          <div class="op-hint">${esc(this.label(/Mac|iPhone|iPad/.test(navigator.platform) ? "// trascina per spostarti · ⌘ + rotella o pizzico per lo zoom" : "// trascina per spostarti · Ctrl + rotella o pizzico per lo zoom"))}</div>
+        </div>`;
+      this.vp = this.el.querySelector(".opmap-vp");
+      this.world = this.el.querySelector(".opmap-world");
+      this.kEl = this.el.querySelector(".op-k");
       this.gPackets = this.el.querySelector(".packets");
       this.paths = {};
       this.el.querySelectorAll("path.pipe").forEach(p => (this.paths[p.id] = p));
       this.hubEl = this.el.querySelector(".op-hub");
+      if (this.v) this._apply(); else this._fitSoon();
+    }
+    // -------------------------------------------------- vista: spostamento e zoom
+    _size() { const r = this.vp.getBoundingClientRect(); return [r.width, r.height]; }
+    _fitSoon() { requestAnimationFrame(() => { if (this.vp && this.vp.isConnected && this._size()[0]) this.fit(); else setTimeout(() => this.vp && this.vp.isConnected && this.fit(), 120); }); }
+    fit() {
+      if (!this.vp || !this.L) return;
+      const [w, h] = this._size(), L = this.L;
+      if (!w) return;
+      let k = Math.min(w / L.W, h / L.H) * 0.96;
+      if (w < 600) {
+        // Su telefono la squadra intera sarebbe illeggibile: si parte da bersaglio, CORVUS e prima squadra a una scala che si legge, il resto si raggiunge trascinando.
+        k = Math.max(k, 0.5);
+        this.v = { k, x: 14 - Math.min(L.target[0], L.groups.length ? L.groups[0].x : 0) * k + 10 * k, y: 16 - (L.hub[1] - 90) * k };
+      } else this.v = { k, x: (w - L.W * k) / 2, y: (h - L.H * k) / 2 };
+      this.touched = false;
+      this._apply();
+    }
+    _apply() {
+      if (!this.world || !this.v) return;
+      const [w, h] = this._size(), L = this.L, v = this.v;
+      // Non si perde mai la mappa: almeno 120 px restano sempre visibili.
+      v.x = Math.min(w - 120, Math.max(120 - L.W * v.k, v.x));
+      v.y = Math.min(h - 120, Math.max(120 - L.H * v.k, v.y));
+      this.world.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.k})`;
+      if (this.kEl) this.kEl.textContent = Math.round(v.k * 100) + "%";
+      this.vp.style.backgroundSize = `${44 * v.k}px ${44 * v.k}px`;
+      this.vp.style.backgroundPosition = `${v.x}px ${v.y}px`;
+    }
+    zoomAt(f, px, py) {
+      if (!this.v) return;
+      const [w, h] = this._size();
+      if (px == null) { px = w / 2; py = h / 2; }
+      const k = Math.min(K_MAX, Math.max(K_MIN, this.v.k * f)), r = k / this.v.k;
+      this.v = { k, x: px - (px - this.v.x) * r, y: py - (py - this.v.y) * r };
+      this.touched = true;
+      this._apply();
+    }
+    pan(dx, dy) { if (!this.v) return; this.v.x += dx; this.v.y += dy; this.touched = true; this._apply(); }
+    _bind() {
+      const el = this.el, pts = new Map();
+      let start = null, pinch = null;
+      const local = e => { const r = this.vp.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+      el.addEventListener("click", e => {
+        if (this._dragged) { this._dragged = false; e.stopPropagation(); e.preventDefault(); return; }
+        const b = e.target.closest("[data-z]");
+        if (!b) return;
+        e.stopPropagation();
+        if (b.dataset.z === "in") this.zoomAt(1.3); else if (b.dataset.z === "out") this.zoomAt(1 / 1.3); else this.fit();
+      }, true);
+      el.addEventListener("dblclick", e => {
+        if (!this.vp || !e.target.closest(".opmap-vp") || e.target.closest(".op-ctrl, [data-agent]")) return;
+        const [x, y] = local(e);
+        this.zoomAt(1.6, x, y);
+      });
+      el.addEventListener("wheel", e => {
+        if (!this.vp || !e.target.closest(".opmap-vp")) return;
+        // La rotella da sola fa scorrere la pagina: lo zoom vuole Ctrl o ⌘ (il pizzico sul trackpad arriva già con Ctrl).
+        if (!e.ctrlKey && !e.metaKey) {
+          const h = this.el.querySelector(".op-hint");
+          if (h) { h.classList.add("flash"); clearTimeout(this._hintT); this._hintT = setTimeout(() => h.classList.remove("flash"), 1400); }
+          return;
+        }
+        e.preventDefault();
+        const [x, y] = local(e);
+        const d = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+        // Pizzico sul trackpad: tanti passi piccoli. Rotella del mouse: scatti grandi, ognuno vale circa il 20%.
+        this.zoomAt(Math.exp(-d * (Math.abs(d) < 50 ? 0.01 : 0.0018)), x, y);
+      }, { passive: false });
+      el.addEventListener("pointerdown", e => {
+        if (!this.vp || !e.target.closest(".opmap-vp") || e.target.closest(".op-ctrl")) return;
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pts.size === 1) { start = { x: e.clientX, y: e.clientY, vx: this.v ? this.v.x : 0, vy: this.v ? this.v.y : 0, moved: false }; this._dragged = false; }
+        if (pts.size === 2) {
+          const [a, b] = [...pts.values()];
+          pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), k: this.v.k };
+          try { this.vp.setPointerCapture(e.pointerId); } catch (_) { /* puntatore già rilasciato */ }
+        }
+      });
+      el.addEventListener("pointermove", e => {
+        if (!pts.has(e.pointerId) || !this.v) return;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pts.size >= 2 && pinch) {
+          const [a, b] = [...pts.values()], r = this.vp.getBoundingClientRect();
+          const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+          this.zoomAt((pinch.k * d / pinch.d) / this.v.k, (a[0] + b[0]) / 2 - r.left, (a[1] + b[1]) / 2 - r.top);
+          this._dragged = true;
+          return;
+        }
+        if (!start) return;
+        const dx = e.clientX - start.x, dy = e.clientY - start.y;
+        if (!start.moved && Math.hypot(dx, dy) < 5) return;
+        if (!start.moved) { start.moved = true; this.vp.classList.add("dragging"); try { this.vp.setPointerCapture(e.pointerId); } catch (_) { /* già rilasciato */ } }
+        this._dragged = true;
+        this.v.x = start.vx + dx; this.v.y = start.vy + dy; this.touched = true;
+        this._apply();
+      });
+      const end = e => {
+        pts.delete(e.pointerId);
+        if (pts.size < 2) pinch = null;
+        if (pts.size === 1 && this.v) { const [p] = [...pts.values()]; start = { x: p[0], y: p[1], vx: this.v.x, vy: this.v.y, moved: true }; }
+        if (!pts.size) { start = null; if (this.vp) this.vp.classList.remove("dragging"); }
+      };
+      el.addEventListener("pointerup", end);
+      el.addEventListener("pointercancel", end);
+      el.addEventListener("keydown", e => {
+        if (!this.vp || e.target !== this.vp) return;
+        const step = 60, m = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] }[e.key];
+        if (m) { e.preventDefault(); this.pan(m[0], m[1]); }
+        else if (e.key === "+" || e.key === "=") { e.preventDefault(); this.zoomAt(1.3); }
+        else if (e.key === "-") { e.preventDefault(); this.zoomAt(1 / 1.3); }
+        else if (e.key === "0") { e.preventDefault(); this.fit(); }
+      });
+      let rs;
+      window.addEventListener("resize", () => { clearTimeout(rs); rs = setTimeout(() => { if (this.vp && this.vp.isConnected) { if (this.touched) this._apply(); else this.fit(); } }, 150); });
     }
     update(scan) {
-      // Sotto la larghezza minima dello schema (860 px) si passa alla colonna compatta: niente scorrimento laterale.
-      this.compact = (this.el.clientWidth || window.innerWidth) < 880;
-      const key = scan.id + "|" + scan.agents.map(a => a.id).join(",") + "|" + this.compact;
-      if (key !== this.key) { this.key = key; this.packets.forEach(k => k.g.remove()); this.packets = []; this.build(scan); }
+      const key = scan.id + "|" + scan.agents.map(a => a.id + ":" + (a.group || "")).join(",");
+      if (key !== this.key) {
+        const sameScan = this.key.split("|")[0] === scan.id;
+        this.key = key; this.packets.forEach(k => k.g.remove()); this.packets = [];
+        if (!sameScan) this.v = null;
+        this.build(scan);
+      }
       this.scan = scan;
       const lead = scan.agents.find(a => a.lead);
       if (lead) scramble(this.hubEl.querySelector(".act"), lead.activity);
+      const live = {};
       scan.agents.filter(a => !a.lead).forEach(a => {
         const n = this.el.querySelector("#n-" + CSS.escape(a.id));
         if (!n) return;
         n.className = "op-node st-" + a.status;
+        if (a.status !== "fuori") live[a.group || "web"] = (live[a.group || "web"] || 0) + 1;
         scramble(n.querySelector(".act"), a.activity);
         const b = n.querySelector(".badge");
         b.textContent = a.found || "";
@@ -209,8 +359,16 @@
         const p = this.paths["p-" + a.id];
         if (p) p.setAttribute("class", "pipe st-" + a.status);
       });
+      (this.L ? this.L.groups : []).forEach(g => {
+        const el = this.el.querySelector(`.op-group[data-group="${CSS.escape(g.id)}"]`);
+        if (!el) return;
+        el.classList.toggle("off", !live[g.id]);
+        el.querySelector(".gn").textContent = !live[g.id] ? this.label("dormienti") : live[g.id] < g.n ? `${live[g.id]}/${g.n} ${this.label("attivi")}` : `${g.n} ${this.label("attivi")}`;
+      });
       const tp = this.paths["p-t"];
       if (tp) tp.setAttribute("class", "pipe " + (scan.status === "in_corso" ? "st-lavoro" : "st-finito"));
+      // La tela può nascere nascosta (sezione non ancora visibile): appena ha una dimensione si adatta.
+      if (!this.v && this.vp && this.vp.isConnected && this._size()[0]) this.fit();
       if (!this.running) { this.running = true; requestAnimationFrame(this._loop); }
     }
     _spawn(pathId, kind) {
@@ -229,7 +387,7 @@
       if (sc && !reduce) {
         if (sc.status === "in_corso" && Math.random() < 0.05) this._spawn("p-t", "w");
         sc.agents.filter(a => !a.lead).forEach(a => {
-          const r = a.status === "lavoro" ? 0.03 : a.status === "pensa" ? 0.01 : 0;
+          const r = a.status === "lavoro" ? 0.03 : a.status === "pensa" ? 0.01 : 0; // «fuori»: nessun pacchetto
           if (Math.random() < r) this._spawn("p-" + a.id, a.found ? "y" : "b");
         });
         if (Math.random() < 0.2) this.el.querySelectorAll(".op-node.st-lavoro .hex, .op-node.st-pensa .hex").forEach(h => (h.textContent = hexBytes(5)));
