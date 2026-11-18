@@ -218,60 +218,146 @@
       this.paths = {};
       this.el.querySelectorAll("path.pipe").forEach(p => (this.paths[p.id] = p));
       this.hubEl = this.el.querySelector(".op-hub");
+      this._sz = null; this._pct = null;
       if (this.v) this._apply(); else this._fitSoon();
     }
     // -------------------------------------------------- vista: spostamento e zoom
-    _size() { const r = this.vp.getBoundingClientRect(); return [r.width, r.height]; }
-    _fitSoon() { requestAnimationFrame(() => { if (this.vp && this.vp.isConnected && this._size()[0]) this.fit(); else setTimeout(() => this.vp && this.vp.isConnected && this.fit(), 120); }); }
-    fit() {
-      if (!this.vp || !this.L) return;
+    // Un solo transform (translate3d + scale) sul livello della tela, scritto una volta per fotogramma.
+    // Zoom con rotella, pulsanti e «adatta» scivolano verso la vista d'arrivo, il trascinamento prosegue per inerzia.
+    // Durante il gesto si fermano pacchetti, testi che cambiano e linee animate: la tela non si ridisegna, si sposta e basta.
+    _size() {
+      if (!this._sz || !this._sz[0]) { const r = this.vp.getBoundingClientRect(); this._sz = [r.width, r.height]; }
+      return this._sz;
+    }
+    _fitSoon() { requestAnimationFrame(() => { if (this.vp && this.vp.isConnected && this._size()[0]) this.fit(true); else setTimeout(() => this.vp && this.vp.isConnected && this.fit(true), 120); }); }
+    _fitView() {
       const [w, h] = this._size(), L = this.L;
-      if (!w) return;
       let k = Math.min(w / L.W, h / L.H) * 0.96;
       if (w < 600) {
         // Su telefono la squadra intera sarebbe illeggibile: si parte da bersaglio, CORVUS e prima squadra a una scala che si legge, il resto si raggiunge trascinando.
         k = Math.max(k, 0.5);
-        this.v = { k, x: 14 - Math.min(L.target[0], L.groups.length ? L.groups[0].x : 0) * k + 10 * k, y: 16 - (L.hub[1] - 90) * k };
-      } else this.v = { k, x: (w - L.W * k) / 2, y: (h - L.H * k) / 2 };
+        return { k, x: 14 - Math.min(L.target[0], L.groups.length ? L.groups[0].x : 0) * k + 10 * k, y: 16 - (L.hub[1] - 90) * k };
+      }
+      return { k, x: (w - L.W * k) / 2, y: (h - L.H * k) / 2 };
+    }
+    fit(instant) {
+      if (!this.vp || !this.L || !this._size()[0]) return;
+      const to = this._fitView();
       this.touched = false;
-      this._apply();
+      if (instant || !this.v) { this._stop(); this.v = this._clamp(to); this._schedule(); return; }
+      this._tween(to, 420);
     }
-    _apply() {
-      if (!this.world || !this.v) return;
-      const [w, h] = this._size(), L = this.L, v = this.v;
+    _clamp(v) {
       // Non si perde mai la mappa: almeno 120 px restano sempre visibili.
-      v.x = Math.min(w - 120, Math.max(120 - L.W * v.k, v.x));
-      v.y = Math.min(h - 120, Math.max(120 - L.H * v.k, v.y));
-      this.world.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.k})`;
-      if (this.kEl) this.kEl.textContent = Math.round(v.k * 100) + "%";
-      this.vp.style.backgroundSize = `${44 * v.k}px ${44 * v.k}px`;
-      this.vp.style.backgroundPosition = `${v.x}px ${v.y}px`;
+      const [w, h] = this._size(), L = this.L, k = Math.min(K_MAX, Math.max(K_MIN, v.k));
+      return { k, x: Math.min(w - 120, Math.max(120 - L.W * k, v.x)), y: Math.min(h - 120, Math.max(120 - L.H * k, v.y)) };
     }
-    zoomAt(f, px, py) {
+    _schedule() {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(t => { this._raf = 0; this._frame(t); });
+    }
+    _stop() { this.anim = null; this.glide = null; }
+    // Zoom attorno a un punto dello schermo: il punto della tela sotto il cursore resta fermo per tutta l'animazione.
+    _zoomTo(k, px, py, dur) {
       if (!this.v) return;
       const [w, h] = this._size();
       if (px == null) { px = w / 2; py = h / 2; }
-      const k = Math.min(K_MAX, Math.max(K_MIN, this.v.k * f)), r = k / this.v.k;
-      this.v = { k, x: px - (px - this.v.x) * r, y: py - (py - this.v.y) * r };
+      const goal = this.anim && this.anim.anchor ? this.anim.k1 : this.v.k;
+      k = Math.min(K_MAX, Math.max(K_MIN, k == null ? goal : k));
+      const wx = (px - this.v.x) / this.v.k, wy = (py - this.v.y) / this.v.k;
+      this.glide = null;
       this.touched = true;
-      this._apply();
+      const fin = { k, x: px - wx * k, y: py - wy * k }, safe = this._clamp(fin);
+      if (reduce || !dur) { this.anim = null; this.v = safe; this._schedule(); return; }
+      // Vicino ai bordi l'ancora porterebbe la mappa fuori: si scivola direttamente sulla vista consentita, senza scatto finale.
+      if (safe.x !== fin.x || safe.y !== fin.y) return this._tween(safe, dur);
+      this.anim = { anchor: [px, py, wx, wy], k0: this.v.k, k1: k, t0: performance.now(), dur };
+      this._busy();
+      this._schedule();
     }
-    pan(dx, dy) { if (!this.v) return; this.v.x += dx; this.v.y += dy; this.touched = true; this._apply(); }
+    zoomAt(f, px, py, dur) {
+      if (!this.v) return;
+      const goal = this.anim && this.anim.anchor ? this.anim.k1 : this.v.k;
+      this._zoomTo(goal * f, px, py, dur == null ? 260 : dur);
+    }
+    _tween(to, dur) {
+      to = this._clamp(to);
+      this.glide = null;
+      if (reduce) { this.anim = null; this.v = to; this._schedule(); return; }
+      this.anim = { from: { ...this.v }, to, t0: performance.now(), dur };
+      this._busy();
+      this._schedule();
+    }
+    pan(dx, dy) { if (!this.v) return; this.touched = true; this._tween({ k: this.v.k, x: this.v.x + dx, y: this.v.y + dy }, 200); }
+    _frame(now) {
+      if (!this.world || !this.v) return;
+      let more = false;
+      const a = this.anim;
+      if (a) {
+        const p = Math.min(1, (now - a.t0) / a.dur), e = 1 - Math.pow(1 - p, 3); // uscita morbida
+        if (a.anchor) {
+          const [px, py, wx, wy] = a.anchor, k = Math.exp(Math.log(a.k0) + (Math.log(a.k1) - Math.log(a.k0)) * e);
+          this.v = { k, x: px - wx * k, y: py - wy * k };
+          if (p >= 1) this.v = this._clamp(this.v);
+        } else {
+          const f = a.from, t = a.to, k = Math.exp(Math.log(f.k) + (Math.log(t.k) - Math.log(f.k)) * e);
+          this.v = { k, x: f.x + (t.x - f.x) * e, y: f.y + (t.y - f.y) * e };
+        }
+        if (p < 1) more = true; else this.anim = null;
+      }
+      const g = this.glide;
+      if (g && !this.anim) {
+        const dt = Math.min(48, now - (g.last || now));
+        g.last = now;
+        const c = this._clamp({ k: this.v.k, x: this.v.x + g.vx * dt, y: this.v.y + g.vy * dt });
+        if (c.x !== this.v.x + g.vx * dt) g.vx = 0;
+        if (c.y !== this.v.y + g.vy * dt) g.vy = 0;
+        this.v = c;
+        const decay = Math.exp(-dt / 210);
+        g.vx *= decay; g.vy *= decay;
+        if (Math.hypot(g.vx, g.vy) > 0.03) more = true; else this.glide = null;
+      }
+      this._write();
+      if (more) { this._busy(); this._schedule(); }
+    }
+    _write() {
+      const v = this.v;
+      this.world.style.transform = `translate3d(${v.x}px, ${v.y}px, 0) scale(${v.k})`;
+      const pct = Math.round(v.k * 100);
+      if (this.kEl && this._pct !== pct) { this._pct = pct; this.kEl.textContent = pct + "%"; }
+      this.vp.style.backgroundSize = `${44 * v.k}px ${44 * v.k}px`;
+      this.vp.style.backgroundPosition = `${v.x}px ${v.y}px`;
+    }
+    _apply() { this._sz = null; if (this.v) { this.v = this._clamp(this.v); this._schedule(); } }
+    // Gesto in corso: la tela smette di ridisegnarsi finché non si ferma da 160 ms.
+    _busy() {
+      if (!this.vp) return;
+      if (!this.moving) { this.moving = true; this.vp.classList.add("moving"); }
+      clearTimeout(this._idleT);
+      this._idleT = setTimeout(() => {
+        if (this._held || this.anim || this.glide) return this._busy();
+        this.moving = false;
+        if (this.vp) this.vp.classList.remove("moving");
+        if (this._pending) { const s = this._pending; this._pending = null; this.update(s); }
+      }, 160);
+    }
     _bind() {
       const el = this.el, pts = new Map();
-      let start = null, pinch = null;
-      const local = e => { const r = this.vp.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+      let start = null, pinch = null, track = [];
+      const local = (x, y) => { const r = this.vp.getBoundingClientRect(); return [x - r.left, y - r.top]; };
       el.addEventListener("click", e => {
-        if (this._dragged) { this._dragged = false; e.stopPropagation(); e.preventDefault(); return; }
+        // Il clic che chiude un trascinamento non apre nulla. Vale solo subito dopo il rilascio: al tocco il browser spesso non lo invia affatto.
+        if (this._dragged && performance.now() - (this._dragEnd || 0) < 350) { this._dragged = false; e.stopPropagation(); e.preventDefault(); return; }
+        this._dragged = false;
         const b = e.target.closest("[data-z]");
         if (!b) return;
         e.stopPropagation();
-        if (b.dataset.z === "in") this.zoomAt(1.3); else if (b.dataset.z === "out") this.zoomAt(1 / 1.3); else this.fit();
+        if (b.dataset.z === "in") this.zoomAt(1.35); else if (b.dataset.z === "out") this.zoomAt(1 / 1.35); else this.fit();
       }, true);
       el.addEventListener("dblclick", e => {
         if (!this.vp || !e.target.closest(".opmap-vp") || e.target.closest(".op-ctrl, [data-agent]")) return;
-        const [x, y] = local(e);
-        this.zoomAt(1.6, x, y);
+        const [x, y] = local(e.clientX, e.clientY);
+        this.zoomAt(1.7, x, y, 340);
       });
       el.addEventListener("wheel", e => {
         if (!this.vp || !e.target.closest(".opmap-vp")) return;
@@ -282,19 +368,24 @@
           return;
         }
         e.preventDefault();
-        const [x, y] = local(e);
+        const [x, y] = local(e.clientX, e.clientY);
         const d = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
-        // Pizzico sul trackpad: tanti passi piccoli. Rotella del mouse: scatti grandi, ognuno vale circa il 20%.
-        this.zoomAt(Math.exp(-d * (Math.abs(d) < 50 ? 0.01 : 0.0018)), x, y);
+        // Pizzico sul trackpad: tanti passi piccoli, seguiti quasi subito. Rotella del mouse: scatti più ampi, ammorbiditi.
+        const small = Math.abs(d) < 50;
+        this.zoomAt(Math.exp(-d * (small ? 0.01 : 0.0018)), x, y, small ? 90 : 220);
       }, { passive: false });
       el.addEventListener("pointerdown", e => {
         if (!this.vp || !e.target.closest(".opmap-vp") || e.target.closest(".op-ctrl")) return;
         if (e.pointerType === "mouse" && e.button !== 0) return;
+        this._sz = null;
+        this._stop();
         pts.set(e.pointerId, [e.clientX, e.clientY]);
-        if (pts.size === 1) { start = { x: e.clientX, y: e.clientY, vx: this.v ? this.v.x : 0, vy: this.v ? this.v.y : 0, moved: false }; this._dragged = false; }
-        if (pts.size === 2) {
+        this._held = true;
+        if (pts.size === 1) { start = { x: e.clientX, y: e.clientY, vx: this.v ? this.v.x : 0, vy: this.v ? this.v.y : 0, moved: false }; track = []; this._dragged = false; }
+        if (pts.size === 2 && this.v) {
           const [a, b] = [...pts.values()];
-          pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), k: this.v.k };
+          const [mx, my] = local((a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+          pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), k: this.v.k, wx: (mx - this.v.x) / this.v.k, wy: (my - this.v.y) / this.v.k };
           try { this.vp.setPointerCapture(e.pointerId); } catch (_) { /* puntatore già rilasciato */ }
         }
       });
@@ -302,40 +393,64 @@
         if (!pts.has(e.pointerId) || !this.v) return;
         pts.set(e.pointerId, [e.clientX, e.clientY]);
         if (pts.size >= 2 && pinch) {
-          const [a, b] = [...pts.values()], r = this.vp.getBoundingClientRect();
-          const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
-          this.zoomAt((pinch.k * d / pinch.d) / this.v.k, (a[0] + b[0]) / 2 - r.left, (a[1] + b[1]) / 2 - r.top);
-          this._dragged = true;
+          // Pizzico: le dita restano sopra lo stesso punto della tela, anche spostandosi insieme.
+          const [a, b] = [...pts.values()];
+          const [mx, my] = local((a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+          const k = Math.min(K_MAX, Math.max(K_MIN, pinch.k * Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch.d));
+          this.v = this._clamp({ k, x: mx - pinch.wx * k, y: my - pinch.wy * k });
+          this._dragged = true; this.touched = true;
+          this._busy(); this._schedule();
           return;
         }
         if (!start) return;
         const dx = e.clientX - start.x, dy = e.clientY - start.y;
         if (!start.moved && Math.hypot(dx, dy) < 5) return;
         if (!start.moved) { start.moved = true; this.vp.classList.add("dragging"); try { this.vp.setPointerCapture(e.pointerId); } catch (_) { /* già rilasciato */ } }
-        this._dragged = true;
-        this.v.x = start.vx + dx; this.v.y = start.vy + dy; this.touched = true;
-        this._apply();
+        this._dragged = true; this.touched = true;
+        this.v = this._clamp({ k: this.v.k, x: start.vx + dx, y: start.vy + dy });
+        const now = performance.now();
+        track.push([now, e.clientX, e.clientY]);
+        while (track.length > 2 && now - track[0][0] > 90) track.shift();
+        this._busy(); this._schedule();
       });
       const end = e => {
+        if (!pts.has(e.pointerId)) return;
         pts.delete(e.pointerId);
         if (pts.size < 2) pinch = null;
-        if (pts.size === 1 && this.v) { const [p] = [...pts.values()]; start = { x: p[0], y: p[1], vx: this.v.x, vy: this.v.y, moved: true }; }
-        if (!pts.size) { start = null; if (this.vp) this.vp.classList.remove("dragging"); }
+        if (pts.size === 1 && this.v) { const [p] = [...pts.values()]; start = { x: p[0], y: p[1], vx: this.v.x, vy: this.v.y, moved: true }; track = []; }
+        if (!pts.size) {
+          // Inerzia: la velocità degli ultimi ~90 ms continua e si spegne da sola.
+          if (start && start.moved && !reduce && track.length >= 2) {
+            const [t0, x0, y0] = track[0], [t1, x1, y1] = track[track.length - 1], dt = Math.max(1, t1 - t0);
+            const vx = (x1 - x0) / dt, vy = (y1 - y0) / dt;
+            if (performance.now() - t1 < 60 && Math.hypot(vx, vy) > 0.15) { this.glide = { vx: vx * 0.85, vy: vy * 0.85 }; this._schedule(); }
+          }
+          if (this._dragged) this._dragEnd = performance.now();
+          start = null; this._held = false;
+          if (this.vp) this.vp.classList.remove("dragging");
+          this._busy();
+        }
       };
       el.addEventListener("pointerup", end);
       el.addEventListener("pointercancel", end);
       el.addEventListener("keydown", e => {
         if (!this.vp || e.target !== this.vp) return;
-        const step = 60, m = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] }[e.key];
+        const step = 80, m = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] }[e.key];
         if (m) { e.preventDefault(); this.pan(m[0], m[1]); }
-        else if (e.key === "+" || e.key === "=") { e.preventDefault(); this.zoomAt(1.3); }
-        else if (e.key === "-") { e.preventDefault(); this.zoomAt(1 / 1.3); }
+        else if (e.key === "+" || e.key === "=") { e.preventDefault(); this.zoomAt(1.35); }
+        else if (e.key === "-") { e.preventDefault(); this.zoomAt(1 / 1.35); }
         else if (e.key === "0") { e.preventDefault(); this.fit(); }
       });
       let rs;
-      window.addEventListener("resize", () => { clearTimeout(rs); rs = setTimeout(() => { if (this.vp && this.vp.isConnected) { if (this.touched) this._apply(); else this.fit(); } }, 150); });
+      window.addEventListener("resize", () => {
+        this._sz = null;
+        clearTimeout(rs);
+        rs = setTimeout(() => { this._sz = null; if (this.vp && this.vp.isConnected) { if (this.touched) this._apply(); else this.fit(true); } }, 150);
+      });
     }
     update(scan) {
+      // Durante il gesto la tela non cambia: lo stato nuovo arriva appena la mappa si ferma.
+      if (this.moving && this.world && this.world.isConnected) { this._pending = scan; return; }
       const key = scan.id + "|" + scan.agents.map(a => a.id + ":" + (a.group || "")).join(",");
       if (key !== this.key) {
         const sameScan = this.key.split("|")[0] === scan.id;
@@ -368,7 +483,7 @@
       const tp = this.paths["p-t"];
       if (tp) tp.setAttribute("class", "pipe " + (scan.status === "in_corso" ? "st-lavoro" : "st-finito"));
       // La tela può nascere nascosta (sezione non ancora visibile): appena ha una dimensione si adatta.
-      if (!this.v && this.vp && this.vp.isConnected && this._size()[0]) this.fit();
+      if (!this.v && this.vp && this.vp.isConnected) { this._sz = null; if (this._size()[0]) this.fit(true); }
       if (!this.running) { this.running = true; requestAnimationFrame(this._loop); }
     }
     _spawn(pathId, kind) {
@@ -383,6 +498,7 @@
     }
     _loop() {
       if (!this.el.isConnected) { this.running = false; return; }
+      if (this.moving) { requestAnimationFrame(this._loop); return; }
       const sc = this.scan;
       if (sc && !reduce) {
         if (sc.status === "in_corso" && Math.random() < 0.05) this._spawn("p-t", "w");

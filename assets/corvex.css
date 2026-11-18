@@ -679,6 +679,9 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
 .lic-banner > i.crit { background: var(--crit); }
 .lic-plan { color: var(--white); font-weight: 500; margin-right: 8px; }
 .lic-off { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+.acc-more { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.acc-more summary { cursor: pointer; color: var(--t2); font-size: 12px; }
+.acc-more[open] summary { color: var(--t1); }
 .lic-off summary { cursor: pointer; color: var(--t2); font-size: 12px; }
 .lic-off code { font-size: 12px; color: var(--t1); background: var(--coal); border: 1px solid var(--line-2); padding: 5px 8px; border-radius: 3px; word-break: break-all; }
 .lic-off textarea { width: 100%; resize: vertical; min-height: 70px; }
@@ -793,7 +796,8 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
 .m-brand .on-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px 3px 6px; border-radius: 999px; font: 500 10.5px/1 var(--mono); font-style: normal;
   color: var(--ok); background: rgba(91, 228, 155, .1); border: 1px solid rgba(91, 228, 155, .35); }
 .m-brand .on-pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); animation: on-pulse 2s infinite; }
-@media (max-width: 720px) { .bar .crumbs { display: none; } .bar .bar-r { margin-left: auto; } }
+/* Su telefono la ricerca sta a destra accanto alle altre icone, non in mezzo alla barra. */
+@media (max-width: 720px) { .bar .crumbs { display: none; } .bar .search { margin-left: auto; } .bar .bar-r { margin-left: 0; } }
 /* Ovunque: nessun testo troncato con «…». I titoli e le righe vanno a capo interi, i percorsi lunghi si spezzano solo dove serve. */
 .search { width: min(560px, 46vw); }
 .li .t, .note .nowrap, .card h3, .card .loc { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: break-word; }
@@ -1038,3 +1042,12 @@ textarea.input.mono { font: 12.5px/1.55 var(--mono); }
 
 .op-hint { transition: color .2s, background .2s; padding: 4px 8px; border-radius: 5px; }
 .op-hint.flash { color: var(--white); background: rgba(12,12,12,.94); border: 1px solid var(--line-2); }
+
+/* Mappa fluida: livello composto a parte, e durante il gesto niente animazioni interne che costringano a ridisegnarlo. */
+.opmap-world { will-change: transform; backface-visibility: hidden; contain: layout style; }
+.opmap-vp.moving .opmap-world *, .opmap-vp.moving .opmap-world *::before, .opmap-vp.moving .opmap-world *::after { animation-play-state: paused !important; transition: none !important; }
+.opmap-vp.moving .op-node, .opmap-vp.moving .op-hub { pointer-events: none; }
+@media (max-width: 1200px) and (min-width: 721px) {
+  /* Mappa media: nota in basso, suggerimento in alto a sinistra, comandi in alto a destra. Nessuno copre l'altro. */
+  .op-hint { top: 12px; bottom: auto; left: 12px; right: auto; max-width: calc(100% - 240px); white-space: normal; }
+}

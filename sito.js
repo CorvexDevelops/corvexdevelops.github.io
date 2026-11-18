@@ -20,7 +20,7 @@
     fr2_k: "code", fr2_t: "Code and repositories",
     fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
     fr3_k: "computer", fr3_t: "The computer you work on",
-    fr3_p: "Malware in new files, system posture, services exposed on the network.<br>Works alongside Defender and XProtect as a second opinion.",
+    fr3_p: "Malware in new files, system posture, exposed services and local network traffic.<br>Works alongside Defender and XProtect as a second opinion.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
     mp_p: "Each agent has a single job and does it well. It wakes up only when its skill is needed for the analysis, the others stay dormant.<br>CORVUS coordinates, hands each one the skills from its library and writes the report. Drag the map and zoom to see the whole team.",
     rg_label: "log", rg_t: "Every step, right before your eyes",
@@ -31,21 +31,22 @@
     fx_l1: "no change without your consent", fx_l2: "dependencies upgraded to the first safe version", fx_l3: "works with Claude Code, Cursor and Windsurf through MCP",
     fx_file: "automatic fix", fx_why: "session cookie readable by JavaScript", fx_bak: "// backup: server.js.corvex.bak", sev_alta: "high",
     pc_label: "this_computer", pc_t: "And it protects the machine you work on",
-    pc_p: "Four agents watch over the computer running Corvex.<br>No file ever leaves the machine.",
+    pc_p: "Five agents watch over the computer running Corvex.<br>No file ever leaves the machine.",
     pc1_t: "Malware in files", pc1_p: "Downloads, Desktop, temporary folders and startup items, even inside .zip archives.<br>Corvex signatures updated every week.",
     pc2_t: "In real time", pc2_p: "Every new file is checked as soon as it finishes writing.<br>If you want, it goes straight into a restorable quarantine.",
     pc3_t: "System posture", pc3_p: "Antivirus, firewall, disk encryption, updates and operating system protections, with the steps to fix them.",
     pc4_t: "Network", pc4_p: "Services reachable from the local network and connections to known malicious addresses.",
+    pc5_t: "Traffic", pc5_p: "Router, DNS and Wi-Fi on every scan.<br>In network captures it looks for clear-text passwords, DNS tunnels, malware calling home and attacks on the local network.",
     pc_note: "// alongside Defender and XProtect, never instead of them",
     cv_label: "corvus_ai", cv_t: "Ask CORVUS, in plain words",
-    cv_p: "The assistant knows the results of the open scan and tells you where to start.<br>It answers with corvexai, a security-specialised model that runs on your own infrastructure.",
+    cv_p: "The assistant knows the results of the open scan and tells you where to start.<br>It answers with corvexai, the AI model built into Corvex: it's ready out of the box, you don't pick or download anything and questions stay on your infrastructure.",
     cv_q: "Where do I start?",
-    cv_l1: "a library of more than 650 defensive security procedures", cv_l2: "at every scan it hands each agent the skills it needs",
+    cv_l1: "a library of more than 600 defensive security procedures, kept up to date on its own", cv_l2: "at every scan it hands each agent the skills it needs",
     cv_l3: "every issue with a deep dive and MITRE ATT&amp;CK and NIST references",
     pv_label: "security_and_privacy", pv_t: "A security tool should be secure first",
     pv1_t: "Only what's yours", pv1_p: "Corvex only tests platforms you own or are authorised to test, and for public websites it checks before starting.",
     pv2_t: "Gentle checks", pv2_p: "Agents observe and probe without changing or deleting data, at a light pace that doesn't disturb your users.",
-    pv3_t: "Your code stays with you", pv3_p: "Corvex runs on your machine or your server.<br>Your code, files and results are never uploaded anywhere else.",
+    pv3_t: "Your code stays with you", pv3_p: "Corvex runs on your machine or your server.<br>Your code, files, network traffic and results are never uploaded anywhere else.",
     pv4_t: "Two-step sign-in", pv4_p: "Password plus a temporary code, always.<br>Sessions expire on their own after a period of inactivity.",
     pv5_t: "Encrypted secrets", pv5_p: "Tokens, keys and second-factor secrets are stored encrypted or as irreversible hashes.",
     pv6_t: "Signed updates", pv6_p: "Every update is digitally signed and installs without touching your data.",
@@ -104,10 +105,11 @@
     ["REWIND", "code", "segreti rimasti nella cronologia git", "secrets left in git history"],
     ["BLUEPRINT", "code", "GitHub Actions, Docker Compose, Kubernetes e Terraform", "GitHub Actions, Docker Compose, Kubernetes and Terraform"],
     ["LEDGER", "code", "SBOM CycloneDX e licenze incompatibili delle dipendenze", "CycloneDX SBOM and incompatible dependency licences"],
-    ["ORACLE", "code", "audit AI: logica, controllo accessi, falle confermate due volte", "AI audit: logic, access control, issues confirmed twice"],
+    ["ORACLE", "code", "audit AI: ogni falla cita il codice esatto ed è confermata due volte", "AI audit: every issue quotes the exact code and is confirmed twice"],
     ["BASTION", "pc", "postura: antivirus, firewall, cifratura, aggiornamenti", "posture: antivirus, firewall, encryption, updates"],
     ["WARDEN", "pc", "malware nei file, anche dentro gli archivi", "malware in files, even inside archives"],
     ["SONAR", "pc", "servizi esposti e connessioni sospette", "exposed services and suspicious connections"],
+    ["TIDE", "pc", "traffico di rete: password in chiaro, tunnel DNS, ARP spoofing", "network traffic: clear-text passwords, DNS tunnels, ARP spoofing"],
     ["VIGIL", "pc", "controllo in tempo reale dei file nuovi", "real-time checks on new files"],
   ];
   function drawAgents() {
@@ -124,6 +126,7 @@
     ["09:44", "warn", ["falla", "issue"], "pannello.esempio.it", ["Manca la Content-Security-Policy", "Missing Content-Security-Policy"]],
     ["09:46", "ok", ["completata", "completed"], "pannello.esempio.it", ["Difese 86/100 · +14 dalla scorsa scansione", "Defenses 86/100 · +14 since the last scan"]],
     ["09:47", "crit", ["falla", "issue"], "questo computer", ["Firewall spento", "Firewall turned off"]],
+    ["09:48", "crit", ["falla", "issue"], "questo computer", ["Password FTP in chiaro sulla rete", "FTP password sent in clear text"]],
     ["09:49", "ok", ["corretta", "fixed"], "api-ordini", ["Pull request aperta: corvex/fix-segreti", "Pull request opened: corvex/fix-secrets"]],
     ["09:52", "warn", ["falla", "issue"], "app-mobile", ["Chiave API scritta nel codice", "API key hardcoded in the source"]],
   ];
@@ -155,7 +158,8 @@
     ["rewind", "REWIND", "code", ["Cronologia git", "Git history"]], ["blueprint", "BLUEPRINT", "code", ["Infrastruttura come codice", "Infrastructure as code"]],
     ["ledger", "LEDGER", "code", ["SBOM e licenze", "SBOM and licences"]], ["oracle", "ORACLE", "code", ["Audit AI del codice", "AI code audit"]],
     ["bastion", "BASTION", "pc", ["Postura del sistema", "System posture"]], ["warden", "WARDEN", "pc", ["Antimalware sui file", "File antimalware"]],
-    ["sonar", "SONAR", "pc", ["Porte e connessioni", "Ports and connections"]], ["vigil", "VIGIL", "pc", ["Protezione in tempo reale", "Real-time protection"]],
+    ["sonar", "SONAR", "pc", ["Porte e connessioni", "Ports and connections"]], ["tide", "TIDE", "pc", ["Traffico e rete locale", "Traffic and local network"]],
+    ["vigil", "VIGIL", "pc", ["Protezione in tempo reale", "Real-time protection"]],
   ];
   const MAP_EN = {
     "bersaglio": "target", "piattaforme web": "web platforms", "codice": "code", "questo computer": "this computer",
@@ -244,7 +248,7 @@
   function boot() {
     const el = $("boot");
     const lines = [["$ corvex --stato", ""], [T("firme_corvex ........... pronte", "corvex_signatures ...... ready"), "ok"],
-      [T("agenti ................. 25/25", "agents ................. 25/25"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
+      [T("agenti ................. 26/26", "agents ................. 26/26"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
     el.innerHTML = "";
     lines.forEach(([t, c], i) => setTimeout(() => {
       const d = document.createElement("div");

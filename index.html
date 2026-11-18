@@ -17,10 +17,10 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css?v=0fc512014b">
-  <link rel="stylesheet" href="sito.css?v=9c40d99b87">
-  <script defer src="assets/viste.js?v=c808aa15d6"></script>
-  <script defer src="sito.js?v=a415316393"></script>
+  <link rel="stylesheet" href="assets/corvex.css?v=52d0da5ce3">
+  <link rel="stylesheet" href="sito.css?v=d0b06672b5">
+  <script defer src="assets/viste.js?v=4c5601cba3"></script>
+  <script defer src="sito.js?v=ee37b3b20e"></script>
 </head>
 <body class="s-body">
 
@@ -47,7 +47,7 @@
       <a class="btn primary" href="#fronti"><span data-k="cta_scopri">scopri_corvex()</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="s-stats s-rv">
-      <span><span data-k="st_agenti">agenti</span> <b class="v" data-count="25">25</b></span>
+      <span><span data-k="st_agenti">agenti</span> <b class="v" data-count="26">26</b></span>
       <span><span data-k="st_fronti">fronti</span> <b class="v" data-count="3">3</b></span>
       <span><span data-k="st_codice">codice inviato a terzi</span> <b class="v" data-k="st_zero">0 byte</b></span>
     </div>
@@ -71,7 +71,7 @@
       <p data-k="fr2_p">Segreti nel codice e nella cronologia git, crittografia debole, dipendenze vulnerabili e licenze incompatibili, infrastruttura come codice.<br>Un audit AI cerca le falle di logica e controllo accessi, e ogni pull request viene controllata prima del merge.</p></article>
     <article class="s-card s-rv"><span class="px s-n">03</span><span class="label"><i>■</i><span data-k="fr3_k">computer</span></span>
       <h3 data-k="fr3_t">Il computer su cui lavori</h3>
-      <p data-k="fr3_p">Malware nei file nuovi, postura del sistema, servizi esposti sulla rete.<br>Lavora accanto a Defender e XProtect come seconda opinione.</p></article>
+      <p data-k="fr3_p">Malware nei file nuovi, postura del sistema, servizi esposti e traffico della rete locale.<br>Lavora accanto a Defender e XProtect come seconda opinione.</p></article>
   </div>
 </section>
 
@@ -112,24 +112,25 @@
 <section class="s-sec" id="computer">
   <div class="s-head s-rv"><span class="label"><i>■</i><span data-k="pc_label">questo_computer</span></span>
     <h2 class="cm"><span class="g">/*</span> <span data-k="pc_t">E poi protegge la macchina su cui lavori</span> <span class="g">*/</span></h2>
-    <p class="s-lead" data-k="pc_p">Quattro agenti controllano il computer che esegue Corvex.<br>Nessun file lascia la macchina.</p></div>
-  <div class="s-four">
+    <p class="s-lead" data-k="pc_p">Cinque agenti controllano il computer che esegue Corvex.<br>Nessun file lascia la macchina.</p></div>
+  <div class="s-four s-five">
     <article class="s-card s-rv"><span class="s-ag">WARDEN</span><h3 data-k="pc1_t">Malware nei file</h3><p data-k="pc1_p">Download, Scrivania, cartelle temporanee e avvio automatico, anche dentro gli archivi .zip.<br>Firme Corvex aggiornate ogni settimana.</p></article>
     <article class="s-card s-rv"><span class="s-ag">VIGIL</span><h3 data-k="pc2_t">In tempo reale</h3><p data-k="pc2_p">Ogni file nuovo viene controllato appena finisce di scriversi.<br>Se vuoi, finisce subito in una quarantena ripristinabile.</p></article>
     <article class="s-card s-rv"><span class="s-ag">BASTION</span><h3 data-k="pc3_t">Postura del sistema</h3><p data-k="pc3_p">Antivirus, firewall, cifratura del disco, aggiornamenti e protezioni del sistema operativo, con i passi per sistemarli.</p></article>
     <article class="s-card s-rv"><span class="s-ag">SONAR</span><h3 data-k="pc4_t">Rete</h3><p data-k="pc4_p">Servizi raggiungibili dalla rete locale e connessioni verso indirizzi malevoli noti.</p></article>
+    <article class="s-card s-rv"><span class="s-ag">TIDE</span><h3 data-k="pc5_t">Traffico</h3><p data-k="pc5_p">Router, DNS e Wi-Fi a ogni scansione.<br>Nelle catture di rete cerca password in chiaro, tunnel DNS, malware che chiama casa e attacchi sulla rete locale.</p></article>
   </div>
-  <p class="s-os s-rv mono"><span>windows</span><span>macos</span><span>linux</span><em data-k="pc_note">// accanto a Defender e XProtect, mai al loro posto</em></p>
+  <p class="s-os s-rv mono"><span>windows</span><span>macos</span><em data-k="pc_note">// accanto a Defender e XProtect, mai al loro posto</em></p>
 </section>
 
 <!-- ============================================================ CORVUS -->
 <section class="s-sec s-split">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="cv_label">corvus_ai</span></span>
     <h2 class="cm"><span class="g">/*</span> <span data-k="cv_t">Chiedi a CORVUS, in parole semplici</span> <span class="g">*/</span></h2>
-    <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, un modello specializzato in sicurezza che gira sulla tua infrastruttura.</p>
-    <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 650 procedure di sicurezza difensiva</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li></ul></div>
+    <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, il modello AI incluso in Corvex: è già pronto, non scegli né scarichi nulla e le domande restano sulla tua infrastruttura.</p>
+    <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 600 procedure di sicurezza difensiva, aggiornata da sola</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li></ul></div>
   <div class="s-chat s-rv" id="chat">
-    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvus_ai · corvexai-1.0</div>
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvus_ai · corvexai-2.0</div>
     <div class="s-chat-b">
       <div class="s-msg me" data-k="cv_q">Da dove inizio?</div>
       <div class="s-msg ai"><b>CORVUS</b><span id="chat-a"></span><i class="s-cur"></i></div>
@@ -144,7 +145,7 @@
   <div class="s-pol">
     <div class="s-rv"><span class="k">01</span><h4 data-k="pv1_t">Solo ciò che è tuo</h4><p data-k="pv1_p">Corvex prova solo piattaforme di cui sei proprietario o per cui hai un'autorizzazione, e per i siti pubblici lo verifica prima di iniziare.</p></div>
     <div class="s-rv"><span class="k">02</span><h4 data-k="pv2_t">Prove delicate</h4><p data-k="pv2_p">Gli agenti osservano e provano senza modificare né cancellare dati, con un ritmo leggero che non disturba i tuoi utenti.</p></div>
-    <div class="s-rv"><span class="k">03</span><h4 data-k="pv3_t">Il codice resta da te</h4><p data-k="pv3_p">Corvex gira sulla tua macchina o sul tuo server.<br>Il codice, i file e i risultati non vengono mai caricati altrove.</p></div>
+    <div class="s-rv"><span class="k">03</span><h4 data-k="pv3_t">Il codice resta da te</h4><p data-k="pv3_p">Corvex gira sulla tua macchina o sul tuo server.<br>Codice, file, traffico di rete e risultati non vengono mai caricati altrove.</p></div>
     <div class="s-rv"><span class="k">04</span><h4 data-k="pv4_t">Accesso a doppia verifica</h4><p data-k="pv4_p">Password più codice temporaneo, sempre.<br>Le sessioni scadono da sole dopo un periodo di inattività.</p></div>
     <div class="s-rv"><span class="k">05</span><h4 data-k="pv5_t">Segreti cifrati</h4><p data-k="pv5_p">Token, chiavi e codici del secondo fattore sono conservati cifrati o come impronte irreversibili.</p></div>
     <div class="s-rv"><span class="k">06</span><h4 data-k="pv6_t">Aggiornamenti firmati</h4><p data-k="pv6_p">Ogni aggiornamento è firmato digitalmente e si installa senza toccare i tuoi dati.</p></div>
@@ -171,7 +172,7 @@
 <footer class="s-foot">
   <a class="s-brand" href="#top" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
   <span class="mono dim" data-k="foot">© 2026 Corvex · difesa delle piattaforme</span>
-  <span class="mono dim">windows · macos · linux</span>
+  <span class="mono dim">windows · macos</span>
 </footer>
 
 </body>
