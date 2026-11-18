@@ -18,9 +18,9 @@
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/corvex.css?v=52d0da5ce3">
-  <link rel="stylesheet" href="sito.css?v=d0b06672b5">
+  <link rel="stylesheet" href="sito.css?v=0dafb2b55f">
   <script defer src="assets/viste.js?v=4c5601cba3"></script>
-  <script defer src="sito.js?v=ee37b3b20e"></script>
+  <script defer src="sito.js?v=30aee8e368"></script>
 </head>
 <body class="s-body">
 
@@ -40,7 +40,7 @@
   <pre class="ascii s-hero-bg" id="hero-ascii" aria-hidden="true"></pre>
   <div class="s-hero-in">
     <span class="label s-rv"><i>+</i><span data-k="hero_label">in_arrivo · accesso_anticipato</span></span>
-    <h1 class="cm s-h1 s-rv"><span class="g">/*</span> <span data-k="hero_t1" class="d">Le tue piattaforme</span><br><span data-k="hero_t2">meritano difese vere</span> <span class="g">*/</span><span class="s-caret"></span></h1>
+    <h1 class="cm s-h1 s-rv"><span class="g">/*</span>&nbsp;<span data-k="hero_t1" class="d">Le tue piattaforme</span><br><span data-k="hero_t2">meritano difese vere</span>&nbsp;<span class="s-close"><span class="g">*/</span><span class="s-caret"></span></span></h1>
     <p class="s-sub s-rv" data-k="hero_sub">Corvex mette alla prova le dashboard, i software e il computer su cui lavori.<br>Una squadra di agenti cerca le falle, ti avvisa e ti dice come chiuderle.<br>Quando è sicuro farlo, le corregge da sola.</p>
     <div class="s-acts s-rv">
       <span class="btn s-locked" aria-disabled="true"><span data-k="cta_download">download()</span><em data-k="presto">presto</em></span>
@@ -54,14 +54,14 @@
   </div>
 </section>
 
-<div class="s-ticker" aria-hidden="true"><div class="s-tk-head"><i></i><span data-k="tk_head">demo · ultime attività</span></div><div class="s-tk-run"><div class="s-tk-track" id="tk"></div></div></div>
+<div class="s-ticker" aria-hidden="true"><div class="s-tk-head"><i></i><span data-k="tk_head">demo</span><span class="x" data-k="tk_head2">· ultime attività</span></div><div class="s-tk-run"><div class="s-tk-track" id="tk"></div></div></div>
 
 <main class="s-main">
 
 <!-- ============================================================ tre fronti -->
 <section class="s-sec" id="fronti">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="fr_label">tre_fronti</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="fr_t">Una sola squadra, tutto ciò che costruisci</span> <span class="g">*/</span></h2></div>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="fr_t">Una sola squadra, tutto ciò che costruisci</span>&nbsp;<span class="g">*/</span></h2></div>
   <div class="s-three">
     <article class="s-card s-rv"><span class="px s-n">01</span><span class="label"><i>◇</i><span data-k="fr1_k">web</span></span>
       <h3 data-k="fr1_t">Dashboard e siti</h3>
@@ -78,40 +78,41 @@
 <!-- ============================================================ mappa operativa -->
 <section class="s-sec" id="squadra">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="mp_label">mappa_operativa · demo</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="mp_t">Una squadra che lavora mentre tu scrivi codice</span> <span class="g">*/</span></h2>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="mp_t">Una squadra che lavora mentre tu scrivi codice</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="mp_p">Ogni agente ha un solo compito e lo fa bene. Si attiva solo se la sua competenza serve all'analisi, gli altri restano dormienti.<br>CORVUS coordina, passa a ciascuno le skill della sua biblioteca e compila il rapporto. Trascina la mappa e usa lo zoom per vedere tutta la squadra.</p></div>
   <div class="map-box s-map s-rv" id="map"></div>
   <div class="s-agents s-rv" id="agents"></div>
+  <button type="button" class="btn s-more" id="agents-more" aria-controls="agents" aria-expanded="false"></button>
 </section>
 
 <!-- ============================================================ registro -->
 <section class="s-sec s-split">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="rg_label">registro</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="rg_t">Ogni passo, sotto i tuoi occhi</span> <span class="g">*/</span></h2>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="rg_t">Ogni passo, sotto i tuoi occhi</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="rg_p">Il registro dal vivo mostra cosa sta provando ogni agente, cosa ha trovato e perché.<br>Alla fine ricevi un rapporto PDF col tuo marchio, in italiano o in inglese.</p>
     <ul class="s-ticks"><li data-k="rg_l1">avvisi nella dashboard, sul computer e via email</li><li data-k="rg_l2">confronto automatico con la scansione precedente</li><li data-k="rg_l3">voto da 0 a 100 e badge per il tuo sito</li></ul>
     <div class="s-badges"><img id="badge-a" src="assets/badge-92-it.svg" alt="Corvex 92/100" height="28"><img id="badge-b" src="assets/badge-64-it.svg" alt="Corvex 64/100" height="28"></div></div>
-  <div class="term s-term s-rv"><div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex://registro/shop.esempio.it<span class="r"><span class="status live s-live"><i></i><span>live</span></span></span></div>
+  <div class="term s-term s-rv"><div class="term-h"><span class="dots"><i></i><i></i><i></i></span><span data-k="rg_url">corvex://registro/shop.esempio.it</span><span class="r"><span class="status live s-live"><i></i><span>live</span></span></span></div>
     <div class="term-b s-term-b" id="term"></div></div>
 </section>
 
 <!-- ============================================================ correzioni -->
 <section class="s-sec s-split s-rev">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="fx_label">correzioni_pronte</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="fx_t">Non si limita a trovare. Ripara</span> <span class="g">*/</span></h2>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="fx_t">Non si limita a trovare. Ripara</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="fx_p">Per molte falle la correzione è già scritta.<br>La approvi tu e Corvex la applica tenendo una copia dell'originale, oppure apre una pull request su un ramo separato.</p>
     <ul class="s-ticks"><li data-k="fx_l1">nessuna modifica senza il tuo consenso</li><li data-k="fx_l2">dipendenze aggiornate alla prima versione sicura</li><li data-k="fx_l3">funziona con Claude Code, Cursor e Windsurf tramite MCP</li></ul></div>
   <div class="s-diff s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>server.js · <span data-k="fx_file">correzione automatica</span><span class="r"><span class="sev alta" data-k="sev_alta">alta</span></span></div>
-    <pre class="s-code"><span class="c">// JACKAL · <span data-k="fx_why">cookie di sessione leggibile da JavaScript</span></span><span class="del">- res.cookie("sessione", token)</span><span class="add">+ res.cookie("sessione", token, {</span><span class="add">+   httpOnly: true, secure: true, sameSite: "strict"</span><span class="add">+ })</span></pre>
-    <div class="s-diff-f"><span class="mono dim" data-k="fx_bak">// backup: server.js.corvex.bak</span><span class="s-pr">corvex/fix-cookie-sessione → <b>pull request</b></span></div>
+    <pre class="s-code"><span class="c">// JACKAL · <span data-k="fx_why">cookie di sessione leggibile da JavaScript</span></span><span class="del" data-k="fx_del">- res.cookie("sessione", token)</span><span class="add" data-k="fx_add">+ res.cookie("sessione", token, {</span><span class="add">+   httpOnly: true, secure: true, sameSite: "strict"</span><span class="add">+ })</span></pre>
+    <div class="s-diff-f"><span class="mono dim" data-k="fx_bak">// backup: server.js.corvex.bak</span><span class="s-pr"><span data-k="fx_branch">corvex/fix-cookie-sessione</span> → <b>pull request</b></span></div>
   </div>
 </section>
 
 <!-- ============================================================ questo computer -->
 <section class="s-sec" id="computer">
   <div class="s-head s-rv"><span class="label"><i>■</i><span data-k="pc_label">questo_computer</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="pc_t">E poi protegge la macchina su cui lavori</span> <span class="g">*/</span></h2>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="pc_t">E poi protegge la macchina su cui lavori</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="pc_p">Cinque agenti controllano il computer che esegue Corvex.<br>Nessun file lascia la macchina.</p></div>
   <div class="s-four s-five">
     <article class="s-card s-rv"><span class="s-ag">WARDEN</span><h3 data-k="pc1_t">Malware nei file</h3><p data-k="pc1_p">Download, Scrivania, cartelle temporanee e avvio automatico, anche dentro gli archivi .zip.<br>Firme Corvex aggiornate ogni settimana.</p></article>
@@ -126,7 +127,7 @@
 <!-- ============================================================ CORVUS -->
 <section class="s-sec s-split">
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="cv_label">corvus_ai</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="cv_t">Chiedi a CORVUS, in parole semplici</span> <span class="g">*/</span></h2>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="cv_t">Chiedi a CORVUS, in parole semplici</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, il modello AI incluso in Corvex: è già pronto, non scegli né scarichi nulla e le domande restano sulla tua infrastruttura.</p>
     <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 600 procedure di sicurezza difensiva, aggiornata da sola</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li></ul></div>
   <div class="s-chat s-rv" id="chat">
@@ -141,7 +142,7 @@
 <!-- ============================================================ privacy -->
 <section class="s-sec" id="privacy">
   <div class="s-head s-rv"><span class="label"><i>✓</i><span data-k="pv_label">sicurezza_e_privacy</span></span>
-    <h2 class="cm"><span class="g">/*</span> <span data-k="pv_t">Uno strumento di sicurezza deve esserlo per primo</span> <span class="g">*/</span></h2></div>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="pv_t">Uno strumento di sicurezza deve esserlo per primo</span>&nbsp;<span class="g">*/</span></h2></div>
   <div class="s-pol">
     <div class="s-rv"><span class="k">01</span><h4 data-k="pv1_t">Solo ciò che è tuo</h4><p data-k="pv1_p">Corvex prova solo piattaforme di cui sei proprietario o per cui hai un'autorizzazione, e per i siti pubblici lo verifica prima di iniziare.</p></div>
     <div class="s-rv"><span class="k">02</span><h4 data-k="pv2_t">Prove delicate</h4><p data-k="pv2_p">Gli agenti osservano e provano senza modificare né cancellare dati, con un ritmo leggero che non disturba i tuoi utenti.</p></div>
@@ -157,7 +158,7 @@
   <pre class="ascii s-end-bg" id="end-ascii" aria-hidden="true"></pre>
   <div class="s-end-in s-rv">
     <span class="label"><i>+</i><span data-k="end_label">stato · in_rifinitura</span></span>
-    <h2 class="cm s-h1"><span class="g">/*</span> <span data-k="end_t">In arrivo</span> <span class="g">*/</span><span class="s-caret"></span></h2>
+    <h2 class="cm s-h1"><span class="g">/*</span>&nbsp;<span data-k="end_t">In arrivo</span>&nbsp;<span class="s-close"><span class="g">*/</span><span class="s-caret"></span></span></h2>
     <p class="s-sub" data-k="end_p">Stiamo rifinendo gli ultimi dettagli.<br>Download e piani apriranno a breve, con una versione gratuita per provarlo sui tuoi progetti.</p>
     <div class="s-acts">
       <span class="btn s-locked" aria-disabled="true"><span data-k="cta_download">download()</span><em data-k="presto">presto</em></span>
@@ -172,7 +173,7 @@
 <footer class="s-foot">
   <a class="s-brand" href="#top" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
   <span class="mono dim" data-k="foot">© 2026 Corvex · difesa delle piattaforme</span>
-  <span class="mono dim">windows · macos</span>
+  <span class="s-foot-r"><span class="mono dim">windows · macos</span><a class="s-gh mono" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/CorvexDevelops</span></a></span>
 </footer>
 
 </body>

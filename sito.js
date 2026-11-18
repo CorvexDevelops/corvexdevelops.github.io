@@ -14,7 +14,7 @@
     hero_label: "coming_soon · early_access", hero_t1: "Your platforms", hero_t2: "deserve real defenses",
     hero_sub: "Corvex puts the dashboards, software and computer you work on to the test.<br>A team of agents hunts for gaps, alerts you and tells you how to close them.<br>When it's safe to do so, it fixes them on its own.",
     cta_download: "download()", presto: "soon", cta_scopri: "explore_corvex()", st_agenti: "agents", st_fronti: "fronts", st_codice: "code sent to third parties", st_zero: "0 bytes",
-    tk_head: "demo · latest activity", fr_label: "three_fronts", fr_t: "One team, everything you build",
+    tk_head: "demo", tk_head2: "· latest activity", rg_url: "corvex://log/shop.example.com", fr_label: "three_fronts", fr_t: "One team, everything you build",
     fr1_k: "web", fr1_t: "Dashboards and websites",
     fr1_p: "Headers, TLS, cookies, CORS, exposed files, injections, outdated libraries, open APIs, spoofable email and hijackable subdomains.<br>Gentle checks, only on what's yours.",
     fr2_k: "code", fr2_t: "Code and repositories",
@@ -29,7 +29,8 @@
     fx_label: "fixes_ready", fx_t: "It doesn't just find. It fixes",
     fx_p: "For many issues the fix is already written.<br>You approve it and Corvex applies it while keeping a copy of the original, or it opens a pull request on a separate branch.",
     fx_l1: "no change without your consent", fx_l2: "dependencies upgraded to the first safe version", fx_l3: "works with Claude Code, Cursor and Windsurf through MCP",
-    fx_file: "automatic fix", fx_why: "session cookie readable by JavaScript", fx_bak: "// backup: server.js.corvex.bak", sev_alta: "high",
+    fx_file: "automatic fix", fx_why: "session cookie readable by JavaScript", fx_bak: "// backup: server.js.corvex.bak", fx_branch: "corvex/fix-session-cookie",
+    fx_del: '- res.cookie("session", token)', fx_add: '+ res.cookie("session", token, {', sev_alta: "high",
     pc_label: "this_computer", pc_t: "And it protects the machine you work on",
     pc_p: "Five agents watch over the computer running Corvex.<br>No file ever leaves the machine.",
     pc1_t: "Malware in files", pc1_p: "Downloads, Desktop, temporary folders and startup items, even inside .zip archives.<br>Corvex signatures updated every week.",
@@ -116,22 +117,34 @@
     const F = { "*": T("tutti", "all"), web: "web", code: T("codice", "code"), "web · code": T("web · codice", "web · code"), pc: "computer" };
     // corvex-ignore-next-line xss-dom: verificato, testi fissi passati da esc()
     $("agents").innerHTML = TEAM.map(([n, f, it, en]) => `<div><span class="f">${esc(F[f])}</span><b>${esc(n)}</b><span>${esc(T(it, en))}</span></div>`).join("");
+    moreLabel();
   }
+  // Su mobile l'elenco parte chiuso sui primi agenti, il pulsante apre tutta la squadra.
+  function moreLabel() {
+    const b = $("agents-more"), open = $("agents").classList.contains("open");
+    b.setAttribute("aria-expanded", String(open));
+    b.textContent = open ? T("riduci()", "show_less()") : T(`tutta_la_squadra(${TEAM.length})`, `whole_team(${TEAM.length})`);
+  }
+  $("agents-more").onclick = () => {
+    const open = $("agents").classList.toggle("open");
+    moreLabel();
+    if (!open) $("agents-more").scrollIntoView({ block: "nearest" });
+  };
 
   // ================================================================ nastro (demo)
   const FEED = [
-    ["09:41", "crit", ["falla", "issue"], "shop.esempio.it", ["File .env scaricabile da chiunque", ".env file downloadable by anyone"]],
-    ["09:41", "warn", ["falla", "issue"], "shop.esempio.it", ["Cookie di sessione senza HttpOnly", "Session cookie without HttpOnly"]],
-    ["09:43", "ok", ["corretta", "fixed"], "api-ordini", ["lodash aggiornato alla 4.17.21", "lodash upgraded to 4.17.21"]],
-    ["09:44", "warn", ["falla", "issue"], "pannello.esempio.it", ["Manca la Content-Security-Policy", "Missing Content-Security-Policy"]],
-    ["09:46", "ok", ["completata", "completed"], "pannello.esempio.it", ["Difese 86/100 · +14 dalla scorsa scansione", "Defenses 86/100 · +14 since the last scan"]],
-    ["09:47", "crit", ["falla", "issue"], "questo computer", ["Firewall spento", "Firewall turned off"]],
-    ["09:48", "crit", ["falla", "issue"], "questo computer", ["Password FTP in chiaro sulla rete", "FTP password sent in clear text"]],
-    ["09:49", "ok", ["corretta", "fixed"], "api-ordini", ["Pull request aperta: corvex/fix-segreti", "Pull request opened: corvex/fix-secrets"]],
-    ["09:52", "warn", ["falla", "issue"], "app-mobile", ["Chiave API scritta nel codice", "API key hardcoded in the source"]],
+    ["09:41", "crit", ["falla", "issue"], ["shop.esempio.it", "shop.example.com"], ["File .env scaricabile da chiunque", ".env file downloadable by anyone"]],
+    ["09:41", "warn", ["falla", "issue"], ["shop.esempio.it", "shop.example.com"], ["Cookie di sessione senza HttpOnly", "Session cookie without HttpOnly"]],
+    ["09:43", "ok", ["corretta", "fixed"], ["api-ordini", "orders-api"], ["lodash aggiornato alla 4.17.21", "lodash upgraded to 4.17.21"]],
+    ["09:44", "warn", ["falla", "issue"], ["pannello.esempio.it", "panel.example.com"], ["Manca la Content-Security-Policy", "Missing Content-Security-Policy"]],
+    ["09:46", "ok", ["completata", "completed"], ["pannello.esempio.it", "panel.example.com"], ["Difese 86/100 · +14 dalla scorsa scansione", "Defenses 86/100 · +14 since the last scan"]],
+    ["09:47", "crit", ["falla", "issue"], ["questo computer", "this computer"], ["Firewall spento", "Firewall turned off"]],
+    ["09:48", "crit", ["falla", "issue"], ["questo computer", "this computer"], ["Password FTP in chiaro sulla rete", "FTP password sent in clear text"]],
+    ["09:49", "ok", ["corretta", "fixed"], ["api-ordini", "orders-api"], ["Pull request aperta: corvex/fix-segreti", "Pull request opened: corvex/fix-secrets"]],
+    ["09:52", "warn", ["falla", "issue"], ["app-mobile", "mobile-app"], ["Chiave API scritta nel codice", "API key hardcoded in the source"]],
   ];
   function drawTicker() {
-    const seg = FEED.map(([tm, k, kind, tg, msg]) => `<span class="it"><span class="tm">${tm}</span><span class="k ${k}">${esc(T(kind[0], kind[1]))}</span><b>${esc(tg === "questo computer" ? T(tg, "this computer") : tg)}</b>${esc(T(msg[0], msg[1]))}</span>`).join("");
+    const seg = FEED.map(([tm, k, kind, tg, msg]) => `<span class="it"><span class="tm">${tm}</span><span class="k ${k}">${esc(T(kind[0], kind[1]))}</span><b>${esc(T(tg[0], tg[1]))}</b>${esc(T(msg[0], msg[1]))}</span>`).join("");
     // corvex-ignore-next-line xss-dom: verificato, testi fissi passati da esc()
     $("tk").innerHTML = seg + seg;
   }
@@ -185,7 +198,8 @@
     const all = done === MAP_AGENTS.length;
     const lead = { id: "corvo", name: "CORVUS", lead: true, status: "lavoro",
       activity: all ? T(`Rapporto pronto · ${found} falle`, `Report ready · ${found} issues`) : sec < 1 ? T("Studia il bersaglio", "Studying the target") : T("Sveglia la squadra web", "Waking the web team") };
-    return { id: "scn_demo00", target_name: "shop.esempio.it", location: "https://shop.esempio.it", status: all ? "completata" : "in_corso", agents: [lead].concat(agents) };
+    const host = T("shop.esempio.it", "shop.example.com");
+    return { id: "scn_demo00", target_name: host, location: "https://" + host, status: all ? "completata" : "in_corso", agents: [lead].concat(agents) };
   }
   function tickMap() {
     if (!map) return;
@@ -200,7 +214,7 @@
     ["VECTOR", "", "Legge le intestazioni di 12 pagine", "Reading the headers of 12 pages"],
     ["VECTOR", "finding", "Trovato: manca la Content-Security-Policy", "Found: missing Content-Security-Policy"],
     ["HANDSHAKE", "", "TLS 1.3 · certificato valido per altri 71 giorni", "TLS 1.3 · certificate valid for 71 more days"],
-    ["JACKAL", "finding", "Trovato: cookie «sessione» senza HttpOnly", "Found: «sessione» cookie without HttpOnly"],
+    ["JACKAL", "finding", "Trovato: cookie «sessione» senza HttpOnly", "Found: «session» cookie without HttpOnly"],
     ["NULLBYTE", "", "Sbircia in /backup, /.git, /debug", "Peeking into /backup, /.git, /debug"],
     ["NULLBYTE", "finding", "Trovato: /.env scaricabile (credenziali del database)", "Found: /.env downloadable (database credentials)"],
     ["MIRROR", "", "Origine «null» rifiutata: bene", "«null» origin rejected: good"],
@@ -229,7 +243,7 @@
   // ================================================================ chat con CORVUS (demo)
   const ANSWER = [
     "Parti dal file .env pubblico su shop.esempio.it: espone la password del database, quindi toglilo subito dal sito e cambia la password. Poi il cookie di sessione: la correzione è pronta, ti basta approvarla. Le altre due falle possono aspettare la prossima settimana.",
-    "Start with the public .env file on shop.esempio.it: it exposes the database password, so take it off the site right away and change the password. Then the session cookie: the fix is ready, you just need to approve it. The other two issues can wait until next week.",
+    "Start with the public .env file on shop.example.com: it exposes the database password, so take it off the site right away and change the password. Then the session cookie: the fix is ready, you just need to approve it. The other two issues can wait until next week.",
   ];
   let chatT = null, chatSeen = false;
   function chatStart() {
@@ -258,6 +272,32 @@
     }, reduce ? 0 : 350 + i * 420));
   }
 
+  // ================================================================ titoli che si decifrano
+  // Ogni parola resta larga quanto il testo finale, così i simboli casuali non spostano gli a capo né la pagina.
+  const GLYPHS = "0123456789ABCDEF#:/<>=+";
+  function decode(el, dur) {
+    const text = el.textContent;
+    if (reduce || !text.trim()) return;
+    const words = text.split(" ");
+    // corvex-ignore-next-line xss-dom: verificato, parole del titolo passate da esc()
+    el.innerHTML = words.map(w => `<span class="s-w">${esc(w)}</span>`).join(" ");
+    const spans = [...el.children];
+    spans.forEach(s => { s.style.width = s.getBoundingClientRect().width + "px"; });
+    const start = performance.now();
+    const step = now => {
+      if (!el.contains(spans[0])) return;  // la lingua è cambiata nel frattempo
+      const p = Math.max(0, Math.min(1, (now - start) / dur));
+      let lock = Math.floor(p * text.length);
+      spans.forEach((s, i) => {
+        const w = words[i];
+        s.textContent = w.slice(0, Math.max(0, lock)) + Array.from(w.slice(Math.max(0, lock)), () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)]).join("");
+        lock -= w.length + 1;
+      });
+      if (p < 1) requestAnimationFrame(step); else el.textContent = text;
+    };
+    requestAnimationFrame(step);
+  }
+
   // ================================================================ comparsa allo scorrimento
   function countUp(el) {
     const end = +el.dataset.count;
@@ -281,7 +321,7 @@
       el.classList.add("in");
       io.unobserve(el);
       el.querySelectorAll("[data-count]").forEach(countUp);
-      el.querySelectorAll("h2.cm [data-k]").forEach(h => V.scramble(h, h.textContent, 700));
+      el.querySelectorAll("h2.cm [data-k]").forEach(h => decode(h, 700));
       if (el.id === "chat") { chatSeen = true; chatStart(); }
       if (el.closest && el.closest(".s-end")) boot();
     }), { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
