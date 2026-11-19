@@ -413,6 +413,8 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
 .actions .hint { flex: 1 1 220px; min-width: 0; font: 11.5px/1.5 var(--mono); color: var(--t3); }
 .big-cube { width: 72px; flex: none; color: var(--t4); }
 .agent-head { display: flex; gap: 20px; align-items: center; }
+.corvus-mark { width: 72px; height: 72px; flex: none; image-rendering: pixelated; }
+.chat-m .who .corvus-who { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; }
 
 /* ------------------------------------------------------------------ chat di CORVUS */
 .chat { margin-top: 22px; border: 1px solid var(--line); border-radius: 6px; background: var(--black); height: calc(100vh - 380px); min-height: 260px; overflow: auto; padding: 14px; display: flex; flex-direction: column; gap: 14px; }
