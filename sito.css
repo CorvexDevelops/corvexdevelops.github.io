@@ -140,7 +140,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 .s-pol p { margin: 0; color: var(--t2); font-size: 14px; line-height: 1.6; }
 
 /* anteprima video */
-.s-vid { border-top: 1px solid var(--line); }
 .s-video { border: 1px solid var(--line); border-radius: 6px; background: var(--black); overflow: hidden; }
 .s-vlang { font: 12px var(--mono); color: var(--t3); }
 .s-vbox { position: relative; aspect-ratio: 16 / 9; background: #000; }

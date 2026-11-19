@@ -20,7 +20,7 @@
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/corvex.css?v=2d87b69e57">
-  <link rel="stylesheet" href="sito.css?v=321b7981d0">
+  <link rel="stylesheet" href="sito.css?v=5a51087f14">
   <script defer src="assets/viste.js?v=2539c2c7bb"></script>
   <script defer src="sito.js?v=63aeccb28f"></script>
 </head>
@@ -59,6 +59,21 @@
 <div class="s-ticker" aria-hidden="true"><div class="s-tk-head"><i></i><span data-k="tk_head">demo</span><span class="x" data-k="tk_head2">· ultime attività</span></div><div class="s-tk-run"><div class="s-tk-track" id="tk"></div></div></div>
 
 <main class="s-main">
+
+<!-- ============================================================ anteprima video -->
+<section class="s-sec s-vid" id="anteprima">
+  <div class="s-head s-rv"><span class="label"><i>▶</i><span data-k="vd_label">anteprima · 40s</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="vd_t">Guarda Corvex al lavoro</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-k="vd_p">Un bersaglio nuovo, la scansione che parte, le falle trovate e corrette, CORVUS che risponde.<br>Quaranta secondi dalla dashboard vera, su un sito di prova.</p></div>
+  <div class="s-video s-rv">
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex://anteprima.mp4<span class="r"><span class="s-vlang" data-k="vd_lang">// video in inglese</span></span></div>
+    <div class="s-vbox">
+      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-preview.jpg?v=5"><source src="assets/corvex-preview.mp4?v=5" type="video/mp4"></video>
+      <button class="s-vplay" id="vid-play" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span id="vid-play-t">guarda_anteprima()</span></button>
+      <button class="btn sm s-vsnd" id="vid-snd" type="button" hidden></button>
+    </div>
+  </div>
+</section>
 
 <!-- ============================================================ tre fronti -->
 <section class="s-sec" id="fronti">
@@ -194,21 +209,6 @@
       <span class="btn s-locked" aria-disabled="true"><span data-k="cta_piani">piani()</span><em data-k="presto">presto</em></span>
     </div>
     <div class="s-boot mono" id="boot" aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- ============================================================ anteprima video -->
-<section class="s-sec s-vid" id="anteprima">
-  <div class="s-head s-rv"><span class="label"><i>▶</i><span data-k="vd_label">anteprima · 40s</span></span>
-    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="vd_t">Guarda Corvex al lavoro</span>&nbsp;<span class="g">*/</span></h2>
-    <p class="s-lead" data-k="vd_p">Un bersaglio nuovo, la scansione che parte, le falle trovate e corrette, CORVUS che risponde.<br>Quaranta secondi dalla dashboard vera, su un sito di prova.</p></div>
-  <div class="s-video s-rv">
-    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex://anteprima.mp4<span class="r"><span class="s-vlang" data-k="vd_lang">// video in inglese</span></span></div>
-    <div class="s-vbox">
-      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-preview.jpg?v=5"><source src="assets/corvex-preview.mp4?v=5" type="video/mp4"></video>
-      <button class="s-vplay" id="vid-play" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span id="vid-play-t">guarda_anteprima()</span></button>
-      <button class="btn sm s-vsnd" id="vid-snd" type="button" hidden></button>
-    </div>
   </div>
 </section>
 
