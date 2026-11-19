@@ -62,8 +62,8 @@
     end_label: "status · polishing", end_t: "Coming soon",
     end_p: "We're putting the finishing touches on it.<br>Downloads and plans open soon, with a free version to try it on your own projects.",
     cta_piani: "plans()", foot: "© 2026 Corvex · platform defense",
-    vd_label: "preview · 25s", vd_t: "Watch Corvex at work", vd_lang: "// english video",
-    vd_p: "One command, a team at work, issues found and fixed.<br>Twenty-five seconds of the real dashboard, on a test website.",
+    vd_label: "preview · 40s", vd_t: "Watch Corvex at work", vd_lang: "// english video",
+    vd_p: "A new target, the scan kicking off, issues found and fixed, CORVUS answering.<br>Forty seconds of the real dashboard, on a test website.",
   };
   const META = {
     it: ["Corvex · difesa delle piattaforme", "Corvex mette alla prova le tue dashboard, il tuo codice e il tuo computer. Una squadra di agenti trova le falle, ti avvisa e le corregge. In arrivo."],
