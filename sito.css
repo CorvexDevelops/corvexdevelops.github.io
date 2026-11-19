@@ -119,7 +119,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 .s-bench.in .s-brow i::after { animation: growx .9s var(--ease) both; transform-origin: left; animation-delay: .35s; }
 .s-brow b { color: var(--ok); font-weight: 500; text-align: right; }
 .s-brow.z b { color: var(--white); }
-.s-bench-gh { margin-top: 18px; font-size: 12.5px; }
+.s-repos { display: grid; gap: 0; margin-top: 18px; border-top: 1px solid var(--line); }
+.s-repos a { display: grid; grid-template-columns: 17ch 1fr auto; gap: 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+.s-repos b { color: var(--t1); font-weight: 500; }
+.s-repos em { font-style: normal; color: var(--t3); }
+.s-repos a:hover em { color: var(--t2); }
+.s-repos i { font-style: normal; }
 .s-split .s-os { margin-top: 18px; }
 
 .s-chat { border: 1px solid var(--line); border-radius: 6px; background: var(--black); overflow: hidden; }
@@ -191,6 +196,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   .s-hero::after { background: linear-gradient(0deg, rgba(0,0,0,.95) 30%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.3)); }
 }
 @media (max-width: 640px) {
+  .s-repos a { grid-template-columns: 1fr auto; row-gap: 3px; } .s-repos em { grid-row: 2; grid-column: 1; } .s-repos i { grid-row: 1; grid-column: 2; }
   .s-corvus-big { width: 52px; height: 52px; margin-top: 20px; }
   :root { --pad: 16px; }
   .s-top { gap: 12px; }

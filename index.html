@@ -19,10 +19,10 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css?v=bc4a0a2993">
-  <link rel="stylesheet" href="sito.css?v=fd164da904">
+  <link rel="stylesheet" href="assets/corvex.css?v=1838d84560">
+  <link rel="stylesheet" href="sito.css?v=3146ec6e02">
   <script defer src="assets/viste.js?v=2539c2c7bb"></script>
-  <script defer src="sito.js?v=964bfce33b"></script>
+  <script defer src="sito.js?v=25ca02a54b"></script>
 </head>
 <body class="s-body">
 
@@ -118,7 +118,7 @@
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="fx_label">correzioni_pronte</span></span>
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="fx_t">Non si limita a trovare. Ripara</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="fx_p">Per molte falle la correzione è già scritta.<br>La approvi tu e Corvex la applica tenendo una copia dell'originale, oppure apre una pull request su un ramo separato.</p>
-    <ul class="s-ticks"><li data-k="fx_l1">nessuna modifica senza il tuo consenso</li><li data-k="fx_l2">dipendenze aggiornate alla prima versione sicura</li><li data-k="fx_l3">funziona con Claude Code, Cursor e Windsurf tramite MCP, con un server blindato contro le istruzioni nascoste nel codice e nei siti analizzati</li><li data-k="fx_l4">scrive le regole di sicurezza per gli agenti AI (CLAUDE.md, AGENTS.md, Cursor, Copilot), così le stesse falle non tornano</li></ul></div>
+    <ul class="s-ticks"><li data-k="fx_l1">nessuna modifica senza il tuo consenso</li><li data-k="fx_l2">dipendenze aggiornate alla prima versione sicura</li><li data-k="fx_l3">funziona con Claude Code, Cursor e Windsurf tramite MCP, con un server blindato contro le istruzioni nascoste nel codice e nei siti analizzati</li><li data-k="fx_l4">scrive le regole di sicurezza per gli agenti AI (CLAUDE.md, AGENTS.md, Cursor, Copilot), così le stesse falle non tornano. Quelle di base sono open source</li></ul></div>
   <div class="s-diff s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>server.js · <span data-k="fx_file">correzione automatica</span><span class="r"><span class="sev alta" data-k="sev_alta">alta</span></span></div>
     <pre class="s-code"><span class="c">// JACKAL · <span data-k="fx_why">cookie di sessione leggibile da JavaScript</span></span><span class="del" data-k="fx_del">- res.cookie("sessione", token)</span><span class="add" data-k="fx_add">+ res.cookie("sessione", token, {</span><span class="add">+   httpOnly: true, secure: true, sameSite: "strict"</span><span class="add">+ })</span></pre>
@@ -163,9 +163,13 @@
   <div class="s-head s-rv"><span class="label"><i>{}</i><span data-k="bn_label">banco_di_prova · open_source</span></span>
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="bn_t">Misurato in pubblico, con un metro che puoi usare anche tu</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="bn_p">Abbiamo pubblicato il banco di prova con cui misuriamo Corvex: un sito, un progetto e una cattura di rete con 71 falle note, ognuno con un gemello pulito.<br>Ogni segnalazione sul gemello pulito conta come falso allarme.</p>
-    <ul class="s-ticks"><li data-k="bn_l1">71 falle trovate su 71 e zero falsi allarmi, senza internet e senza AI</li><li data-k="bn_l2">valuta i risultati di qualsiasi strumento in formato SARIF o JSON</li><li data-k="bn_l3">open source con licenza Apache 2.0, insieme ai nostri strumenti per catture di rete, vulnerabilità note e liste di reti</li></ul>
+    <ul class="s-ticks"><li data-k="bn_l1">71 falle trovate su 71 e zero falsi allarmi, senza internet e senza AI</li><li data-k="bn_l2">valuta i risultati di qualsiasi strumento in formato SARIF o JSON</li><li data-k="bn_l3">open source con licenza Apache 2.0, insieme ai nostri strumenti di rete e alle regole di sicurezza per gli agenti AI</li></ul>
     <p class="s-os mono"><em data-k="bn_note">// i bersagli sono gemelli del banco su cui Corvex è messo a punto: è il nostro riferimento, non una prova indipendente</em></p>
-    <a class="s-gh s-bench-gh mono" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><span data-k="bn_gh">github.com/CorvexDevelops</span> →</a></div>
+    <div class="s-repos">
+      <a class="s-gh mono" href="https://github.com/CorvexDevelops/corvex-bench" target="_blank" rel="noopener noreferrer"><b>corvex-bench</b><em data-k="rp_bench">il banco di prova</em><i>→</i></a>
+      <a class="s-gh mono" href="https://github.com/CorvexDevelops/corvex-netkit" target="_blank" rel="noopener noreferrer"><b>corvex-netkit</b><em data-k="rp_net">catture di rete, vulnerabilità note, liste di reti</em><i>→</i></a>
+      <a class="s-gh mono" href="https://github.com/CorvexDevelops/ai-security-rules" target="_blank" rel="noopener noreferrer"><b>ai-security-rules</b><em data-k="rp_rules">regole di sicurezza per gli agenti AI</em><i>→</i></a>
+    </div></div>
   <div class="s-diff s-bench s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvexai/bench · score<span class="r"><span class="mono dim">apache-2.0</span></span></div>
     <div class="s-bench-b">
