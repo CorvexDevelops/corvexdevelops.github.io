@@ -163,6 +163,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 .s-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: space-between; padding: 22px var(--pad); border-top: 1px solid var(--line); }
 .s-foot .s-brand img { width: 22px; height: 22px; }
 .s-foot .mono { font-size: 12px; }
+.s-legal { display: inline-flex; gap: 14px; }
+.s-legal a { color: var(--t4); text-decoration: none; transition: color .15s; }
+.s-legal a:hover, .s-legal a:focus-visible { color: var(--white); }
 .s-foot-r { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .s-gh { display: inline-flex; align-items: center; gap: 8px; color: var(--t2); text-decoration: none; transition: color .15s; }
 .s-gh:hover, .s-gh:focus-visible { color: var(--white); }

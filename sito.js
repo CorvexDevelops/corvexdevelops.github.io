@@ -18,7 +18,7 @@
     fr1_k: "web", fr1_t: "Dashboards and websites",
     fr1_p: "Headers, TLS, cookies, CORS, exposed files, injections, outdated libraries, open APIs, spoofable email and hijackable subdomains.<br>Gentle checks, only on what's yours.",
     fr2_k: "code", fr2_t: "Code and repositories",
-    fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
+    fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>Supabase and Firebase rules, AI endpoints with no limits that can blow up your bill.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
     fr3_k: "computer", fr3_t: "The computer you work on",
     fr3_p: "Malware in files, programs with known flaws, modified critical files and local network traffic.<br>Works alongside Defender and XProtect and can block the threats it finds.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
@@ -28,7 +28,7 @@
     rg_l1: "alerts in the dashboard, on your computer and by email", rg_l2: "comparison with the previous scan and attack chains between linked issues", rg_l3: "a 0 to 100 score and a badge for your website",
     fx_label: "fixes_ready", fx_t: "It doesn't just find. It fixes",
     fx_p: "For many issues the fix is already written.<br>You approve it and Corvex applies it while keeping a copy of the original, or it opens a pull request on a separate branch.",
-    fx_l1: "no change without your consent", fx_l2: "dependencies upgraded to the first safe version", fx_l3: "works with Claude Code, Cursor and Windsurf through MCP",
+    fx_l1: "no change without your consent", fx_l2: "dependencies upgraded to the first safe version", fx_l3: "works with Claude Code, Cursor and Windsurf through MCP, with a server hardened against instructions hidden in the code and sites it scans", fx_l4: "writes security rules for AI coding agents (CLAUDE.md, AGENTS.md, Cursor, Copilot), so the same flaws don't come back",
     fx_file: "automatic fix", fx_why: "session cookie readable by JavaScript", fx_bak: "// backup: server.js.corvex.bak", fx_branch: "corvex/fix-session-cookie",
     fx_del: '- res.cookie("session", token)', fx_add: '+ res.cookie("session", token, {', sev_alta: "high",
     pc_label: "this_computer", pc_t: "And it protects the machine you work on",
@@ -61,7 +61,7 @@
     pv6_t: "Signed updates", pv6_p: "Every update is digitally signed and installs without touching your data.",
     end_label: "status · polishing", end_t: "Coming soon",
     end_p: "We're putting the finishing touches on it.<br>Downloads and plans open soon, with a free version to try it on your own projects.",
-    cta_piani: "plans()", foot: "© 2026 Corvex · platform defense",
+    cta_piani: "plans()", foot: "© 2026 Corvex · platform defense", lg_terms: "terms", lg_sec: "security",
     vd_label: "preview · 40s", vd_t: "Watch Corvex at work", vd_lang: "// english video",
     vd_p: "A new target, the scan kicking off, issues found and fixed, CORVUS answering.<br>Forty seconds of the real dashboard, on a test website.",
   };
@@ -117,6 +117,8 @@
     ["REWIND", "code", "segreti rimasti nella cronologia git", "secrets left in git history"],
     ["BLUEPRINT", "code", "GitHub Actions, Docker Compose, Kubernetes e Terraform", "GitHub Actions, Docker Compose, Kubernetes and Terraform"],
     ["LEDGER", "code", "SBOM CycloneDX e licenze incompatibili delle dipendenze", "CycloneDX SBOM and incompatible dependency licences"],
+    ["VAULT", "web · code", "Supabase e Firebase: regole aperte, tabelle senza RLS, chiave service_role nel browser", "Supabase and Firebase: open rules, tables without RLS, service_role key in the browser"],
+    ["LEECH", "web · code", "costi degli endpoint AI: chiavi esposte, nessun accesso, nessun limite di richieste", "AI endpoint costs: exposed keys, no sign-in, no request limit"],
     ["ORACLE", "code", "audit AI: ogni falla cita il codice esatto ed è confermata due volte", "AI audit: every issue quotes the exact code and is confirmed twice"],
     ["BASTION", "pc", "postura: antivirus, firewall, cifratura, aggiornamenti", "posture: antivirus, firewall, encryption, updates"],
     ["WARDEN", "pc", "malware nei file, anche dentro gli archivi", "malware in files, even inside archives"],
@@ -177,6 +179,8 @@
     ["schema", "SCHEMA", ["API", "APIs"], [["Cerca OpenAPI e GraphQL", "Looking for OpenAPI and GraphQL"], ["Chiama le API senza chiave", "Calling the APIs without a key"]], 1],
     ["spoof", "SPOOF", ["Email del dominio", "Domain email"], [["Legge SPF e DMARC", "Reading SPF and DMARC"], ["Cerca i selettori DKIM", "Looking for DKIM selectors"]], 0],
     ["hijack", "HIJACK", ["Sottodomini", "Subdomains"], [["Elenca i sottodomini", "Listing subdomains"], ["Segue i CNAME", "Following the CNAMEs"]], 0],
+    ["vault", "VAULT", ["Supabase e Firebase", "Supabase and Firebase"], [["Legge gli script serviti", "Reading the served scripts"], ["Cerca la chiave service_role", "Looking for the service_role key"]], 0],
+    ["leech", "LEECH", ["Costi degli endpoint AI", "AI endpoint costs"], [["Cerca gli endpoint AI", "Looking for AI endpoints"], ["Prova /api/chat senza accesso", "Trying /api/chat without sign-in"]], 1],
   ];
   const DORMANT = [
     ["skeleton", "SKELETON", "code", ["Segreti e chiavi", "Secrets and keys"]], ["cipher", "CIPHER", "code", ["Crittografia", "Cryptography"]],
@@ -275,7 +279,7 @@
   function boot() {
     const el = $("boot");
     const lines = [["$ corvex --stato", ""], [T("firme_corvex ........... pronte", "corvex_signatures ...... ready"), "ok"],
-      [T("agenti ................. 26/26", "agents ................. 26/26"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
+      [T("agenti ................. 28/28", "agents ................. 28/28"), "ok"], [T("download ............... in arrivo", "download ............... coming soon"), "w"]];
     el.innerHTML = "";
     lines.forEach(([t, c], i) => setTimeout(() => {
       const d = document.createElement("div");

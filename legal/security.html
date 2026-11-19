@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Corvex · sicurezza</title>
+  <meta name="title-it" content="Corvex · sicurezza">
+  <meta name="title-en" content="Corvex · security">
+  <meta name="description" content="Come Corvex protegge i tuoi dati e se stesso, spiegato in parole semplici.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/corvex.css">
+  <link rel="stylesheet" href="legal.css">
+  <script defer src="legal.js"></script>
+</head>
+<body class="lg">
+<header class="lg-top">
+  <a class="lg-brand" href="../index.html"><img src="../assets/logo.svg" alt=""><b>corvex</b></a>
+  <nav class="lg-nav"><a href="terms.html"><span data-l="it">termini</span><span data-l="en" hidden>terms</span></a><a href="privacy.html">privacy</a><a class="on" href="security.html"><span data-l="it">sicurezza</span><span data-l="en" hidden>security</span></a></nav>
+  <div class="lg-lang" role="group" aria-label="Lingua"><button type="button" data-lang="it">IT</button><button type="button" data-lang="en">EN</button></div>
+</header>
+
+<main class="lg-main">
+<article data-l="it">
+  <span class="label"><i>✓</i>sicurezza</span>
+  <h1><span class="g">/*</span>&nbsp;Come Corvex ti protegge&nbsp;<span class="g">*/</span></h1>
+  <p class="lg-lead">Uno strumento di sicurezza deve esserlo per primo. Qui trovi, in parole semplici, cosa fa Corvex per proteggere i tuoi dati, i tuoi progetti e se stesso.</p>
+  <p class="lg-date">// aggiornato il 19 novembre 2026</p>
+
+  <h2><span class="n">01</span>Il tuo codice resta da te</h2>
+  <p>Corvex gira sul tuo computer o sul tuo server. Il codice, i file, il traffico di rete e i risultati delle scansioni restano lì: non li carichiamo da nessuna parte e non li vediamo.</p>
+  <p>Per fare il suo lavoro Corvex contatta solo pochi servizi pubblici, e manda il minimo indispensabile. L'elenco completo è nell'<a href="privacy.html">informativa privacy</a>.</p>
+
+  <h2><span class="n">02</span>Un accesso difficile da rubare</h2>
+  <ul>
+    <li>La password non viene mai salvata così com'è, ma solo come impronta irreversibile.</li>
+    <li>Il secondo fattore è sempre obbligatorio: un codice dall'app di autenticazione o via email.</li>
+    <li>Dopo alcuni tentativi sbagliati l'accesso si blocca per un po'.</li>
+    <li>La sessione scade da sola dopo 8 ore, o dopo 45 minuti senza attività.</li>
+    <li>Ogni piattaforma che colleghi è visibile solo a te.</li>
+  </ul>
+
+  <h2><span class="n">03</span>I segreti sono cifrati</h2>
+  <p>Token di GitHub, password della posta, codici del secondo fattore e chiavi sono conservati cifrati. Le chiavi API per gli assistenti AI sono salvate solo come impronta: se qualcuno copiasse i file di Corvex, non potrebbe usarle.</p>
+
+  <h2><span class="n">04</span>Prove delicate, solo su ciò che è tuo</h2>
+  <ul>
+    <li>Corvex mette alla prova solo piattaforme tue o per cui hai un'autorizzazione scritta. Per un sito pubblico, prima di iniziare chiede di dimostrare che è tuo.</li>
+    <li>Gli agenti osservano e provano senza modificare né cancellare dati, con un numero massimo di richieste e un ritmo leggero, per non disturbare i tuoi utenti.</li>
+    <li>Quando controlla un endpoint AI, Corvex manda al massimo quattro richieste di una frase. Costano frazioni di centesimo.</li>
+  </ul>
+
+  <h2><span class="n">05</span>Niente cambia senza il tuo sì</h2>
+  <p>Corvex propone le correzioni e te le mostra prima. Le applica solo se lo chiedi, e conserva una copia di ogni file che modifica. Con GitHub apre una pull request su un ramo separato: il ramo principale non cambia finché non decidi tu.</p>
+
+  <h2><span class="n">06</span>Al sicuro con gli assistenti AI</h2>
+  <p>Se colleghi Corvex a Claude Code, Cursor o altri assistenti AI, il collegamento è stato costruito per non farsi ingannare:</p>
+  <ul>
+    <li>Ogni richiesta dell'assistente viene controllata: solo i dati previsti, nel formato giusto.</li>
+    <li>I testi presi dal codice o dai siti scansionati vengono ripuliti e segnalati all'assistente come dati da analizzare, mai come ordini da seguire. Se sembrano scritti per ingannarlo, Corvex lo avvisa.</li>
+    <li>Una correzione si applica solo con una conferma esplicita, che l'assistente deve chiederti prima.</li>
+    <li>La chiave che collega l'assistente a Corvex non viaggia mai in chiaro su internet.</li>
+  </ul>
+
+  <h2><span class="n">07</span>L'intelligenza artificiale lavora in casa</h2>
+  <p>corvexai, il modello AI incluso in Corvex, gira sulla tua macchina. Le domande che fai a CORVUS e il codice che l'audit AI legge non escono dalla tua infrastruttura.</p>
+
+  <h2><span class="n">08</span>Aggiornamenti firmati</h2>
+  <p>Ogni aggiornamento è firmato digitalmente: Corvex installa solo pacchetti che vengono davvero da noi e non tocca i tuoi dati. Anche le firme antimalware e la biblioteca di CORVUS sono solo testo, nessuno script viene eseguito.</p>
+
+  <h2><span class="n">09</span>Messo alla prova a ogni modifica</h2>
+  <p>Prima di ogni versione Corvex attacca se stesso con oltre cento attacchi simulati: accessi rubati, richieste forgiate da altri siti, file e percorsi falsificati, tentativi di leggere dati altrui. Un banco di prova verifica anche che gli agenti trovino le falle note e non diano falsi allarmi su progetti fatti bene.</p>
+
+  <h2><span class="n">10</span>Hai trovato una falla in Corvex?</h2>
+  <div class="lg-box"><p>Scrivici a <b>[EMAIL SICUREZZA]</b> con i dettagli. Ti rispondiamo entro tre giorni lavorativi, la correggiamo il prima possibile e, se vuoi, ti ringraziamo pubblicamente. Ti chiediamo solo di non renderla pubblica prima della correzione e di non accedere a dati di altri.</p></div>
+</article>
+
+<article data-l="en" hidden>
+  <span class="label"><i>✓</i>security</span>
+  <h1><span class="g">/*</span>&nbsp;How Corvex protects you&nbsp;<span class="g">*/</span></h1>
+  <p class="lg-lead">A security tool should be secure first. Here is, in plain words, what Corvex does to protect your data, your projects and itself.</p>
+  <p class="lg-date">// updated 19 November 2026</p>
+
+  <h2><span class="n">01</span>Your code stays with you</h2>
+  <p>Corvex runs on your computer or your server. Your code, files, network traffic and scan results stay there: we never upload them anywhere and we never see them.</p>
+  <p>To do its job Corvex only contacts a few public services, and sends the bare minimum. The full list is in the <a href="privacy.html">privacy notice</a>.</p>
+
+  <h2><span class="n">02</span>A sign-in that's hard to steal</h2>
+  <ul>
+    <li>Your password is never stored as it is, only as an irreversible fingerprint.</li>
+    <li>Two-step sign-in is always on: a code from your authenticator app or by email.</li>
+    <li>After a few wrong attempts sign-in is locked for a while.</li>
+    <li>Sessions expire on their own after 8 hours, or after 45 minutes of inactivity.</li>
+    <li>Every platform you connect is visible only to you.</li>
+  </ul>
+
+  <h2><span class="n">03</span>Secrets are encrypted</h2>
+  <p>GitHub tokens, mail passwords, two-step codes and keys are stored encrypted. API keys for AI assistants are stored only as fingerprints: even if someone copied Corvex's files, they couldn't use them.</p>
+
+  <h2><span class="n">04</span>Gentle checks, only on what's yours</h2>
+  <ul>
+    <li>Corvex only tests platforms you own or are authorised in writing to test. For a public website, it asks you to prove it's yours before starting.</li>
+    <li>Agents observe and probe without changing or deleting data, with a cap on requests and a light pace, so your users aren't disturbed.</li>
+    <li>When it checks an AI endpoint, Corvex sends at most four one-sentence requests. They cost fractions of a cent.</li>
+  </ul>
+
+  <h2><span class="n">05</span>Nothing changes without your yes</h2>
+  <p>Corvex suggests fixes and shows them to you first. It applies them only if you ask, and keeps a copy of every file it changes. With GitHub it opens a pull request on a separate branch: your main branch doesn't change until you decide.</p>
+
+  <h2><span class="n">06</span>Safe with AI assistants</h2>
+  <p>If you connect Corvex to Claude Code, Cursor or other AI assistants, the connection is built not to be fooled:</p>
+  <ul>
+    <li>Every request from the assistant is checked: only the expected data, in the right format.</li>
+    <li>Text taken from scanned code or websites is cleaned and flagged to the assistant as data to analyse, never as orders to follow. If it looks written to trick it, Corvex warns it.</li>
+    <li>A fix is applied only with an explicit confirmation, which the assistant must ask you for first.</li>
+    <li>The key that links the assistant to Corvex never travels unencrypted over the internet.</li>
+  </ul>
+
+  <h2><span class="n">07</span>AI that works at home</h2>
+  <p>corvexai, the AI model built into Corvex, runs on your machine. The questions you ask CORVUS and the code the AI audit reads never leave your infrastructure.</p>
+
+  <h2><span class="n">08</span>Signed updates</h2>
+  <p>Every update is digitally signed: Corvex installs only packages that really come from us and never touches your data. Malware signatures and the CORVUS library are text only, no script is ever run.</p>
+
+  <h2><span class="n">09</span>Tested at every change</h2>
+  <p>Before every release Corvex attacks itself with more than a hundred simulated attacks: stolen sign-ins, requests forged by other sites, spoofed files and paths, attempts to read other people's data. A test bench also checks that the agents find known flaws and raise no false alarms on well-built projects.</p>
+
+  <h2><span class="n">10</span>Found a flaw in Corvex?</h2>
+  <div class="lg-box"><p>Write to us at <b>[SECURITY EMAIL]</b> with the details. We reply within three working days, fix it as soon as possible and, if you like, thank you publicly. We only ask you not to make it public before the fix and not to access other people's data.</p></div>
+</article>
+</main>
+
+<footer class="lg-foot"><span>© 2026 Corvex</span><a href="terms.html"><span data-l="it">termini</span><span data-l="en" hidden>terms</span></a><a href="privacy.html">privacy</a><a href="security.html"><span data-l="it">sicurezza</span><span data-l="en" hidden>security</span></a></footer>
+</body>
+</html>

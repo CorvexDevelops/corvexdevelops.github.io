@@ -19,10 +19,10 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css?v=2d87b69e57">
-  <link rel="stylesheet" href="sito.css?v=5a51087f14">
+  <link rel="stylesheet" href="assets/corvex.css?v=bc4a0a2993">
+  <link rel="stylesheet" href="sito.css?v=fd164da904">
   <script defer src="assets/viste.js?v=2539c2c7bb"></script>
-  <script defer src="sito.js?v=63aeccb28f"></script>
+  <script defer src="sito.js?v=964bfce33b"></script>
 </head>
 <body class="s-body">
 
@@ -49,7 +49,7 @@
       <a class="btn primary" href="#fronti"><span data-k="cta_scopri">scopri_corvex()</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="s-stats s-rv">
-      <span><span data-k="st_agenti">agenti</span> <b class="v" data-count="26">26</b></span>
+      <span><span data-k="st_agenti">agenti</span> <b class="v" data-count="28">28</b></span>
       <span><span data-k="st_fronti">fronti</span> <b class="v" data-count="3">3</b></span>
       <span><span data-k="st_codice">codice inviato a terzi</span> <b class="v" data-k="st_zero">0 byte</b></span>
     </div>
@@ -68,7 +68,7 @@
   <div class="s-video s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex://anteprima.mp4<span class="r"><span class="s-vlang" data-k="vd_lang">// video in inglese</span></span></div>
     <div class="s-vbox">
-      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-preview.jpg?v=5"><source src="assets/corvex-preview.mp4?v=5" type="video/mp4"></video>
+      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-preview.jpg?v=6"><source src="assets/corvex-preview.mp4?v=6" type="video/mp4"></video>
       <button class="s-vplay" id="vid-play" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span id="vid-play-t">guarda_anteprima()</span></button>
       <button class="btn sm s-vsnd" id="vid-snd" type="button" hidden></button>
     </div>
@@ -85,7 +85,7 @@
       <p data-k="fr1_p">Intestazioni, TLS, cookie, CORS, file esposti, iniezioni, librerie vecchie, API aperte, email falsificabili e sottodomini dirottabili.<br>Prove delicate, solo su ciò che è tuo.</p></article>
     <article class="s-card s-rv"><span class="px s-n">02</span><span class="label"><i>{}</i><span data-k="fr2_k">codice</span></span>
       <h3 data-k="fr2_t">Codice e repository</h3>
-      <p data-k="fr2_p">Segreti nel codice e nella cronologia git, crittografia debole, dipendenze vulnerabili e licenze incompatibili, infrastruttura come codice.<br>Un audit AI cerca le falle di logica e controllo accessi, e ogni pull request viene controllata prima del merge.</p></article>
+      <p data-k="fr2_p">Segreti nel codice e nella cronologia git, crittografia debole, dipendenze vulnerabili e licenze incompatibili, infrastruttura come codice.<br>Regole di Supabase e Firebase, endpoint AI senza limiti che possono gonfiarti la bolletta.<br>Un audit AI cerca le falle di logica e controllo accessi, e ogni pull request viene controllata prima del merge.</p></article>
     <article class="s-card s-rv"><span class="px s-n">03</span><span class="label"><i>■</i><span data-k="fr3_k">computer</span></span>
       <h3 data-k="fr3_t">Il computer su cui lavori</h3>
       <p data-k="fr3_p">Malware nei file, programmi con falle note, file critici modificati e traffico della rete locale.<br>Lavora accanto a Defender e XProtect e può bloccare le minacce che trova.</p></article>
@@ -118,7 +118,7 @@
   <div class="s-head s-rv"><span class="label"><i>+</i><span data-k="fx_label">correzioni_pronte</span></span>
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="fx_t">Non si limita a trovare. Ripara</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="fx_p">Per molte falle la correzione è già scritta.<br>La approvi tu e Corvex la applica tenendo una copia dell'originale, oppure apre una pull request su un ramo separato.</p>
-    <ul class="s-ticks"><li data-k="fx_l1">nessuna modifica senza il tuo consenso</li><li data-k="fx_l2">dipendenze aggiornate alla prima versione sicura</li><li data-k="fx_l3">funziona con Claude Code, Cursor e Windsurf tramite MCP</li></ul></div>
+    <ul class="s-ticks"><li data-k="fx_l1">nessuna modifica senza il tuo consenso</li><li data-k="fx_l2">dipendenze aggiornate alla prima versione sicura</li><li data-k="fx_l3">funziona con Claude Code, Cursor e Windsurf tramite MCP, con un server blindato contro le istruzioni nascoste nel codice e nei siti analizzati</li><li data-k="fx_l4">scrive le regole di sicurezza per gli agenti AI (CLAUDE.md, AGENTS.md, Cursor, Copilot), così le stesse falle non tornano</li></ul></div>
   <div class="s-diff s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>server.js · <span data-k="fx_file">correzione automatica</span><span class="r"><span class="sev alta" data-k="sev_alta">alta</span></span></div>
     <pre class="s-code"><span class="c">// JACKAL · <span data-k="fx_why">cookie di sessione leggibile da JavaScript</span></span><span class="del" data-k="fx_del">- res.cookie("sessione", token)</span><span class="add" data-k="fx_add">+ res.cookie("sessione", token, {</span><span class="add">+   httpOnly: true, secure: true, sameSite: "strict"</span><span class="add">+ })</span></pre>
@@ -217,6 +217,7 @@
 <footer class="s-foot">
   <a class="s-brand" href="#top" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
   <span class="mono dim" data-k="foot">© 2026 Corvex · difesa delle piattaforme</span>
+  <span class="s-legal mono"><a href="legal/terms.html" data-k="lg_terms">termini</a><a href="legal/privacy.html">privacy</a><a href="legal/security.html" data-k="lg_sec">sicurezza</a></span>
   <span class="s-foot-r"><span class="mono dim">windows · macos</span><a class="s-gh mono" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/CorvexDevelops</span></a></span>
 </footer>
 

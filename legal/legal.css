@@ -1,0 +1,49 @@
+/* Pagine Termini, Privacy e Sicurezza: stessi token e caratteri di Corvex, impaginate per la lettura. */
+body.lg { margin: 0; background: var(--black); color: var(--t1); font: 300 16px/1.7 var(--sans); }
+.lg-top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 16px; padding: 14px var(--pad); background: rgba(0,0,0,.86);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.lg-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--white); text-decoration: none; }
+.lg-brand img { width: 24px; height: 24px; }
+.lg-brand b { font: 500 14px var(--mono); }
+.lg-nav { display: flex; gap: 16px; margin-left: auto; font: 12.5px var(--mono); flex-wrap: wrap; }
+.lg-nav a { color: var(--t3); text-decoration: none; }
+.lg-nav a:hover, .lg-nav a.on { color: var(--white); }
+.lg-lang { display: inline-flex; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; }
+.lg-lang button { background: none; border: 0; color: var(--t3); font: 500 11px var(--mono); padding: 5px 8px; cursor: pointer; }
+.lg-lang button.on { background: var(--coal); color: var(--white); }
+.lg-main { max-width: 760px; margin: 0 auto; padding: 56px var(--pad) 90px; }
+.lg-main .label { margin-bottom: 18px; }
+.lg-main h1 { font: 300 clamp(34px, 5vw, 52px)/1.05 var(--sans); letter-spacing: -.03em; color: var(--white); margin: 6px 0 14px; }
+.lg-main h1 .g { color: var(--t4); }
+.lg-lead { font-size: 18px; color: var(--t2); margin: 0 0 10px; }
+.lg-date { font: 12px var(--mono); color: var(--t4); margin: 0 0 40px; }
+.lg-main h2 { font: 400 22px/1.3 var(--sans); color: var(--white); margin: 44px 0 10px; letter-spacing: -.01em; }
+.lg-main h2 .n { font: 500 12px var(--mono); color: var(--t4); margin-right: 10px; vertical-align: 3px; }
+.lg-main p { margin: 0 0 12px; color: var(--t2); }
+.lg-main ul { margin: 0 0 14px; padding-left: 0; list-style: none; display: grid; gap: 8px; }
+.lg-main li { position: relative; padding-left: 22px; color: var(--t2); }
+.lg-main li::before { content: "+"; position: absolute; left: 0; color: var(--t4); font-family: var(--mono); }
+.lg-main b, .lg-main strong { color: var(--white); font-weight: 400; }
+.lg-main a { color: var(--white); }
+.lg-main code { font: 13.5px var(--mono); color: var(--t1); background: var(--coal); border: 1px solid var(--line-2); padding: 1px 5px; border-radius: 3px; }
+.lg-box { border: 1px solid var(--line); background: var(--obsidian); border-radius: 6px; padding: 18px 20px; margin: 18px 0; }
+.lg-box p:last-child { margin: 0; }
+.lg-tbl { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 14.5px; }
+.lg-tbl th, .lg-tbl td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); color: var(--t2); }
+.lg-tbl th { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--t3); }
+.lg-tbl td:first-child { color: var(--white); width: 30%; }
+.lg-foot { border-top: 1px solid var(--line); padding: 22px var(--pad); display: flex; gap: 18px; flex-wrap: wrap; font: 12px var(--mono); color: var(--t4); }
+.lg-foot a { color: var(--t3); text-decoration: none; }
+.lg-foot a:hover { color: var(--white); }
+[data-l][hidden] { display: none !important; }
+@media (max-width: 640px) {
+  :root { --pad: 16px; }
+  .lg-top { flex-wrap: wrap; gap: 10px; }
+  .lg-lang { margin-left: auto; }
+  .lg-nav { order: 3; width: 100%; margin: 0; gap: 14px; }
+  .lg-main { padding-top: 36px; }
+  .lg-tbl, .lg-tbl tbody, .lg-tbl tr, .lg-tbl td { display: block; }
+  .lg-tbl thead { display: none; }
+  .lg-tbl tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .lg-tbl td { border: 0; padding: 2px 0; white-space: normal !important; }
+}

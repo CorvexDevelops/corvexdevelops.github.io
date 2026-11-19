@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Corvex · privacy</title>
+  <meta name="title-it" content="Corvex · privacy">
+  <meta name="title-en" content="Corvex · privacy">
+  <meta name="description" content="Quali dati tratta Corvex, dove restano e chi li vede, spiegato in parole semplici.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/corvex.css">
+  <link rel="stylesheet" href="legal.css">
+  <script defer src="legal.js"></script>
+</head>
+<body class="lg">
+<header class="lg-top">
+  <a class="lg-brand" href="../index.html"><img src="../assets/logo.svg" alt=""><b>corvex</b></a>
+  <nav class="lg-nav"><a href="terms.html"><span data-l="it">termini</span><span data-l="en" hidden>terms</span></a><a class="on" href="privacy.html">privacy</a><a href="security.html"><span data-l="it">sicurezza</span><span data-l="en" hidden>security</span></a></nav>
+  <div class="lg-lang" role="group" aria-label="Lingua"><button type="button" data-lang="it">IT</button><button type="button" data-lang="en">EN</button></div>
+</header>
+
+<main class="lg-main">
+<article data-l="it">
+  <span class="label"><i>+</i>privacy</span>
+  <h1><span class="g">/*</span>&nbsp;I tuoi dati, in parole semplici&nbsp;<span class="g">*/</span></h1>
+  <p class="lg-lead">Corvex è fatto per non avere bisogno dei tuoi dati. Il tuo codice e i risultati delle scansioni restano sulla tua macchina. Qui trovi cosa riceviamo noi, cosa resta solo da te e quali servizi esterni Corvex contatta.</p>
+  <p class="lg-date">// aggiornato il 19 novembre 2026 · versione preliminare, prima del lancio</p>
+
+  <h2><span class="n">01</span>Chi siamo</h2>
+  <p>Il titolare del trattamento è <b>[RAGIONE SOCIALE]</b>, [INDIRIZZO], P. IVA [P.IVA]. Per qualsiasi domanda sulla privacy scrivi a <b>[EMAIL PRIVACY]</b>.</p>
+
+  <h2><span class="n">02</span>Cosa riceviamo noi</h2>
+  <ul>
+    <li><b>Quando acquisti:</b> il pagamento è gestito da Paddle, che fa da rivenditore. Paddle riceve nome, email, paese e dati di pagamento e ci passa solo ciò che serve per la licenza: nome, email e piano acquistato. Li usiamo per mandarti la chiave e gestire l'abbonamento.</li>
+    <li><b>Una volta al giorno, per la licenza:</b> la chiave di licenza, un codice casuale che identifica l'installazione, il nome del computer e la versione di Corvex.</li>
+    <li><b>Quando Corvex cerca aggiornamenti:</b> la versione installata. Come ogni connessione a internet, anche il tuo indirizzo IP.</li>
+    <li><b>Se ci scrivi:</b> il tuo messaggio e il tuo indirizzo email.</li>
+  </ul>
+  <div class="lg-box"><p>Non riceviamo mai il tuo codice, i siti che analizzi, i risultati, i file del tuo computer, il traffico di rete o le domande che fai a CORVUS. Niente statistiche d'uso, niente pubblicità, niente vendita di dati, e non usiamo i tuoi dati per addestrare modelli AI.</p></div>
+
+  <h2><span class="n">03</span>Cosa resta solo sulla tua installazione</h2>
+  <p>Account, piattaforme collegate, scansioni, rapporti, correzioni e chat con CORVUS restano sul computer o sul server dove gira Corvex. Per questi dati il titolare sei tu, e noi non li vediamo. Puoi cancellarli in ogni momento dalla dashboard o cancellando la cartella dei dati.</p>
+
+  <h2><span class="n">04</span>I servizi esterni che Corvex contatta</h2>
+  <p>Per fare il suo lavoro Corvex scarica alcune liste pubbliche e interroga pochi servizi. Ecco cosa manda a ciascuno:</p>
+  <table class="lg-tbl">
+    <thead><tr><th>Servizio</th><th>Cosa riceve</th><th>Perché</th></tr></thead>
+    <tbody>
+      <tr><td>OSV.dev</td><td>nomi e versioni dei pacchetti del progetto</td><td>trovare le dipendenze con falle note (si può disattivare)</td></tr>
+      <tr><td>deps.dev</td><td>nomi e versioni dei pacchetti</td><td>leggere le licenze delle dipendenze, solo se lo consenti</td></tr>
+      <tr><td>crt.sh e DNS pubblici</td><td>il dominio del sito che analizzi</td><td>trovare i sottodomini e controllare SPF, DMARC e DKIM</td></tr>
+      <tr><td>Liste pubbliche (abuse.ch, Spamhaus, IPsum, reti di Cloudflare, Fastly, AWS e Google)</td><td>niente, vengono solo scaricate</td><td>riconoscere indirizzi malevoli e quelli affidabili</td></tr>
+      <tr><td>GitHub e Hugging Face</td><td>niente, vengono solo scaricati una volta</td><td>la biblioteca di CORVUS e il modello corvexai</td></tr>
+      <tr><td>GitHub (API)</td><td>il tuo token, solo se colleghi GitHub</td><td>leggere i repository e aprire le pull request</td></tr>
+      <tr><td>Il tuo servizio di posta</td><td>gli avvisi da mandarti, solo se configuri l'email</td><td>avvisarti delle falle critiche</td></tr>
+    </tbody>
+  </table>
+  <p>Le piattaforme che scegli di analizzare ricevono ovviamente le richieste di prova di Corvex.</p>
+
+  <h2><span class="n">05</span>Cookie</h2>
+  <p>Questo sito non usa cookie né strumenti di tracciamento. Ricorda solo la lingua che scegli, nel tuo browser. La dashboard di Corvex usa un unico cookie tecnico per tenerti connesso, che scade da solo.</p>
+
+  <h2><span class="n">06</span>Per quanto tempo</h2>
+  <p>I dati di acquisto restano per il tempo richiesto dalle leggi fiscali. I dati di verifica della licenza restano per [DURATA] e poi vengono cancellati. I messaggi che ci mandi restano per il tempo necessario a risponderti.</p>
+
+  <h2><span class="n">07</span>I tuoi diritti</h2>
+  <p>Puoi chiederci in ogni momento di vedere, correggere, cancellare o ricevere i dati che abbiamo su di te, o di smettere di usarli. Scrivi a <b>[EMAIL PRIVACY]</b>. Se pensi che non li trattiamo bene puoi rivolgerti al Garante per la protezione dei dati personali.</p>
+
+  <h2><span class="n">08</span>Modifiche</h2>
+  <p>Se cambiamo questa informativa in modo importante te lo diciamo prima, sul sito e nelle news di Corvex.</p>
+</article>
+
+<article data-l="en" hidden>
+  <span class="label"><i>+</i>privacy</span>
+  <h1><span class="g">/*</span>&nbsp;Your data, in plain words&nbsp;<span class="g">*/</span></h1>
+  <p class="lg-lead">Corvex is built not to need your data. Your code and your scan results stay on your machine. Here you'll find what we receive, what stays only with you and which external services Corvex contacts.</p>
+  <p class="lg-date">// updated 19 November 2026 · preliminary version, before launch</p>
+
+  <h2><span class="n">01</span>Who we are</h2>
+  <p>The data controller is <b>[COMPANY NAME]</b>, [ADDRESS], VAT [VAT NUMBER]. For any privacy question write to <b>[PRIVACY EMAIL]</b>.</p>
+
+  <h2><span class="n">02</span>What we receive</h2>
+  <ul>
+    <li><b>When you buy:</b> payment is handled by Paddle, acting as reseller. Paddle receives your name, email, country and payment details and passes us only what the licence needs: name, email and plan. We use them to send you the key and manage the subscription.</li>
+    <li><b>Once a day, for the licence:</b> the licence key, a random code identifying the installation, the computer name and the Corvex version.</li>
+    <li><b>When Corvex checks for updates:</b> the installed version. Like any internet connection, also your IP address.</li>
+    <li><b>If you write to us:</b> your message and your email address.</li>
+  </ul>
+  <div class="lg-box"><p>We never receive your code, the sites you scan, the results, the files on your computer, your network traffic or the questions you ask CORVUS. No usage statistics, no ads, no data sales, and we don't use your data to train AI models.</p></div>
+
+  <h2><span class="n">03</span>What stays only on your installation</h2>
+  <p>Account, connected platforms, scans, reports, fixes and CORVUS chats stay on the computer or server running Corvex. You are the controller of this data, and we don't see it. You can delete it at any time from the dashboard or by deleting the data folder.</p>
+
+  <h2><span class="n">04</span>External services Corvex contacts</h2>
+  <p>To do its job Corvex downloads a few public lists and queries a few services. Here is what each one receives:</p>
+  <table class="lg-tbl">
+    <thead><tr><th>Service</th><th>What it receives</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>OSV.dev</td><td>names and versions of the project's packages</td><td>find dependencies with known flaws (can be turned off)</td></tr>
+      <tr><td>deps.dev</td><td>package names and versions</td><td>read dependency licences, only if you allow it</td></tr>
+      <tr><td>crt.sh and public DNS</td><td>the domain of the site you scan</td><td>find subdomains and check SPF, DMARC and DKIM</td></tr>
+      <tr><td>Public lists (abuse.ch, Spamhaus, IPsum, Cloudflare, Fastly, AWS and Google networks)</td><td>nothing, they are only downloaded</td><td>recognise malicious and trusted addresses</td></tr>
+      <tr><td>GitHub and Hugging Face</td><td>nothing, downloaded once</td><td>the CORVUS library and the corvexai model</td></tr>
+      <tr><td>GitHub (API)</td><td>your token, only if you connect GitHub</td><td>read repositories and open pull requests</td></tr>
+      <tr><td>Your mail provider</td><td>the alerts to send you, only if you set up email</td><td>alert you about critical issues</td></tr>
+    </tbody>
+  </table>
+  <p>The platforms you choose to scan obviously receive Corvex's test requests.</p>
+
+  <h2><span class="n">05</span>Cookies</h2>
+  <p>This website uses no cookies and no tracking tools. It only remembers the language you pick, in your browser. The Corvex dashboard uses a single technical cookie to keep you signed in, which expires on its own.</p>
+
+  <h2><span class="n">06</span>How long</h2>
+  <p>Purchase data is kept as long as tax law requires. Licence check data is kept for [DURATION] and then deleted. Messages you send us are kept as long as needed to answer you.</p>
+
+  <h2><span class="n">07</span>Your rights</h2>
+  <p>You can ask us at any time to see, correct, delete or receive the data we hold about you, or to stop using it. Write to <b>[PRIVACY EMAIL]</b>. If you think we're not handling it properly you can contact your data protection authority.</p>
+
+  <h2><span class="n">08</span>Changes</h2>
+  <p>If we change this notice in an important way we'll tell you first, on the website and in the Corvex news.</p>
+</article>
+</main>
+
+<footer class="lg-foot"><span>© 2026 Corvex</span><a href="terms.html"><span data-l="it">termini</span><span data-l="en" hidden>terms</span></a><a href="privacy.html">privacy</a><a href="security.html"><span data-l="it">sicurezza</span><span data-l="en" hidden>security</span></a></footer>
+</body>
+</html>
