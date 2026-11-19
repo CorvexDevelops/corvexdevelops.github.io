@@ -19,10 +19,10 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/corvex.css?v=1838d84560">
-  <link rel="stylesheet" href="sito.css?v=3146ec6e02">
+  <link rel="stylesheet" href="assets/corvex.css?v=8e87b446b0">
+  <link rel="stylesheet" href="sito.css?v=44843ba478">
   <script defer src="assets/viste.js?v=2539c2c7bb"></script>
-  <script defer src="sito.js?v=25ca02a54b"></script>
+  <script defer src="sito.js?v=2c1794269b"></script>
 </head>
 <body class="s-body">
 
@@ -88,7 +88,7 @@
       <p data-k="fr2_p">Segreti nel codice e nella cronologia git, crittografia debole, dipendenze vulnerabili e licenze incompatibili, infrastruttura come codice.<br>Regole di Supabase e Firebase, endpoint AI senza limiti che possono gonfiarti la bolletta.<br>Un audit AI cerca le falle di logica e controllo accessi, e ogni pull request viene controllata prima del merge.</p></article>
     <article class="s-card s-rv"><span class="px s-n">03</span><span class="label"><i>■</i><span data-k="fr3_k">computer</span></span>
       <h3 data-k="fr3_t">Il computer su cui lavori</h3>
-      <p data-k="fr3_p">Malware nei file, programmi con falle note, file critici modificati e traffico della rete locale.<br>Lavora accanto a Defender e XProtect e può bloccare le minacce che trova.</p></article>
+      <p data-k="fr3_p">Malware nei file, programmi con falle note, file critici modificati e traffico della rete locale.<br>Lavora accanto all'antivirus del sistema e può bloccare le minacce che trova.</p></article>
   </div>
 </section>
 
@@ -138,7 +138,7 @@
     <article class="s-card s-rv"><span class="s-ag">SONAR</span><h3 data-k="pc4_t">Rete</h3><p data-k="pc4_p">Servizi raggiungibili dalla rete locale e connessioni verso indirizzi malevoli noti.<br>Può fermare il programma collegato e bloccare l'indirizzo, sempre annullabile.</p></article>
     <article class="s-card s-rv"><span class="s-ag">TIDE</span><h3 data-k="pc5_t">Traffico</h3><p data-k="pc5_p">Router, DNS e Wi-Fi a ogni scansione.<br>Nelle catture di rete cerca password in chiaro, tunnel DNS, malware che chiama casa e attacchi sulla rete locale.</p></article>
   </div>
-  <p class="s-os s-rv mono"><span>windows</span><span>macos</span><em data-k="pc_note">// accanto a Defender e XProtect, mai al loro posto</em></p>
+  <p class="s-os s-rv mono"><span>windows</span><span>macos</span><em data-k="pc_note">// accanto all'antivirus del sistema, mai al suo posto</em></p>
 </section>
 
 <!-- ============================================================ CORVUS -->
@@ -147,13 +147,13 @@
     <img class="s-corvus-big" src="assets/corvus.svg" alt="CORVUS" width="64" height="64">
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-k="cv_t">Chiedi a CORVUS, in parole semplici</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-k="cv_p">L'assistente conosce i risultati della scansione aperta e ti spiega da dove iniziare.<br>Risponde con corvexai, il modello AI incluso in Corvex: è già pronto, non scegli né scarichi nulla e le domande restano sulla tua infrastruttura.</p>
-    <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 600 procedure di sicurezza difensiva, aggiornata da sola</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li><li data-k="cv_l4">corvexai-2.1 è affinato da Corvex sui compiti di ORACLE: verifica correttamente il 93% delle falle segnalate, più del doppio della versione precedente</li></ul>
-    <p class="s-os mono"><em data-k="cv_note">// misurato su casi che non ha mai visto in addestramento. Su codice reale del banco pubblico SastBench, ogni falla che ha confermato era vera</em></p></div>
+    <ul class="s-ticks"><li data-k="cv_l1">una biblioteca di oltre 600 procedure di sicurezza difensiva, aggiornata da sola</li><li data-k="cv_l2">a ogni scansione passa a ciascun agente le skill che servono</li><li data-k="cv_l5">risponde dalle schede verificate di Corvex, mostra le fonti e ignora le istruzioni nascoste nei siti analizzati</li><li data-k="cv_l3">ogni falla con approfondimento e riferimenti MITRE ATT&amp;CK e NIST</li><li data-k="cv_l4">corvexai-2.1 è affinato da Corvex sui compiti di ORACLE: verifica correttamente il 93% delle falle segnalate, più del doppio della versione precedente</li></ul>
+    <p class="s-os mono"><em data-k="cv_note">// misurato su casi che non ha mai visto in addestramento. Su segnalazioni reali di altri strumenti, ogni falla che ha confermato era vera</em></p></div>
   <div class="s-chat s-rv" id="chat">
-    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span><img class="s-corvus" src="assets/corvus.svg" alt="">corvus_ai · corvexai-2.1</div>
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span><img class="s-corvus" src="assets/corvus.svg" alt="">corvus_ai · corvexai</div>
     <div class="s-chat-b">
       <div class="s-msg me" data-k="cv_q">Da dove inizio?</div>
-      <div class="s-msg ai"><b><img src="assets/corvus.svg" alt="">CORVUS</b><span id="chat-a"></span><i class="s-cur"></i></div>
+      <div class="s-msg ai"><b><img src="assets/corvus.svg" alt="">CORVUS</b><span id="chat-a"></span><i class="s-cur"></i><small class="s-src" id="chat-src"></small></div>
     </div>
   </div>
 </section>

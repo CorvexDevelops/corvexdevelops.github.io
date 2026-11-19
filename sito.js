@@ -20,7 +20,7 @@
     fr2_k: "code", fr2_t: "Code and repositories",
     fr2_p: "Secrets in the code and in git history, weak cryptography, vulnerable dependencies and incompatible licences, infrastructure as code.<br>Supabase and Firebase rules, AI endpoints with no limits that can blow up your bill.<br>An AI audit hunts for logic and access-control flaws, and every pull request is checked before merging.",
     fr3_k: "computer", fr3_t: "The computer you work on",
-    fr3_p: "Malware in files, programs with known flaws, modified critical files and local network traffic.<br>Works alongside Defender and XProtect and can block the threats it finds.",
+    fr3_p: "Malware in files, programs with known flaws, modified critical files and local network traffic.<br>Works alongside the system antivirus and can block the threats it finds.",
     mp_label: "operations_map · demo", mp_t: "A team that works while you write code",
     mp_p: "Each agent has a single job and does it well. It wakes up only when its skill is needed for the analysis, the others stay dormant.<br>CORVUS coordinates, hands each one the skills from its library and writes the report. Drag the map and zoom to see the whole team.",
     rg_label: "log", rg_t: "Every step, right before your eyes",
@@ -38,14 +38,15 @@
     pc3_t: "System posture", pc3_p: "Antivirus, firewall, disk encryption, updates and operating system protections.<br>It also finds installed programs with known flaws and tells you which version to update to.",
     pc4_t: "Network", pc4_p: "Services reachable from the local network and connections to known malicious addresses.<br>It can stop the connected program and block the address, always undoable.",
     pc5_t: "Traffic", pc5_p: "Router, DNS and Wi-Fi on every scan.<br>In network captures it looks for clear-text passwords, DNS tunnels, malware calling home and attacks on the local network.",
-    pc_note: "// alongside Defender and XProtect, never instead of them",
+    pc_note: "// alongside the system antivirus, never instead of it",
     cv_label: "corvus_ai", cv_t: "Ask CORVUS, in plain words",
     cv_p: "The assistant knows the results of the open scan and tells you where to start.<br>It answers with corvexai, the AI model built into Corvex: it's ready out of the box, you don't pick or download anything and questions stay on your infrastructure.",
     cv_q: "Where do I start?",
     cv_l1: "a library of more than 600 defensive security procedures, kept up to date on its own", cv_l2: "at every scan it hands each agent the skills it needs",
+    cv_l5: "it answers from Corvex's verified sheets, shows its sources and ignores instructions hidden in the sites it analyses",
     cv_l3: "every issue with a deep dive and MITRE ATT&amp;CK and NIST references",
     cv_l4: "corvexai-2.1 is fine-tuned by Corvex on ORACLE's tasks: it correctly verifies 93% of reported issues, more than twice the previous version",
-    cv_note: "// measured on cases it never saw in training. On real code from the public SastBench benchmark, every issue it confirmed was real",
+    cv_note: "// measured on cases it never saw in training. On real reports from other tools, every issue it confirmed was real",
     bn_label: "benchmark · open_source", bn_t: "Measured in public, with a yardstick you can use too",
     bn_p: "We published the benchmark we measure Corvex with: a website, a project and a network capture with 71 known flaws, each with a clean twin.<br>Every finding on a clean twin counts as a false alarm.",
     bn_l1: "71 of 71 flaws found and zero false alarms, offline and without AI", bn_l2: "scores the results of any tool, in SARIF or JSON",
@@ -263,16 +264,23 @@
     "Parti dal file .env pubblico su shop.esempio.it: espone la password del database, quindi toglilo subito dal sito e cambia la password. Poi il cookie di sessione: la correzione è pronta, ti basta approvarla. Le altre due falle possono aspettare la prossima settimana.",
     "Start with the public .env file on shop.example.com: it exposes the database password, so take it off the site right away and change the password. Then the session cookie: the fix is ready, you just need to approve it. The other two issues can wait until next week.",
   ];
+  // Fonti sotto la risposta, come nella dashboard: compaiono quando la risposta è finita.
+  const SOURCES = ["// fonti: File .env scaricabile · Cookie senza protezioni", "// sources: Downloadable .env file · Cookie without protections"];
   let chatT = null, chatSeen = false;
   function chatStart() {
-    const el = $("chat-a");
+    const el = $("chat-a"), src = $("chat-src");
     if (!el) return;
     clearTimeout(chatT);
     const text = lang === "en" ? ANSWER[1] : ANSWER[0];
+    if (src) { src.textContent = lang === "en" ? SOURCES[1] : SOURCES[0]; src.classList.remove("on"); }
     if (!chatSeen) { el.textContent = ""; return; }
-    if (reduce) { el.textContent = text; return; }
+    if (reduce) { el.textContent = text; if (src) src.classList.add("on"); return; }
     let i = 0;
-    const step = () => { el.textContent = text.slice(0, i); i += 2; if (i <= text.length + 1) chatT = setTimeout(step, 18); };
+    const step = () => {
+      el.textContent = text.slice(0, i); i += 2;
+      if (i <= text.length + 1) chatT = setTimeout(step, 18);
+      else if (src) src.classList.add("on");
+    };
     step();
   }
 
