@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="assets/corvex.css?v=8034e6e345">
   <link rel="stylesheet" href="sito.css?v=f5d263c826">
   <script defer src="assets/viste.js?v=2539c2c7bb"></script>
-  <script defer src="sito.js?v=4bcb40d4d4"></script>
+  <script defer src="sito.js?v=372e4aec09"></script>
 </head>
 <body class="s-body" data-page="features" data-path="~/funzioni">
 
@@ -95,25 +95,25 @@
 <section class="s-sec s-split" id="ci">
   <div class="s-head s-rv"><span class="label"><i>{}</i><span data-en="new · pull_requests" data-it="nuovo · pull_request">new · pull_requests</span></span>
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Every pull request checked before merging" data-it="Ogni pull request controllata prima del merge">Every pull request checked before merging</span>&nbsp;<span class="g">*/</span></h2>
-    <p class="s-lead" data-en="A ready-made GitHub Action runs the code agents on every pull request and blocks the merge when the change adds an issue. No server, no keys, no AI needed." data-it="Una GitHub Action pronta lancia gli agenti di codice su ogni pull request e blocca il merge se la modifica aggiunge una falla. Senza server, senza chiavi, senza AI.">A ready-made GitHub Action runs the code agents on every pull request and blocks the merge when the change adds an issue. No server, no keys, no AI needed.</p>
+    <p class="s-lead" data-en="Corvex runs the code agents on every pull request and blocks the merge when the change adds an issue. It works from a team machine with Corvex installed, or through your company's Corvex server." data-it="Corvex lancia gli agenti di codice su ogni pull request e blocca il merge se la modifica aggiunge una falla. Funziona da una macchina del team con Corvex installato, oppure tramite il server Corvex dell&#x27;azienda.">Corvex runs the code agents on every pull request and blocks the merge when the change adds an issue. It works from a team machine with Corvex installed, or through your company's Corvex server.</p>
     <ul class="s-ticks">
       <li data-en="only the issues the pull request introduces count" data-it="contano solo le falle introdotte dalla pull request">only the issues the pull request introduces count</li>
       <li data-en="SARIF 2.1.0 for GitHub's Code scanning tab, annotations on the lines" data-it="SARIF 2.1.0 per la scheda Code scanning di GitHub, annotazioni sulle righe">SARIF 2.1.0 for GitHub's Code scanning tab, annotations on the lines</li>
       <li data-en="a threshold you choose: critical, high, medium or low" data-it="una soglia a tua scelta: critica, alta, media o bassa">a threshold you choose: critical, high, medium or low</li>
-      <li data-en="the same command works in any pipeline" data-it="lo stesso comando funziona in qualsiasi pipeline">the same command works in any pipeline</li>
+      <li data-en="GitHub Actions, GitLab CI or any pipeline, the code never leaves your machines" data-it="GitHub Actions, GitLab CI o qualsiasi pipeline, il codice non lascia mai le vostre macchine">GitHub Actions, GitLab CI or any pipeline, the code never leaves your machines</li>
     </ul></div>
   <div class="s-diff s-rv">
     <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>.github/workflows/corvex.yml</div>
 <pre class="s-yaml"><b>on</b>: pull_request
 <b>jobs</b>:
   <b>corvex</b>:
-    <b>runs-on</b>: ubuntu-latest
+    <b>runs-on</b>: [self-hosted, <em>corvex</em>]   <i data-en="# a team machine with Corvex installed" data-it="# una macchina del team con Corvex installato"># a team machine with Corvex installed</i>
     <b>steps</b>:
       - <b>uses</b>: actions/checkout@v4
         <b>with</b>: { fetch-depth: 0 }
-      - <b>uses</b>: <em>CorvexDevelops/corvex@main</em>
-        <b>with</b>:
-          <b>fail-on</b>: <em>alta</em>   <i data-en="# blocks high and critical issues" data-it="# blocca le falle alte e critiche"># blocks high and critical issues</i></pre>
+      - <b>run</b>: python <em>$CORVEX_HOME/corvex_scan.py</em> . --base origin/main --fail-on <em>alta</em> --sarif corvex.sarif
+      - <b>uses</b>: github/codeql-action/upload-sarif@v3
+        <b>with</b>: { sarif_file: corvex.sarif }</pre>
   </div>
 </section>
 

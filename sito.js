@@ -196,7 +196,7 @@
     schema: [["Vedere quali endpoint rispondono senza autenticazione", "See which endpoints answer without authentication"]],
     spoof: [["Copiare i record DNS consigliati per SPF, DMARC e DKIM", "Copy the recommended DNS records for SPF, DMARC and DKIM"]],
     hijack: [["Sapere quale record DNS togliere prima che qualcuno lo prenda", "Know which DNS record to remove before someone claims it"]],
-    skeleton: [["Bloccare la pull request che aggiunge un segreto, con la GitHub Action", "Block the pull request that adds a secret, with the GitHub Action"]],
+    skeleton: [["Bloccare la pull request che aggiunge un segreto, prima del merge", "Block the pull request that adds a secret, before merging"]],
     cipher: [["Vedere la riga esatta e l'alternativa sicura", "See the exact line and the safe alternative"]],
     daemon: [["Correggere la configurazione con la procedura passo per passo", "Fix the configuration with the step-by-step procedure"]],
     chain: [["Aggiornare da solo le dipendenze alla prima versione sicura", "Upgrade dependencies to the first safe version automatically"], ["Ricevere le correzioni come pull request", "Get the fixes as a pull request"]],
