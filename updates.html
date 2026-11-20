@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title data-en="Corvex · updates">Corvex · updates</title>
+  <meta name="description" content="Le novità di Corvex: chat del team, scansioni dietro il login, controllo delle pull request, SSO, nuovi agenti." data-en-content="What's new in Corvex: team chat, scans behind the sign-in, pull request checks, SSO, new agents.">
+  <meta property="og:title" content="Corvex · updates">
+  <meta property="og:description" content="Una squadra di agenti che mette alla prova le tue piattaforme, trova le falle e le corregge.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
+  <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/corvex.css?v=8034e6e345">
+  <link rel="stylesheet" href="sito.css?v=f5d263c826">
+  <script defer src="assets/viste.js?v=2539c2c7bb"></script>
+  <script defer src="assets/news.js?v=cfcb5cab94"></script>
+  <script defer src="sito.js?v=43a85a9f54"></script>
+</head>
+<body class="s-body" data-page="updates" data-path="~/updates">
+
+<!-- header -->
+<header class="s-top" id="top">
+  <button class="s-mm" id="s-mm" type="button" aria-label="Menu" aria-controls="s-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b><em class="s-pill"><i></i><span data-en="coming_soon">in_arrivo</span></em></a>
+  <span class="search s-path" aria-hidden="true"><span class="lab"><span class="pr" data-en="guest@corvex">ospite@corvex</span><span class="pw">~/updates</span><span class="ps">$</span><span class="cur"></span></span></span>
+  <nav class="s-nav" id="s-menu" aria-label="Sezioni">
+    <a href="index.html" data-page="home">home</a>
+    <a href="team.html" data-page="team">team</a>
+    <a href="features.html" data-page="features" data-en="features">funzioni</a>
+    <a href="corvexai.html" data-page="corvexai">corvexai</a>
+    <a href="trust.html" data-page="trust" data-en="security">sicurezza</a>
+    <a href="community.html" data-page="community">community</a>
+    <a href="updates.html" data-page="updates" class="on" aria-current="page"><i class="nw-dot" aria-hidden="true"></i>updates</a>
+  </nav>
+  <div class="s-top-r">
+    <div class="seg s-lang" role="group" aria-label="Lingua"><button type="button" data-lang="it">IT</button><button type="button" data-lang="en">EN</button></div>
+    <a class="s-icb" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <span class="btn s-locked s-dl" aria-disabled="true">download()<em data-en="soon">presto</em></span>
+  </div>
+</header>
+<!-- /header -->
+
+<section class="s-ph">
+  <pre class="ascii s-ph-bg" data-shape="brackets" aria-hidden="true"></pre>
+  <div class="s-ph-in">
+    <span class="label s-rv"><i>+</i><span data-en="updates · changelog">updates · novità</span></span>
+    <h1 class="cm s-h1 s-rv"><span class="g">/*</span>&nbsp;<span class="d" data-en="What's new">Cosa c'è di nuovo</span><br><span data-en="in Corvex">in Corvex</span>&nbsp;<span class="s-close"><span class="g">*/</span><span class="s-caret"></span></span></h1>
+    <p class="s-sub s-rv" data-en="The same news you find in the app, under News &amp; Updates. Corvex updates itself with signed packages, never during a scan.">Le stesse notizie che trovi nella app, in News &amp; Updates. Corvex si aggiorna da solo con pacchetti firmati, mai durante una scansione.</p>
+  </div>
+</section>
+
+<main class="s-main">
+<section class="s-sec">
+  <div class="s-log" id="updates"><!-- news --><article class="s-up"><div class="when"><b>20 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>Chat del team, discussione nelle falle e integrazioni</h3><div class="bd"><p>Arriva la chat del team: canale generale, messaggi diretti, gruppi e file condivisi fino a 20 MB. L&#x27;#id di una falla diventa un link solo per chi può vederla.</p><p>Ogni falla ha la sua discussione: commenti, @menzioni, chi se ne occupa e la scadenza. Chi è menzionato o assegnato riceve l&#x27;avviso.</p><p>Gli avvisi arrivano anche su Slack, Microsoft Teams e Jira Cloud, oppure su un webhook firmato. Non escono mai prove né codice.</p></div></div></article><article class="s-up"><div class="when"><b>20 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>Accesso con SSO, ruolo revisore e registro delle attività</h3><div class="bd"><p>Accesso con Microsoft Entra ID, Google Workspace, Okta e ogni fornitore OpenID Connect, con i ruoli presi dai gruppi.</p><p>Il nuovo ruolo revisore vede panoramica, falle, rapporti e registri ma non può cambiare nulla: è pensato per direzione e revisori.</p><p>Il registro delle attività tiene accessi, scansioni, correzioni e falle ignorate con il motivo. Ogni riga è legata alla precedente, così una manomissione si vede subito, e si esporta in CSV o JSON.</p></div></div></article><article class="s-up"><div class="when"><b>20 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>Scansioni anche dietro il login</h3><div class="bd"><p>Ogni piattaforma web può avere un profilo di accesso: intestazioni o cookie incollati, oppure un modulo di accesso che Corvex compila una volta all&#x27;inizio.</p><p>Le credenziali sono cifrate e compaiono come •••• in registro, prove e rapporti. La sessione viaggia solo verso il bersaglio e le pagine di uscita non vengono mai visitate.</p><p>Ogni falla web ora arriva con la richiesta esatta, il comando curl e il pulsante per riprovarla.</p></div></div></article><article class="s-up"><div class="when"><b>20 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>Ogni pull request controllata prima del merge</h3><div class="bd"><p>Una GitHub Action pronta lancia gli agenti di codice su ogni pull request e blocca il merge se la modifica aggiunge una falla sopra la soglia scelta.</p><p>Contano solo le falle introdotte dalla pull request. I risultati arrivano in SARIF nella scheda Code scanning di GitHub e come annotazioni sulle righe.</p><p>Non servono server, chiavi né AI, e il codice resta sulla macchina che esegue il controllo.</p></div></div></article><article class="s-up"><div class="when"><b>19 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>Due agenti nuovi e regole di sicurezza per chi costruisce con l&#x27;AI</h3><div class="bd"><div class=ags><span class="s-ag">VAULT</span><span class="s-ag">LEECH</span></div><p>VAULT controlla Supabase e Firebase, la falla più comune delle app fatte con l&#x27;AI: regole aperte a tutti, tabelle senza Row Level Security, chiave service_role nel browser, segreti in variabili pubbliche.</p><p>LEECH ti evita la bolletta da migliaia di euro: chiavi AI esposte, endpoint che chiamano il modello senza accesso o senza limite di richieste, modello scelto dal client, risposte senza tetto di token.</p><p>Dall&#x27;elenco delle falle, regole_per_l_ai() scrive le istruzioni di sicurezza per Claude Code, Codex, Cursor, Copilot e Windsurf, con le lezioni delle falle trovate nel tuo progetto. Così l&#x27;AI non le ripete.</p><p>Il server MCP ora controlla ogni argomento, marca come dati non fidati i testi presi dal codice e dai siti scansionati, segnala i tentativi di prompt injection e applica le correzioni solo dopo il tuo sì.</p></div></div></article><article class="s-up"><div class="when"><b>18 novembre 2026</b><br><span class="tag ">novità</span></div><div><h3>CORVUS ha una biblioteca di skill e la passa alla squadra</h3><div class="bd"><p>CORVUS tiene una biblioteca di oltre 650 procedure di sicurezza difensiva, con i riferimenti MITRE ATT&amp;CK e NIST.</p><p>A ogni scansione sceglie le skill adatte a ciascun agente e gliele consegna, lo vedi nel registro e nel pannello di ogni agente.</p><p>ORACLE le usa nei suoi ragionamenti, la chat le consulta e ogni falla riceve un approfondimento di CORVUS.</p><p>L&#x27;amministratore la scarica una volta da Account › biblioteca_di_corvus. Solo testo, nessuno script eseguito, skill offensive escluse.</p></div></div></article><article class="s-up"><div class="when"><b>18 novembre 2026</b>v1.0.0<br><span class="tag rel">release</span></div><div><h3>Corvex 1.0: arriva corvexai</h3><div class="bd"><p>CORVUS ora risponde con corvexai, il modello di intelligenza artificiale integrato e specializzato in sicurezza informatica.</p><p>Nuove sezioni Istruzioni e Registro completo, report eliminabili, panoramica più essenziale.</p><p>Da questa versione Corvex si aggiorna da solo.</p></div></div></article><!-- /news --></div>
+</section>
+</main>
+
+<!-- footer -->
+<footer class="s-foot2">
+  <div class="s-f-brands">
+    <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
+    <a class="s-brand s-f-ai" href="corvexai.html" aria-label="corvexai"><img src="assets/corvus.svg" alt=""><b>corvexai</b></a>
+  </div>
+  <p class="s-f-claim" data-en="Corvex defends the platforms you build. corvexai is the AI model built in-house by Corvex.">Corvex difende le piattaforme che costruisci. corvexai è il modello AI sviluppato da Corvex.</p>
+  <div class="s-f-cols">
+    <div><h4 data-en="site">sito</h4>
+      <nav class="s-foot-nav">
+        <a href="index.html" data-page="home">home</a><a href="team.html" data-page="team">team</a><a href="features.html" data-page="features" data-en="features">funzioni</a>
+        <a href="corvexai.html" data-page="corvexai">corvexai</a><a href="trust.html" data-page="trust" data-en="security">sicurezza</a><a href="community.html" data-page="community">community</a><a href="updates.html" data-page="updates" class="on" aria-current="page">updates</a>
+      </nav></div>
+    <div><h4 data-en="legal">legale</h4>
+      <nav class="s-foot-nav"><a href="legal/terms.html" data-en="terms">termini</a><a href="legal/privacy.html">privacy</a><a href="legal/security.html" data-en="security policy">politica di sicurezza</a></nav></div>
+    <div><h4>open source</h4>
+      <nav class="s-foot-nav"><a class="s-gh" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/CorvexDevelops</span></a></nav></div>
+  </div>
+  <div class="s-f-bot"><span data-en="© 2026 Corvex · platform defense">© 2026 Corvex · difesa delle piattaforme</span><span>windows · macos</span></div>
+</footer>
+<!-- /footer -->
+
+</body>
+</html>

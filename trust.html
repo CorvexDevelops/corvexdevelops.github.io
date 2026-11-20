@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title data-en="Corvex · security">Corvex · sicurezza</title>
+  <meta name="description" content="Come Corvex protegge se stesso: dati che restano da te, accesso con secondo fattore, segreti cifrati, aggiornamenti firmati, attacchi simulati a ogni modifica." data-en-content="How Corvex protects itself: data that stays with you, two-factor sign-in, encrypted secrets, signed updates, simulated attacks at every change.">
+  <meta property="og:title" content="Corvex · sicurezza">
+  <meta property="og:description" content="Una squadra di agenti che mette alla prova le tue piattaforme, trova le falle e le corregge.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
+  <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/corvex.css?v=8034e6e345">
+  <link rel="stylesheet" href="sito.css?v=f5d263c826">
+  <script defer src="assets/viste.js?v=2539c2c7bb"></script>
+  <script defer src="sito.js?v=43a85a9f54"></script>
+</head>
+<body class="s-body" data-page="trust" data-path="~/sicurezza">
+
+<!-- header -->
+<header class="s-top" id="top">
+  <button class="s-mm" id="s-mm" type="button" aria-label="Menu" aria-controls="s-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b><em class="s-pill"><i></i><span data-en="coming_soon">in_arrivo</span></em></a>
+  <span class="search s-path" aria-hidden="true"><span class="lab"><span class="pr" data-en="guest@corvex">ospite@corvex</span><span class="pw">~/sicurezza</span><span class="ps">$</span><span class="cur"></span></span></span>
+  <nav class="s-nav" id="s-menu" aria-label="Sezioni">
+    <a href="index.html" data-page="home">home</a>
+    <a href="team.html" data-page="team">team</a>
+    <a href="features.html" data-page="features" data-en="features">funzioni</a>
+    <a href="corvexai.html" data-page="corvexai">corvexai</a>
+    <a href="trust.html" data-page="trust" class="on" aria-current="page" data-en="security">sicurezza</a>
+    <a href="community.html" data-page="community">community</a>
+    <a href="updates.html" data-page="updates"><i class="nw-dot" aria-hidden="true"></i>updates</a>
+  </nav>
+  <div class="s-top-r">
+    <div class="seg s-lang" role="group" aria-label="Lingua"><button type="button" data-lang="it">IT</button><button type="button" data-lang="en">EN</button></div>
+    <a class="s-icb" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <span class="btn s-locked s-dl" aria-disabled="true">download()<em data-en="soon">presto</em></span>
+  </div>
+</header>
+<!-- /header -->
+
+<section class="s-ph">
+  <pre class="ascii s-ph-bg" data-shape="shield" aria-hidden="true"></pre>
+  <div class="s-ph-in">
+    <span class="label s-rv"><i>✓</i><span data-en="security_of_corvex">sicurezza_di_corvex</span></span>
+    <h1 class="cm s-h1 s-rv"><span class="g">/*</span>&nbsp;<span class="d" data-en="A security tool">Uno strumento di sicurezza</span><br><span data-en="should be secure first">deve esserlo per primo</span>&nbsp;<span class="s-close"><span class="g">*/</span><span class="s-caret"></span></span></h1>
+    <p class="s-sub s-rv" data-en="Corvex sees code, secrets and open issues. That's why every layer is defended and every change faces more than 300 simulated attacks before release.">Corvex vede codice, segreti e falle aperte. Per questo ogni livello è difeso e ogni modifica affronta oltre 300 attacchi simulati prima del rilascio.</p>
+  </div>
+</section>
+
+<main class="s-main">
+
+<section class="s-sec" id="principi">
+  <div class="s-pol">
+    <div class="s-rv"><span class="k">01</span><h4 data-en="Only what's yours">Solo ciò che è tuo</h4><p data-en="Authorisation required and, for public domains, an ownership file. Without it the scan doesn't start.">Autorizzazione obbligatoria e, per i domini pubblici, un file di possesso. Senza, la scansione non parte.</p></div>
+    <div class="s-rv"><span class="k">02</span><h4 data-en="Gentle checks">Prove delicate</h4><p data-en="Harmless markers, a request budget and at most 8 requests per second, only on the authorised host.">Marcatori innocui, un budget di richieste e al massimo 8 al secondo, solo sull'host autorizzato.</p></div>
+    <div class="s-rv"><span class="k">03</span><h4 data-en="Your code stays with you">Il codice resta da te</h4><p data-en="Corvex runs on your machine or server. Code, files, traffic and results are never uploaded.">Corvex gira sulla tua macchina o sul tuo server. Codice, file, traffico e risultati non vengono mai caricati.</p></div>
+    <div class="s-rv"><span class="k">04</span><h4 data-en="Second factor, always">Secondo fattore, sempre</h4><p data-en="Password plus a temporary code, or SSO with your provider. Sessions expire after inactivity.">Password più codice temporaneo, oppure SSO con il vostro fornitore. Le sessioni scadono dopo l'inattività.</p></div>
+    <div class="s-rv"><span class="k">05</span><h4 data-en="Encrypted secrets">Segreti cifrati</h4><p data-en="Tokens, sign-in profiles and integrations encrypted with AES-256-GCM. API keys stored only as hashes.">Token, profili di accesso e integrazioni cifrati con AES-256-GCM. Chiavi API conservate solo come impronta.</p></div>
+    <div class="s-rv"><span class="k">06</span><h4 data-en="Signed updates">Aggiornamenti firmati</h4><p data-en="Every update is signed with Ed25519, never installed during a scan, always with a backup.">Ogni aggiornamento è firmato Ed25519, mai installato durante una scansione, sempre con un backup.</p></div>
+  </div>
+</section>
+
+<section class="s-sec s-split" id="dati">
+  <div class="s-head s-rv"><span class="label"><i>+</i><span data-en="what_leaves_your_computer">cosa_esce_dal_computer</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Local-first by design">Local-first per scelta</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-en="There is no Corvex cloud in the data path. Here is everything that leaves, line by line.">Non c'è un cloud Corvex nel percorso dei dati. Ecco tutto quello che esce, voce per voce.</p></div>
+  <div class="s-tabw s-rv"><table class="s-tab">
+    <tr><th data-en="data">dato</th><th data-en="leaves?">esce?</th><th data-en="detail">dettaglio</th></tr>
+    <tr><td><b data-en="Code and repositories">Codice e repository</b></td><td class="y" data-en="never">mai</td><td data-en="read locally, never run">letto in locale, mai eseguito</td></tr>
+    <tr><td><b data-en="Results and reports">Risultati e rapporti</b></td><td class="y" data-en="never">mai</td><td data-en="in the installation's data folder">nella cartella dati dell'installazione</td></tr>
+    <tr><td><b data-en="Questions to CORVUS">Domande a CORVUS</b></td><td class="y" data-en="never">mai</td><td data-en="corvexai runs on 127.0.0.1">corvexai gira su 127.0.0.1</td></tr>
+    <tr><td><b data-en="Files and network traffic">File e traffico di rete</b></td><td class="y" data-en="never">mai</td><td data-en="analysed on the spot">analizzati sul posto</td></tr>
+    <tr><td><b data-en="Package names">Nomi dei pacchetti</b></td><td class="n" data-en="minimal">minimo</td><td data-en="only for the public OSV database">solo per il database pubblico OSV</td></tr>
+    <tr><td><b data-en="Alerts to integrations">Avvisi alle integrazioni</b></td><td class="n" data-en="you choose">a tua scelta</td><td data-en="title and severity, never evidence or code">titolo e gravità, mai prove né codice</td></tr>
+    <tr><td><b data-en="Licence renewal">Rinnovo della licenza</b></td><td class="n" data-en="minimal">minimo</td><td data-en="key and installation id, never scans">chiave e installazione, mai scansioni</td></tr>
+  </table></div>
+</section>
+
+<section class="s-sec" id="difese">
+  <div class="s-head s-rv"><span class="label"><i>✓</i><span data-en="layer_by_layer">livello_per_livello</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Every layer defended">Ogni livello difeso</span>&nbsp;<span class="g">*/</span></h2></div>
+  <div class="s-feat">
+    <div class="s-rv"><span class="label"><i>+</i><span data-en="sign_in">accesso</span></span><h3 data-en="Identity and roles">Identità e ruoli</h3>
+      <ul class="s-ticks"><li data-en="scrypt passwords, TOTP with reuse blocking">password scrypt, TOTP con blocco del riuso</li><li data-en="SSO OpenID Connect with signature, issuer, audience and nonce checks">SSO OpenID Connect con controllo di firma, emittente, destinatario e nonce</li><li data-en="256-bit sessions, HttpOnly and SameSite=Strict, lockout after 5 errors">sessioni da 256 bit, HttpOnly e SameSite=Strict, blocco dopo 5 errori</li><li data-en="reviewer role refused by the server on every action">ruolo revisore rifiutato dal server su ogni azione</li></ul></div>
+    <div class="s-rv"><span class="label"><i>+</i><span data-en="application">applicazione</span></span><h3 data-en="The dashboard passes its own agents' checks">La dashboard passa i controlli dei suoi agenti</h3>
+      <ul class="s-ticks"><li data-en="mandatory anti-CSRF header, Host check against DNS rebinding">intestazione anti-CSRF obbligatoria, controllo dell'Host contro il DNS rebinding</li><li data-en="strict CSP, COOP and CORP, no framing">CSP stretta, COOP e CORP, niente iframe</li><li data-en="static files from an allow-list, safe archives">file statici da una lista bianca, archivi sicuri</li><li data-en="desktop app with sandbox and context isolation">app desktop con sandbox e isolamento del contesto</li></ul></div>
+    <div class="s-rv"><span class="label"><i>+</i><span data-en="engagement">ingaggio</span></span><h3 data-en="Never against someone else's platforms">Mai contro piattaforme altrui</h3>
+      <ul class="s-ticks"><li data-en="anti-SSRF on every request, redirects included">anti-SSRF su ogni richiesta, redirect compresi</li><li data-en="private networks and cloud metadata off-limits for users">reti private e metadati del cloud vietati agli utenti</li><li data-en="users' code in isolated spaces">il codice degli utenti in spazi isolati</li></ul></div>
+    <div class="s-rv"><span class="label"><i>+</i>ai</span><h3 data-en="An AI that takes no orders from the code it reads">Un'AI che non prende ordini dal codice che legge</h3>
+      <ul class="s-ticks"><li data-en="corvexai only on 127.0.0.1, with a random key">corvexai solo su 127.0.0.1, con una chiave casuale</li><li data-en="MCP server: strict arguments, untrusted data marked, prompt injection flagged">server MCP: argomenti rigidi, dati non fidati marcati, prompt injection segnalate</li><li data-en="fixes only after the user's yes">correzioni solo con il sì dell'utente</li></ul></div>
+  </div>
+</section>
+
+<section class="s-sec s-split" id="verifica">
+  <div class="s-head s-rv"><span class="label"><i>✓</i><span data-en="continuous_verification">verifica_continua</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Corvex attacks itself first">Corvex attacca se stesso per primo</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-en="Simulated attacks on an isolated server at every change, a daily self-check of its own code, a benchmark that blocks any agent that gets worse.">Attacchi simulati su un server isolato a ogni modifica, un autocontrollo quotidiano del proprio codice, un banco di prova che blocca ogni agente che peggiora.</p>
+    <a class="s-more-l" href="legal/security.html" data-en="security_policy_and_reporting() →">politica_di_sicurezza_e_segnalazioni() →</a></div>
+  <div class="s-diff s-rv">
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>tests/security.py · <span data-en="isolated server">server isolato</span></div>
+    <div class="s-bench-b">
+      <div class="s-bcmd">$ python tests/security.py</div>
+      <div class="s-brow"><span>CSP senza unsafe-inline</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>DNS rebinding → 421</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>POST senza X-Corvex → 403</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>B non vede i bersagli di A</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>token OIDC falsificato</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>registro manomesso</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>XSS nella chat del team</span><i style="--w:100%"></i><b>OK</b></div>
+      <div class="s-brow"><span>webhook verso IP interno</span><i style="--w:100%"></i><b>OK</b></div>
+    </div>
+    <div class="s-diff-f"><span class="s-pr"><b>300+</b> · <span data-en="defenses hold">difese reggono</span></span><span class="mono dim" data-en="// at every change">// a ogni modifica</span></div>
+  </div>
+</section>
+
+</main>
+
+<!-- footer -->
+<footer class="s-foot2">
+  <div class="s-f-brands">
+    <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
+    <a class="s-brand s-f-ai" href="corvexai.html" aria-label="corvexai"><img src="assets/corvus.svg" alt=""><b>corvexai</b></a>
+  </div>
+  <p class="s-f-claim" data-en="Corvex defends the platforms you build. corvexai is the AI model built in-house by Corvex.">Corvex difende le piattaforme che costruisci. corvexai è il modello AI sviluppato da Corvex.</p>
+  <div class="s-f-cols">
+    <div><h4 data-en="site">sito</h4>
+      <nav class="s-foot-nav">
+        <a href="index.html" data-page="home">home</a><a href="team.html" data-page="team">team</a><a href="features.html" data-page="features" data-en="features">funzioni</a>
+        <a href="corvexai.html" data-page="corvexai">corvexai</a><a href="trust.html" data-page="trust" class="on" aria-current="page" data-en="security">sicurezza</a><a href="community.html" data-page="community">community</a><a href="updates.html" data-page="updates">updates</a>
+      </nav></div>
+    <div><h4 data-en="legal">legale</h4>
+      <nav class="s-foot-nav"><a href="legal/terms.html" data-en="terms">termini</a><a href="legal/privacy.html">privacy</a><a href="legal/security.html" data-en="security policy">politica di sicurezza</a></nav></div>
+    <div><h4>open source</h4>
+      <nav class="s-foot-nav"><a class="s-gh" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/CorvexDevelops</span></a></nav></div>
+  </div>
+  <div class="s-f-bot"><span data-en="© 2026 Corvex · platform defense">© 2026 Corvex · difesa delle piattaforme</span><span>windows · macos</span></div>
+</footer>
+<!-- /footer -->
+
+</body>
+</html>
