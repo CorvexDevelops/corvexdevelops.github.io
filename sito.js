@@ -11,7 +11,7 @@
 
   // ================================================================ lingua
   // L'italiano è nella pagina, l'inglese nell'attributo data-en dello stesso elemento.
-  let lang = get("corvex-sito-lang") || ((navigator.language || "it").toLowerCase().startsWith("it") ? "it" : "en");
+  let lang = get("corvex-sito-lang") || "en";  // inglese di default, l'italiano con il pulsante IT
   const T = (it, en) => lang === "en" ? en : it;
   const redraw = [];
 
