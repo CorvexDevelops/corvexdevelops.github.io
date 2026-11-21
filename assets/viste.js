@@ -40,6 +40,12 @@
       <polygon points="30,8 52,19 30,30 8,19" fill="${t}"/><polygon points="8,19 30,30 30,54 8,43" fill="${l}"/><polygon points="52,19 30,30 30,54 52,43" fill="${r}"/></svg>`;
   }
 
+  // ------------------------------------------------------------ il corvo a pixel di CORVUS (stesso disegno di static/corvus.svg)
+  const CROW = '<rect x="48" y="12" width="16" height="4"/><rect x="44" y="16" width="24" height="4"/><rect x="44" y="20" width="8" height="4"/><rect x="56" y="20" width="20" height="4"/><rect x="40" y="24" width="32" height="4"/><rect x="36" y="28" width="28" height="4"/><rect x="32" y="32" width="32" height="4"/><rect x="24" y="36" width="40" height="4"/><rect x="20" y="40" width="40" height="4"/><rect x="16" y="44" width="40" height="4"/><rect x="12" y="48" width="40" height="4"/><rect x="8" y="52" width="20" height="4"/><rect x="36" y="52" width="12" height="4"/><rect x="4" y="56" width="16" height="4"/><rect x="40" y="56" width="4" height="4"/><rect x="0" y="60" width="12" height="4"/><rect x="40" y="60" width="12" height="4"/>';
+  function crow(cls) {
+    return `<svg class="crow ${cls || ""}" viewBox="0 0 80 80" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor">${CROW}</g></svg>`;
+  }
+
   // ------------------------------------------------------------ arte ASCII "cifrata"
   // Disegna una forma con caratteri # : 0 1; alcune celle brillano e il campo si rimescola di continuo.
   const SHAPES = {
@@ -195,7 +201,7 @@
               <span class="tag">${esc(this.label("bersaglio"))}</span><b>${esc(scan.target_name)}</b><code>${esc((scan.location || "").replace(/^https?:\/\//, "").slice(0, 40))}</code>
               <span class="lock">tls · ${hexBytes(4)}</span></div>
             <div class="op-hub" style="left:${hx}px;top:${hy}px" data-agent="${esc(lead.id)}">
-              ${cube("lead", "spin")}<span class="chip-lead">${esc(lead.name)} · lead</span><small class="act"></small></div>
+              ${crow("spin")}<span class="chip-lead">${esc(lead.name)} · lead</span><small class="act"></small></div>
             ${L.groups.map(g => `<div class="op-group" data-group="${esc(g.id)}" style="left:${g.x}px;top:${BUS_Y + 30}px"><b>// ${esc(this.label(g.name))}</b><span class="gn"></span></div>`).join("")}
             ${agents.map(a => `<div class="op-node" id="n-${esc(a.id)}" data-agent="${esc(a.id)}" style="left:${L.pos[a.id][0]}px;top:${L.pos[a.id][1]}px">
                 <span class="pin"></span>
@@ -522,5 +528,5 @@
     }
   }
 
-  window.CorvexViste = { scramble, cube, asciiArt, MapView, hexBytes };
+  window.CorvexViste = { scramble, cube, crow, asciiArt, MapView, hexBytes };
 })();

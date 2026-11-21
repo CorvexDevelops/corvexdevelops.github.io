@@ -270,6 +270,8 @@ svg.arr { width: 13px; height: 13px; flex: none; vertical-align: -2px; }
 .opmap.compact .op-target { width: 62%; transform: translate(-50%, -50%); }
 .op-hub { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 8px; cursor: pointer; width: 190px; text-align: center; }
 .op-hub .cube { width: 60px; color: var(--t4); }
+.op-hub .crow { width: 80px; height: 80px; margin: -8px 0 -6px; display: block; color: var(--white); filter: drop-shadow(0 0 14px rgba(255,255,255,.12)); }
+.crow.spin { animation: hover 3s ease-in-out infinite; }
 .op-hub .act { color: var(--t2); font: 11px var(--mono); min-height: 14px; }
 .op-hub .chip-lead { font: 500 11px/1 var(--mono); background: var(--white); color: var(--black); padding: 5px 8px; border-radius: 3px; }
 .op-node { position: absolute; transform: translate(-6px, -50%); cursor: pointer; z-index: 1; }
@@ -427,6 +429,7 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
 .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
 .actions .hint { flex: 1 1 220px; min-width: 0; font: 11.5px/1.5 var(--mono); color: var(--t3); }
 .big-cube { width: 72px; flex: none; color: var(--t4); }
+.big-crow { width: 68px; height: 68px; flex: none; display: block; color: var(--white); }
 .agent-head { display: flex; gap: 20px; align-items: center; }
 .corvus-mark { width: 72px; height: 72px; flex: none; image-rendering: pixelated; }
 .chat-m .who .corvus-who { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; }
@@ -880,6 +883,7 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
 .opmap.compact .op-target { width: auto; margin-bottom: 14px; }
 .opmap.compact .op-hub { width: auto; grid-template-columns: 48px minmax(0, 1fr); justify-items: start; align-items: center; text-align: left; column-gap: 12px; row-gap: 4px; padding: 0 0 14px; }
 .opmap.compact .op-hub .cube { width: 48px; grid-row: span 2; }
+.opmap.compact .op-hub .crow { width: 44px; height: 44px; grid-row: span 2; }
 .opmap.compact .op-hub .act { min-height: 0; }
 .opmap.compact .op-node { padding: 14px 0 12px; border-top: 1px solid var(--line); }
 .opmap.compact .op-node .pin { top: 20px; }
@@ -978,6 +982,7 @@ textarea.input.mono { font: 12.5px/1.55 var(--mono); }
 .sq-card summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto 18px; gap: 14px; align-items: center; padding: 14px 16px; }
 .sq-card summary::-webkit-details-marker { display: none; }
 .sq-cube .cube { width: 36px; display: block; color: var(--t4); }
+.sq-cube .crow { width: 34px; height: 34px; display: block; color: var(--white); }
 .sq-head { display: grid; gap: 3px; min-width: 0; }
 .sq-name { font: 500 13px/1.2 var(--mono); color: var(--white); letter-spacing: .03em; }
 .sq-role { font-size: 14px; color: var(--t2); overflow-wrap: break-word; }
