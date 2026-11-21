@@ -140,7 +140,7 @@
   // ============================================================ MAPPA OPERATIVA
   // Una tela unica con tutta la squadra: si trascina, si ingrandisce e si rimpicciolisce (rotella, pizzico, pulsanti, tastiera).
   // Gli agenti sono raggruppati per squadra, ogni colonna ha la sua conduttura: nessun tubo passa sopra un altro agente.
-  const GROUPS = [["web", "piattaforme web"], ["code", "codice"], ["pc", "questo computer"]];
+  const GROUPS = [["web", "piattaforme web"], ["code", "codice"], ["pc", "sistema"]];
   const COL_W = 250, ROW_H = 100, MAX_ROWS = 6, GROUP_GAP = 70, TOP = 330, BUS_Y = 236, HUB_Y = 104, K_MIN = 0.2, K_MAX = 2.2;
   const trT = s => (window.C && C.tr ? C.tr(s) : s);
 

@@ -20,9 +20,9 @@
   <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/corvex.css?v=8034e6e345">
-  <link rel="stylesheet" href="sito.css?v=f5d263c826">
-  <script defer src="assets/viste.js?v=2539c2c7bb"></script>
-  <script defer src="sito.js?v=372e4aec09"></script>
+  <link rel="stylesheet" href="sito.css?v=0910817d88">
+  <script defer src="assets/viste.js?v=bbeb2006d7"></script>
+  <script defer src="sito.js?v=a324eca230"></script>
 </head>
 <body class="s-body" data-page="home" data-path="~">
 
@@ -58,7 +58,7 @@
     <div class="s-acts s-rv">
       <span class="btn s-locked" aria-disabled="true">download()<em data-en="soon" data-it="presto">soon</em></span>
       <a class="btn primary" href="team.html"><span data-en="meet_the_team()" data-it="conosci_la_squadra()">meet_the_team()</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn" href="updates.html"><span data-en="whats_new()" data-it="novità()">whats_new()</span></a>
+      <a class="btn" href="updates.html"><span data-en="news()" data-it="notizie()">news()</span></a>
     </div>
     <div class="s-stats s-rv">
       <span><span data-en="agents" data-it="agenti">agents</span> <b class="v" data-count="28">28</b></span>
@@ -74,18 +74,16 @@
 
 <!-- ============================================================ novità -->
 <section class="s-sec" id="novita">
-  <div class="s-head s-rv"><span class="label"><i>+</i><span data-en="whats_new" data-it="novità">whats_new</span></span>
-    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="New this week" data-it="Le novità della settimana">New this week</span>&nbsp;<span class="g">*/</span></h2>
-    <p class="s-lead" data-en="Corvex now works as a team, behind the sign-in and inside your pipeline." data-it="Corvex ora lavora in squadra, dietro il login e dentro la tua pipeline.">Corvex now works as a team, behind the sign-in and inside your pipeline.</p></div>
+  <div class="s-head s-rv"><span class="label"><i>+</i><span data-en="news" data-it="notizie">news</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Recent news" data-it="Notizie recenti">Recent news</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-en="Sharper agents, work as a team, scans behind the sign-in and inside your pipeline." data-it="Agenti più precisi, lavoro di squadra, scansioni dietro il login e dentro la tua pipeline.">Sharper agents, work as a team, scans behind the sign-in and inside your pipeline.</p></div>
   <div class="s-new">
-    <a class="s-rv" href="features.html#team"><span class="k" data-en="team" data-it="squadra">team</span><h3 data-en="Team chat" data-it="Chat del team">Team chat</h3><p data-en="Channel, direct messages, groups and shared files, right inside Corvex. Mentions and links to issues." data-it="Canale, messaggi diretti, gruppi e file condivisi, dentro Corvex. Menzioni e link alle falle.">Channel, direct messages, groups and shared files, right inside Corvex. Mentions and links to issues.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
+    <a class="s-rv" href="team.html"><span class="k" data-en="agents" data-it="agenti">agents</span><h3 data-en="Every agent sharper" data-it="Tutti gli agenti più precisi">Every agent sharper</h3><p data-en="Over 50 new checks across web, code and System, false alarms fixed. 215 issues found on the test bench, zero false alarms." data-it="Oltre 50 controlli nuovi tra web, codice e Sistema, falsi allarmi corretti. 215 falle trovate sul banco di prova, zero falsi allarmi.">Over 50 new checks across web, code and System, false alarms fixed. 215 issues found on the test bench, zero false alarms.</p><span class="go" data-en="meet_them() →" data-it="conoscili() →">meet_them() →</span></a>
+    <a class="s-rv" href="features.html#team"><span class="k" data-en="team" data-it="squadra">team</span><h3 data-en="Team chat and integrations" data-it="Chat del team e integrazioni">Team chat and integrations</h3><p data-en="Channel, direct messages and a discussion on every issue. Alerts on Slack, Teams and Jira." data-it="Canale, messaggi diretti e una discussione su ogni falla. Avvisi su Slack, Teams e Jira.">Channel, direct messages and a discussion on every issue. Alerts on Slack, Teams and Jira.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
     <a class="s-rv" href="features.html#accesso"><span class="k" data-en="web" data-it="web">web</span><h3 data-en="Scans behind the sign-in" data-it="Scansioni dietro il login">Scans behind the sign-in</h3><p data-en="Agents also test the private area, with an encrypted sign-in profile that never leaks." data-it="Gli agenti provano anche l&#x27;area riservata, con un profilo di accesso cifrato che non esce mai.">Agents also test the private area, with an encrypted sign-in profile that never leaks.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
-    <a class="s-rv" href="features.html#ci"><span class="k" data-en="code" data-it="codice">code</span><h3 data-en="Pull request checks" data-it="Controllo delle pull request">Pull request checks</h3><p data-en="A check in your pipeline that blocks the merge on new issues, with SARIF for Code scanning." data-it="Un controllo nella tua pipeline che blocca il merge sulle falle nuove, con SARIF per Code scanning.">A check in your pipeline that blocks the merge on new issues, with SARIF for Code scanning.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
-    <a class="s-rv" href="features.html#aziende"><span class="k" data-en="companies" data-it="aziende">companies</span><h3 data-en="SSO and reviewer role" data-it="SSO e ruolo revisore">SSO and reviewer role</h3><p data-en="Sign in with Entra ID, Google or Okta. Read-only access for management, a tamper-evident activity log." data-it="Accesso con Entra ID, Google o Okta. Sola lettura per la direzione, registro attività a prova di manomissione.">Sign in with Entra ID, Google or Okta. Read-only access for management, a tamper-evident activity log.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
-    <a class="s-rv" href="features.html#integrazioni"><span class="k" data-en="integrations" data-it="integrazioni">integrations</span><h3>Slack, Teams, Jira</h3><p data-en="Alerts where the team already works, Jira tickets from an issue, signed webhooks." data-it="Avvisi dove il team lavora già, ticket Jira da una falla, webhook firmati.">Alerts where the team already works, Jira tickets from an issue, signed webhooks.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
-    <a class="s-rv" href="team.html"><span class="k" data-en="new agents" data-it="agenti nuovi">new agents</span><h3>VAULT · LEECH</h3><p data-en="Open Supabase and Firebase databases, AI endpoints that can blow up your bill." data-it="Database Supabase e Firebase aperti, endpoint AI che possono gonfiarti la bolletta.">Open Supabase and Firebase databases, AI endpoints that can blow up your bill.</p><span class="go" data-en="meet_them() →" data-it="conoscili() →">meet_them() →</span></a>
+    <a class="s-rv" href="features.html#ci"><span class="k" data-en="code" data-it="codice">code</span><h3 data-en="Pull request checks" data-it="Controllo delle pull request">Pull request checks</h3><p data-en="Blocks the merge on new issues, with SARIF for Code scanning. SSO and reviewer role for companies." data-it="Blocca il merge sulle falle nuove, con SARIF per Code scanning. SSO e ruolo revisore per le aziende.">Blocks the merge on new issues, with SARIF for Code scanning. SSO and reviewer role for companies.</p><span class="go" data-en="see_how() →" data-it="guarda_come() →">see_how() →</span></a>
   </div>
-  <a class="s-more-l s-rv" href="updates.html" data-en="all_updates() →" data-it="tutte_le_novità() →">all_updates() →</a>
+  <a class="s-more-l s-rv" href="updates.html" data-en="all_news() →" data-it="tutte_le_notizie() →">all_news() →</a>
 </section>
 
 <!-- ============================================================ anteprima video -->
@@ -114,7 +112,7 @@
     <article class="s-card s-rv"><span class="px s-n">10</span><span class="label"><i>{}</i><span data-en="code agents" data-it="agenti codice">code agents</span></span>
       <h3 data-en="Code and repositories" data-it="Codice e repository">Code and repositories</h3>
       <p data-en="Secrets, dependencies, cryptography, cloud databases and AI costs. An AI audit with corvexai, and every pull request checked before merging." data-it="Segreti, dipendenze, crittografia, database cloud e costi AI. Un audit AI con corvexai e ogni pull request controllata prima del merge.">Secrets, dependencies, cryptography, cloud databases and AI costs. An AI audit with corvexai, and every pull request checked before merging.</p></article>
-    <article class="s-card s-rv"><span class="px s-n">05</span><span class="label"><i>■</i><span data-en="computer agents" data-it="agenti computer">computer agents</span></span>
+    <article class="s-card s-rv"><span class="px s-n">05</span><span class="label"><i>■</i><span data-en="system agents" data-it="agenti sistema">system agents</span></span>
       <h3 data-en="The computer you work on" data-it="Il computer su cui lavori">The computer you work on</h3>
       <p data-en="Malware, real-time protection, network and traffic. Alongside the system antivirus, never instead of it." data-it="Malware, protezione in tempo reale, rete e traffico. Accanto all&#x27;antivirus del sistema, mai al suo posto.">Malware, real-time protection, network and traffic. Alongside the system antivirus, never instead of it.</p></article>
   </div>
