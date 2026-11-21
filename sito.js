@@ -36,8 +36,11 @@
   function menu() {
     const b = $("s-mm"), top = $("top");
     if (!b || !top) return;
-    const close = () => { top.classList.remove("s-menu-open"); b.setAttribute("aria-expanded", "false"); };
-    b.onclick = () => { const open = top.classList.toggle("s-menu-open"); b.setAttribute("aria-expanded", String(open)); };
+    // Con il menu aperto la pagina sotto non scorre.
+    const set = open => { top.classList.toggle("s-menu-open", open); document.documentElement.classList.toggle("s-lock", open); b.setAttribute("aria-expanded", String(open)); };
+    const close = () => set(false);
+    b.onclick = () => set(!top.classList.contains("s-menu-open"));
+    $("s-menu")?.addEventListener("click", e => { if (e.target.closest("a")) close(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
     document.addEventListener("click", e => { if (!top.contains(e.target)) close(); });
     window.addEventListener("resize", () => { if (window.innerWidth > 1080) close(); });
@@ -289,16 +292,17 @@
 
   // ================================================================ updates: le notizie di Corvex (assets/news.js, copiate da news.json)
   const TAGS = { "novità": ["novità", "new", ""], release: ["release", "release", "rel"], correzione: ["correzione", "fix", "fix"], sicurezza: ["sicurezza", "security", "fix"] };
+  const NEW_COUNT = 4;  // solo le ultime notizie portano il bollino «novità», le altre restano nella timeline
   function drawUpdates() {
     const box = $("updates");
     if (!box || !Array.isArray(window.CORVEX_NEWS)) return;
     const fmt = d => { try { return new Date(d + "T12:00:00").toLocaleDateString(T("it-IT", "en-GB"), { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return d; } };
     // corvex-ignore-next-line xss-dom: verificato, notizie firmate di Corvex passate da esc()
-    box.innerHTML = window.CORVEX_NEWS.map(n => {
-      const tag = TAGS[n.tag] || [n.tag, n.tag, ""];
+    box.innerHTML = window.CORVEX_NEWS.map((n, i) => {
+      const tag = TAGS[n.tag] || [n.tag, n.tag, ""], fresh = n.tag !== "novità" || i < NEW_COUNT;
       const body = String((n.body || {})[lang] || (n.body || {}).it || "").split("\n").filter(Boolean).map(p => `<p>${esc(p)}</p>`).join("");
       const ags = (n.agents || []).map(a => `<span class="s-ag">${esc(a)}</span>`).join("");
-      return `<article class="s-up"><div class="when"><b>${esc(fmt(n.date))}</b>${n.version ? `v${esc(n.version)}` : ""}<br><span class="tag ${tag[2]}">${esc(T(tag[0], tag[1]))}</span></div>
+      return `<article class="s-up"><div class="when"><b>${esc(fmt(n.date))}</b>${n.version ? `v${esc(n.version)}` : ""}${fresh ? `<br><span class="tag ${tag[2]}">${esc(T(tag[0], tag[1]))}</span>` : ""}</div>
         <div><h3>${esc((n.title || {})[lang] || (n.title || {}).it || "")}</h3><div class="bd">${ags ? `<div class="ags">${ags}</div>` : ""}${body}</div></div></article>`;
     }).join("");
   }
