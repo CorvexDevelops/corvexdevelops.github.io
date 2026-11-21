@@ -32,6 +32,22 @@
   }
   document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { lang = b.dataset.lang; set("corvex-sito-lang", lang); applyLang(); });
 
+  // ================================================================ riflesso sulle card, come nella dashboard
+  const CARDS = ".s-card, .s-new > a, .s-tiles > div, .s-feat > div, .s-flow > div, .s-repo-cards > a, .s-ag-card";
+  let glowRaf = 0, glowEv = null;
+  document.addEventListener("mousemove", e => {
+    glowEv = e;
+    if (glowRaf) return;
+    glowRaf = requestAnimationFrame(() => {
+      glowRaf = 0;
+      const p = glowEv.target.closest && glowEv.target.closest(CARDS);
+      if (!p) return;
+      const r = p.getBoundingClientRect();
+      p.style.setProperty("--mx", (glowEv.clientX - r.left) + "px");
+      p.style.setProperty("--my", (glowEv.clientY - r.top) + "px");
+    });
+  }, { passive: true });
+
   // ================================================================ menu su schermi stretti
   function menu() {
     const b = $("s-mm"), top = $("top");
@@ -293,17 +309,28 @@
   // ================================================================ updates: le notizie di Corvex (assets/news.js, copiate da news.json)
   const TAGS = { "novità": ["novità", "new", ""], release: ["release", "release", "rel"], correzione: ["correzione", "fix", "fix"], sicurezza: ["sicurezza", "security", "fix"] };
   const NEW_COUNT = 4;  // solo le ultime notizie portano il bollino «novità», le altre restano nella timeline
+  // Stessa linea del tempo di News & updates nella dashboard (stili .nws di assets/corvex.css).
+  const MON = { it: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"], en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] };
+  function rich(text) {
+    const names = new Set(["CORVUS", ...((window.C && window.C.AGENTI) || []).map(a => String(a.name || "").toUpperCase())]);
+    return esc(text).replace(/\b([a-z][a-z0-9_]*\(\))/g, "<code>$1</code>").replace(/\b([A-Z]{3,})\b/g, (m, w) => names.has(w) ? `<b>${w}</b>` : m);
+  }
   function drawUpdates() {
     const box = $("updates");
     if (!box || !Array.isArray(window.CORVEX_NEWS)) return;
-    const fmt = d => { try { return new Date(d + "T12:00:00").toLocaleDateString(T("it-IT", "en-GB"), { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return d; } };
     // corvex-ignore-next-line xss-dom: verificato, notizie firmate di Corvex passate da esc()
     box.innerHTML = window.CORVEX_NEWS.map((n, i) => {
       const tag = TAGS[n.tag] || [n.tag, n.tag, ""], fresh = n.tag !== "novità" || i < NEW_COUNT;
-      const body = String((n.body || {})[lang] || (n.body || {}).it || "").split("\n").filter(Boolean).map(p => `<p>${esc(p)}</p>`).join("");
-      const ags = (n.agents || []).map(a => `<span class="s-ag">${esc(a)}</span>`).join("");
-      return `<article class="s-up"><div class="when"><b>${esc(fmt(n.date))}</b>${n.version ? `v${esc(n.version)}` : ""}${fresh ? `<br><span class="tag ${tag[2]}">${esc(T(tag[0], tag[1]))}</span>` : ""}</div>
-        <div><h3>${esc((n.title || {})[lang] || (n.title || {}).it || "")}</h3><div class="bd">${ags ? `<div class="ags">${ags}</div>` : ""}${body}</div></div></article>`;
+      const [y, m, d] = String(n.date || "0000-01-01").split("-");
+      const parts = String((n.body || {})[lang] || (n.body || {}).it || "").split("\n").map(p => p.trim()).filter(Boolean);
+      const tags = (i === 0 ? `<span class="chip nws-new"><i></i>${T("ultima", "latest")}</span>` : "")
+        + (fresh && n.tag ? `<span class="chip">${esc(T(tag[0], tag[1]))}</span>` : "")
+        + (n.version ? `<span class="chip">v${esc(n.version)}</span>` : "")
+        + (n.agents || []).map(a => `<span class="chip nws-ag">${esc(a)}</span>`).join("");
+      const pts = parts.slice(1).map(p => `<li><span>${rich(p)}</span></li>`).join("");
+      return `<article class="nws${i === 0 ? " latest" : ""}"><div class="nws-when"><span class="px nws-d">${String(+d).padStart(2, "0")}</span><span class="nws-my">${MON[lang][+m - 1]} ${y}</span></div>`
+        + `<div class="nws-body"><div class="nws-tags">${tags}</div><h3>${esc((n.title || {})[lang] || (n.title || {}).it || "")}</h3>`
+        + `${parts[0] ? `<p class="nws-lead">${rich(parts[0])}</p>` : ""}${pts ? `<ol class="nws-pts">${pts}</ol>` : ""}</div></article>`;
     }).join("");
   }
   redraw.push(drawUpdates);
