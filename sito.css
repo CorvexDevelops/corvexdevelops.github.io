@@ -1,5 +1,5 @@
 /* Sito pubblico di Corvex: stessi token, caratteri e componenti della dashboard (assets/corvex.css), impaginati come pagina. */
-.s-body { overflow-x: hidden; }
+.s-body { overflow-x: clip; }  /* clip e non hidden: il body non diventa un contenitore di scorrimento e la barra sticky resta agganciata allo schermo */
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 .s-top-r .s-dl { height: 28px; padding: 0 10px; font-size: 12px; border: 0; background: transparent; }
 .s-mm { display: none; }
 .s-nav-h, .s-nav-f { display: none; }  /* solo nel menu dei telefoni */
-.s-lock, .s-lock body { overflow: hidden; }
+.s-lock { overflow: hidden; }  /* solo sulla radice: la pagina resta dov'è e la barra non si sposta */
 
 /* ------------------------------------------------------------------ testata delle pagine interne */
 .s-ph { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
