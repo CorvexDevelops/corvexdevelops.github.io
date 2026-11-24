@@ -318,9 +318,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 /* chat del team (demo) */
 .s-tchat { display: grid; grid-template-columns: 200px minmax(0, 1fr); min-height: 340px; }
 .s-tchat aside { border-right: 1px solid var(--line); padding: 12px 8px; display: grid; gap: 2px; align-content: start; font: 12px var(--mono); }
-.s-tchat aside span { padding: 8px 10px; border-radius: 3px; color: var(--t3); display: flex; justify-content: space-between; gap: 8px; }
-.s-tchat aside span.on { background: var(--coal); color: var(--white); }
-.s-tchat aside em { font-style: normal; color: var(--black); background: var(--ok); border-radius: 999px; padding: 1px 6px; font-size: 10.5px; }
+.s-tchat aside > span { padding: 8px 10px; border-radius: 3px; color: var(--t3); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.s-tchat aside > span.on { background: var(--coal); color: var(--white); }
+.s-tchat aside em { margin-left: auto; font-style: normal; color: var(--black); background: var(--ok); border-radius: 999px; padding: 0 6px; font-size: 10.5px; line-height: 16px; min-width: 16px; text-align: center; }
 .s-tchat .msgs { padding: 16px 18px; display: grid; gap: 14px; align-content: start; }
 .s-tchat .m { display: grid; gap: 3px; font-size: 14px; line-height: 1.55; color: var(--t1); }
 .s-tchat .m b { font: 500 11.5px var(--mono); color: var(--t2); }
