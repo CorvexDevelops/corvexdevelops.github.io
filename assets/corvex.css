@@ -1355,6 +1355,59 @@ body.ro [data-block], body.ro [data-rwrite], body.ro [data-ep-scan], body.ro [da
   .aud-r .who, .aud-r .msg { grid-column: 1 / -1; white-space: normal; overflow-wrap: anywhere; }
 }
 
+.acc-rec { display: grid; gap: 8px; justify-items: start; margin-top: 2px; }
+
+/* ---------------------------------------------------------------- feedback e ticket */
+.help-cta { height: 30px; display: inline-flex; align-items: center; gap: 7px; padding: 0 11px; margin-right: 4px; border: 1px solid var(--line-2);
+  border-radius: var(--r); background: var(--coal); color: var(--white); font: 12px var(--mono); position: relative; cursor: pointer; }
+.help-cta svg { width: 15px; height: 15px; }
+.help-cta:hover { background: var(--white); color: var(--black); }
+.help-cta .badge { position: absolute; top: -6px; right: -6px; }
+@media (max-width: 720px) { .help-cta { padding: 0 8px; margin-right: 2px; } .help-cta span:not(.badge) { display: none; } }
+.hp { border: 1px solid var(--line); border-radius: 6px; background: var(--obsidian); }
+.log-tools + .hp { margin-top: 14px; }
+.hp-r { border-bottom: 1px solid var(--line); padding: 0 14px; }
+.hp-r:last-child { border-bottom: 0; }
+.hp-r > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 76px minmax(0, 1fr) auto auto; gap: 12px; align-items: baseline; padding: 12px 0; }
+.hp-r > summary::-webkit-details-marker { display: none; }
+.hp-r[open] { padding-bottom: 14px; }
+.hp-ty, .hp-ag { font-size: 11.5px; color: var(--t4); }
+.hp-ti { color: var(--t1); font-size: 14px; overflow-wrap: anywhere; }
+.hp-st { font-size: 11.5px; color: var(--t3); }
+.hp-st.st-aperto { color: var(--high); } .hp-st.st-in_lavorazione { color: var(--white); } .hp-st.st-risolto { color: var(--ok); }
+.hp-ms { display: grid; gap: 8px; }
+.hp-m { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; background: var(--black); }
+.hp-m.cvx { border-color: var(--line-2); background: var(--coal); }
+.hp-who { font: 11px var(--mono); color: var(--t4); margin-bottom: 4px; }
+.hp-t { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13.5px; color: var(--t2); }
+@media (max-width: 720px) { .hp-r > summary { grid-template-columns: minmax(0, 1fr) auto; } .hp-ty { grid-column: 1; } .hp-ti { grid-column: 1 / -1; grid-row: 2; } .hp-ag { display: none; } }
+
+/* ---------------------------------------------------------------- vista unica dei computer */
+.fl { border: 1px solid var(--line); border-radius: 6px; background: var(--obsidian); margin-top: 18px; }
+.fl-r { border-bottom: 1px solid var(--line); }
+.fl-r:last-child { border-bottom: 0; }
+.fl-r > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1.6fr) 130px 90px minmax(120px, 1fr) minmax(0, 1fr);
+  gap: 14px; align-items: center; padding: 13px 16px; }
+.fl-r > summary::-webkit-details-marker { display: none; }
+.fl-r > summary:hover { background: var(--coal); }
+.fl-r.off { opacity: .72; }
+.fl-n { display: grid; gap: 3px; min-width: 0; }
+.fl-n b { font: 500 14px var(--sans); color: var(--t1); overflow-wrap: anywhere; }
+.fl-n span, .fl-s, .fl-p, .fl-k .dim, .fl-m { font: 11.5px/1.45 var(--mono); color: var(--t3); }
+.fl-s.on-txt { color: var(--ok); } .fl-s.off-txt { color: var(--t4); }
+.fl-v .px { font-size: 26px; } .fl-v small { font: 11px var(--mono); color: var(--t4); }
+.fl-k { display: grid; gap: 6px; min-width: 0; }
+.fl-p { overflow-wrap: anywhere; }
+.fl-d { padding: 4px 16px 16px; display: grid; gap: 8px; }
+.fl-f { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; font-size: 13.5px; color: var(--t2); }
+.fl-f > span:nth-child(2) { overflow-wrap: anywhere; }
+@media (max-width: 1080px) { .fl-r > summary { grid-template-columns: minmax(0, 1fr) 110px 70px; } .fl-k, .fl-p { grid-column: 1 / -1; } }
+@media (max-width: 720px) {
+  .fl-r > summary { grid-template-columns: minmax(0, 1fr) auto; padding: 12px 14px; }
+  .fl-s { grid-column: 1; } .fl-v { grid-column: 2; grid-row: 1; text-align: right; }
+  .fl-f { grid-template-columns: 74px minmax(0, 1fr); } .fl-f .dim { display: none; }
+}
+
 /* ---------------------------------------------------------------- utenti e ruoli */
 .users-kv .u-who { display: grid; gap: 3px; min-width: 0; }
 .users-kv .u-who b { font: 500 13.5px var(--sans); color: var(--t1); overflow-wrap: anywhere; }
