@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <title data-en="corvexai · Corvex's AI model" data-it="corvexai · il modello AI di Corvex">corvexai · Corvex's AI model</title>
-  <meta data-it-content="corvexai è il modello AI sviluppato da Corvex per la sicurezza: verifica il 93% delle falle correttamente e gira sul tuo server." name="description" content="corvexai is the AI model built by Corvex for security: it verifies 93% of issues correctly and runs on your server." data-en-content="corvexai is the AI model built by Corvex for security: it verifies 93% of issues correctly and runs on your server.">
+  <meta data-it-content="corvexai è il modello AI sviluppato da Corvex per la sicurezza: trova da solo due falle su tre nel codice e gira sul tuo server." name="description" content="corvexai is the AI model built by Corvex for security: it finds two issues out of three in code on its own and runs on your server." data-en-content="corvexai is the AI model built by Corvex for security: it finds two issues out of three in code on its own and runs on your server.">
   <meta property="og:title" content="corvexai · il modello AI di Corvex">
   <meta property="og:description" content="Una squadra di agenti che mette alla prova le tue piattaforme, trova le falle e le corregge.">
   <meta property="og:type" content="website">
@@ -64,10 +64,10 @@
 
 <section class="s-sec" id="numeri">
   <div class="s-tiles s-rv">
-    <div><span class="big">93%</span><span class="k" data-en="/ issues verified correctly" data-it="/ falle verificate correttamente">/ issues verified correctly</span></div>
-    <div><span class="big">92%</span><span class="k" data-en="/ issues found by the question sheet" data-it="/ falle trovate dalla scheda di domande">/ issues found by the question sheet</span></div>
+    <div><span class="big">66%</span><span class="k" data-en="/ issues found on its own in the code" data-it="/ falle trovate da solo nel codice">/ issues found on its own in the code</span></div>
+    <div><span class="big">96%</span><span class="k" data-en="/ issues found by the question sheet" data-it="/ falle trovate dalla scheda di domande">/ issues found by the question sheet</span></div>
     <div><span class="big">100%</span><span class="k" data-en="/ defenses recognised, with the exact line" data-it="/ difese riconosciute, con la riga esatta">/ defenses recognised, with the exact line</span></div>
-    <div><span class="big">0</span><span class="k" data-en="/ false issues confirmed on real code" data-it="/ falle false confermate su codice reale">/ false issues confirmed on real code</span></div>
+    <div><span class="big">83%</span><span class="k" data-en="/ reported issues verified correctly" data-it="/ falle segnalate verificate correttamente">/ reported issues verified correctly</span></div>
   </div>
   <p class="s-os mono s-rv"><em data-en="// measured on cases it never saw in training" data-it="// misurato su casi mai visti in addestramento">// measured on cases it never saw in training</em></p>
 </section>
@@ -77,23 +77,23 @@
     <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Measured, not claimed" data-it="Misurato, non dichiarato">Measured, not claimed</span>&nbsp;<span class="g">*/</span></h2>
     <p class="s-lead" data-en="Same cases for both versions, none of them used in training." data-it="Gli stessi casi per le due versioni, nessuno usato in addestramento.">Same cases for both versions, none of them used in training.</p></div>
   <div class="s-bars s-rv">
-    <div><div><h3 data-en="Issue verification" data-it="Verifica delle falle">Issue verification</h3><div class="sub" data-en="true or false? 30 cases" data-it="vera o falsa? 30 casi">true or false? 30 cases</div></div>
-      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:30%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:93%"><i></i></s></div></div>
-      <div class="val"><b>93%</b><span data-en="from 30%" data-it="da 30%">from 30%</span></div></div>
-    <div><div><h3 data-en="Issues found" data-it="Falle trovate">Issues found</h3><div class="sub" data-en="question sheet · 26 issues" data-it="scheda di domande · 26 falle">question sheet · 26 issues</div></div>
-      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:37%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:92%"><i></i></s></div></div>
-      <div class="val"><b>92%</b><span data-en="from 37%" data-it="da 37%">from 37%</span></div></div>
+    <div><div><h3 data-en="Issues found on its own" data-it="Falle trovate da solo">Issues found on its own</h3><div class="sub" data-en="no question sheet · 29 issues" data-it="senza scheda di domande · 29 falle">no question sheet · 29 issues</div></div>
+      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:0%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:66%"><i></i></s></div></div>
+      <div class="val"><b>66%</b><span data-en="from 0%" data-it="da 0%">from 0%</span></div></div>
+    <div><div><h3 data-en="Issues found" data-it="Falle trovate">Issues found</h3><div class="sub" data-en="question sheet · 23 issues" data-it="scheda di domande · 23 falle">question sheet · 23 issues</div></div>
+      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:96%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:96%"><i></i></s></div></div>
+      <div class="val"><b>96%</b><span data-en="false alarms from 6 to 4" data-it="falsi allarmi da 6 a 4">false alarms from 6 to 4</span></div></div>
     <div><div><h3 data-en="Defenses recognised" data-it="Difese riconosciute">Defenses recognised</h3><div class="sub" data-en="with the exact line · 30 cases" data-it="con la riga esatta · 30 casi">with the exact line · 30 cases</div></div>
-      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:67%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:100%"><i></i></s></div></div>
-      <div class="val"><b>100%</b><span data-en="from 67%" data-it="da 67%">from 67%</span></div></div>
-    <div><div><h3 data-en="False alarms" data-it="Falsi allarmi">False alarms</h3><div class="sub" data-en="question sheet · lower is better" data-it="scheda di domande · meno è meglio">question sheet · lower is better</div></div>
-      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:100%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:25%"><i></i></s></div></div>
-      <div class="val"><b>5</b><span data-en="from 20" data-it="da 20">from 20</span></div></div>
-    <div><div><h3 data-en="Real code" data-it="Codice reale">Real code</h3><div class="sub" data-en="real tool reports · 30 false" data-it="segnalazioni reali di altri strumenti · 30 false">real tool reports · 30 false</div></div>
       <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:100%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:100%"><i></i></s></div></div>
-      <div class="val"><b>30/30</b><span data-en="false ones discarded" data-it="falsi scartati">false ones discarded</span></div></div>
+      <div class="val"><b>100%</b><span data-en="as before" data-it="come prima">as before</span></div></div>
+    <div><div><h3 data-en="Issue verification" data-it="Verifica delle falle">Issue verification</h3><div class="sub" data-en="true or false? 30 cases" data-it="vera o falsa? 30 casi">true or false? 30 cases</div></div>
+      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:97%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:83%"><i></i></s></div></div>
+      <div class="val"><b>83%</b><span data-en="from 97%" data-it="da 97%">from 97%</span></div></div>
+    <div><div><h3 data-en="Real code" data-it="Codice reale">Real code</h3><div class="sub" data-en="real tool reports · 30 real issues" data-it="segnalazioni reali di altri strumenti · 30 falle vere">real tool reports · 30 real issues</div></div>
+      <div class="s-bar"><div><span data-en="before" data-it="prima">before</span><s style="--w:37%"><i></i></s></div><div class="now"><span data-en="now" data-it="ora">now</span><s style="--w:50%"><i></i></s></div></div>
+      <div class="val"><b>50%</b><span data-en="real ones kept, from 37%" data-it="vere tenute, da 37%">real ones kept, from 37%</span></div></div>
   </div>
-  <p class="s-os mono s-rv"><em data-en="// on real code every issue corvexai confirmed was real" data-it="// su codice reale ogni falla confermata da corvexai era vera">// on real code every issue corvexai confirmed was real</em></p>
+  <p class="s-os mono s-rv"><em data-en="// on real code it keeps more real issues, but also confirms 7 false reports out of 26" data-it="// su codice reale tiene più falle vere, ma conferma anche 7 segnalazioni false su 26">// on real code it keeps more real issues, but also confirms 7 false reports out of 26</em></p>
 </section>
 
 <section class="s-sec s-split">
@@ -135,7 +135,7 @@
   <table class="s-spec s-rv">
     <tr><td data-en="development" data-it="sviluppo">development</td><td data-en="&lt;b&gt;Corvex team&lt;/b&gt;, in-house training" data-it="&lt;b&gt;Team Corvex&lt;/b&gt;, addestramento interno"><b>Corvex team</b>, in-house training</td></tr>
     <tr><td data-en="job" data-it="mestiere">job</td><td data-en="cybersecurity, ORACLE and CORVUS tasks" data-it="cybersecurity, compiti di ORACLE e CORVUS">cybersecurity, ORACLE and CORVUS tasks</td></tr>
-    <tr><td data-en="size" data-it="dimensione">size</td><td data-en="4 billion parameters, 2.5 GB" data-it="4 miliardi di parametri, 2,5 GB">4 billion parameters, 2.5 GB</td></tr>
+    <tr><td data-en="size" data-it="dimensione">size</td><td data-en="4 billion parameters, 2.9 GB" data-it="4 miliardi di parametri, 2,9 GB">4 billion parameters, 2.9 GB</td></tr>
     <tr><td data-en="memory" data-it="memoria">memory</td><td data-en="3-4 GB, runs on a laptop too" data-it="3-4 GB, gira anche su un portatile">3-4 GB, runs on a laptop too</td></tr>
     <tr><td data-en="architecture" data-it="architettura">architecture</td><td data-en="&lt;b&gt;corvexai&lt;/b&gt;, only in the Corvex engine" data-it="&lt;b&gt;corvexai&lt;/b&gt;, solo nel motore Corvex"><b>corvexai</b>, only in the Corvex engine</td></tr>
     <tr><td data-en="where it runs" data-it="dove gira">where it runs</td><td data-en="on your server, only on 127.0.0.1" data-it="sul tuo server, solo su 127.0.0.1">on your server, only on 127.0.0.1</td></tr>
