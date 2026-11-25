@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title data-en="corvex-code · the executable code editor" data-it="corvex-code · l&#x27;editor di codice eseguibile">corvex-code · the executable code editor</title>
+  <meta data-it-content="corvex-code esegue il tuo codice in locale, collega gli script in flow, ha Claude Code, Codex e Gemini integrati e parla con Corvex in tempo reale. Per macOS e Windows." name="description" content="corvex-code runs your code locally, chains scripts into flows, has Claude Code, Codex and Gemini built in and talks to Corvex in real time. For macOS and Windows." data-en-content="corvex-code runs your code locally, chains scripts into flows, has Claude Code, Codex and Gemini built in and talks to Corvex in real time. For macOS and Windows.">
+  <meta property="og:title" content="corvex-code · the executable code editor">
+  <meta property="og:description" content="Write, run, connect. A local code editor by Corvex, for macOS and Windows.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/corvex-code.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <link rel="icon" href="assets/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3">
+  <link rel="preload" href="assets/fonts/Nohemi-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/corvex.css?v=7d3a640dd1">
+  <link rel="stylesheet" href="sito.css?v=f660b88efe">
+  <script defer src="assets/viste.js?v=2abf94fef3"></script>
+  <script defer src="sito.js?v=bd48e72104"></script>
+</head>
+<body class="s-body" data-page="code" data-path="~/corvex-code">
+
+<!-- header -->
+<header class="s-top" id="top">
+  <button class="s-mm" id="s-mm" type="button" aria-label="Menu" aria-controls="s-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b><em class="s-pill"><i></i><span data-en="coming_soon" data-it="in_arrivo">coming_soon</span></em></a>
+  <span class="search s-path" aria-hidden="true"><span class="lab"><span class="pr" data-en="guest@corvex" data-it="ospite@corvex">guest@corvex</span><span class="pw">~/corvex-code</span><span class="ps">$</span><span class="cur"></span></span></span>
+  <nav class="s-nav" id="s-menu" aria-label="Sezioni">
+    <span class="s-nav-h" aria-hidden="true"><span data-en="guest@corvex" data-it="ospite@corvex">guest@corvex</span><span class="g">:~$</span> ls <span data-en="sections/" data-it="sezioni/">sections/</span></span>
+    <a href="index.html" data-page="home">home</a>
+    <a href="team.html" data-page="team">team</a>
+    <a href="features.html" data-page="features" data-en="features" data-it="funzioni">features</a>
+    <a href="corvexai.html" data-page="corvexai">corvexai</a>
+    <a href="corvex-code.html" data-page="code" class="on" aria-current="page">corvex-code</a>
+    <a href="trust.html" data-page="trust" data-en="security" data-it="sicurezza">security</a>
+    <a href="community.html" data-page="community">community</a>
+    <a href="updates.html" data-page="updates"><i class="nw-dot" aria-hidden="true"></i>updates</a>
+    <div class="s-nav-f"><span class="s-nav-st"><i></i><span data-en="28 agents ready" data-it="28 agenti pronti">28 agents ready</span></span><span class="btn s-locked" aria-disabled="true">download()<em data-en="soon" data-it="presto">soon</em></span></div>
+  </nav>
+  <div class="s-top-r">
+    <div class="seg s-lang" role="group" aria-label="Lingua"><button type="button" data-lang="it">IT</button><button type="button" data-lang="en">EN</button></div>
+    <a class="s-icb" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <span class="btn s-locked s-dl" aria-disabled="true">download()<em data-en="soon" data-it="presto">soon</em></span>
+  </div>
+</header>
+<!-- /header -->
+
+<section class="s-ph">
+  <pre class="ascii s-ph-bg" data-shape="c" aria-hidden="true"></pre>
+  <div class="s-ph-in">
+    <span class="label s-rv"><i>+</i><span data-en="corvex-code · executable_editor" data-it="corvex-code · editor_eseguibile">corvex-code · executable_editor</span></span>
+    <div class="s-ai-wm s-rv"><img src="assets/corvex-code.svg" alt=""><b>corvex-code</b></div>
+    <h1 class="cm s-h1 s-rv"><span class="g">/*</span>&nbsp;<span class="d" data-en="Write, run," data-it="Scrivi, esegui,">Write, run,</span><br><span data-en="connect" data-it="collega">connect</span>&nbsp;<span class="s-close"><span class="g">*/</span><span class="s-caret"></span></span></h1>
+    <p class="s-sub s-rv" data-en="A code editor that runs your code on your computer, chains scripts into flows and puts Claude Code, Codex and Gemini next to the code. Corvex reads every line as you type and sends the issues back." data-it="Un editor di codice che esegue il tuo codice sul tuo computer, collega gli script in flow e mette Claude Code, Codex e Gemini accanto al codice. Corvex legge ogni riga mentre scrivi e rimanda le falle.">A code editor that runs your code on your computer, chains scripts into flows and puts Claude Code, Codex and Gemini next to the code. Corvex reads every line as you type and sends the issues back.</p>
+    <div class="s-acts s-rv">
+      <a class="btn primary" href="#download"><span>download()</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="arr"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      <a class="btn" href="https://github.com/CorvexDevelops/corvex-code" target="_blank" rel="noopener noreferrer"><span data-en="source_code()" data-it="codice_sorgente()">source_code()</span></a>
+    </div>
+  </div>
+</section>
+
+<main class="s-main">
+
+<section class="s-sec s-vid" id="anteprima">
+  <div class="s-head s-rv"><span class="label"><i>▶</i><span data-en="preview · 0:20" data-it="anteprima · 0:20">preview · 0:20</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Twenty seconds of the real app" data-it="Venti secondi dall&#x27;app vera">Twenty seconds of the real app</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-en="A program that asks for input, a three-step flow, Claude Code answering beside the code, the live preview and Corvex flagging an SQL injection before saving." data-it="Un programma che chiede un input, un flow in tre passaggi, Claude Code che risponde accanto al codice, l&#x27;anteprima dal vivo e Corvex che segnala una SQL injection prima di salvare.">A program that asks for input, a three-step flow, Claude Code answering beside the code, the live preview and Corvex flagging an SQL injection before saving.</p></div>
+  <div class="s-video s-rv">
+    <div class="term-h"><span class="dots"><i></i><i></i><i></i></span>corvex-code://preview.mp4<span class="r"><span class="s-vlang" data-en="// english video" data-it="// video in inglese">// english video</span></span></div>
+    <div class="s-vbox">
+      <video id="vid" muted playsinline loop preload="none" poster="assets/corvex-code.jpg?v=1"><source src="assets/corvex-code.mp4?v=1" type="video/mp4"></video>
+      <button class="s-vplay" id="vid-play" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><span id="vid-play-t">guarda_anteprima()</span></button>
+      <button class="btn sm s-vsnd" id="vid-snd" type="button" hidden></button>
+    </div>
+  </div>
+</section>
+
+<section class="s-sec" id="funzioni">
+  <div class="s-head s-rv"><span class="label"><i>+</i><span data-en="what_it_does" data-it="cosa_fa">what_it_does</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="One editor, everything runs" data-it="Un editor, tutto gira">One editor, everything runs</span>&nbsp;<span class="g">*/</span></h2></div>
+  <div class="s-feat s-feat3">
+    <div class="s-rv"><span class="label"><i>▷</i><span data-en="run" data-it="esegui">run</span></span><h3 data-en="Run anything" data-it="Esegui di tutto">Run anything</h3><p data-en="Python, JavaScript, TypeScript, Bash, C, C++, Go, Rust, Ruby, Java, Swift and more, with the interpreters already on your computer. Interactive input, terminal colours, time, memory and exit code." data-it="Python, JavaScript, TypeScript, Bash, C, C++, Go, Rust, Ruby, Java, Swift e altri, con gli interpreti che hai già sul computer. Input interattivo, colori del terminale, tempo, memoria e codice di uscita.">Python, JavaScript, TypeScript, Bash, C, C++, Go, Rust, Ruby, Java, Swift and more, with the interpreters already on your computer. Interactive input, terminal colours, time, memory and exit code.</p></div>
+    <div class="s-rv"><span class="label"><i>⌥</i>flow</span><h3 data-en="Chain scripts into flows" data-it="Script collegati in flow">Chain scripts into flows</h3><p data-en="Drag scripts onto a canvas and connect them: what one prints becomes the next one's input, like a terminal pipe you can see." data-it="Trascini gli script su una tela e li colleghi: quello che uno stampa diventa l&#x27;input del successivo, come una pipe del terminale che si vede.">Drag scripts onto a canvas and connect them: what one prints becomes the next one's input, like a terminal pipe you can see.</p></div>
+    <div class="s-rv"><span class="label"><i>AI</i><span data-en="agents" data-it="agenti">agents</span></span><h3 data-en="Claude Code, Codex and Gemini" data-it="Claude Code, Codex e Gemini">Claude Code, Codex and Gemini</h3><p data-en="Ask the agent you already use, in read, edit or full mode. It gets the open file, the selection and the last output; its changes appear in the editor right away." data-it="Chiedi all&#x27;agente che usi già, in lettura, modifica o pieno. Riceve il file aperto, la selezione e l&#x27;ultimo output; le sue modifiche compaiono subito nell&#x27;editor.">Ask the agent you already use, in read, edit or full mode. It gets the open file, the selection and the last output; its changes appear in the editor right away.</p></div>
+    <div class="s-rv"><span class="label"><i>◉</i><span data-en="preview" data-it="anteprima">preview</span></span><h3 data-en="Live preview" data-it="Anteprima dal vivo">Live preview</h3><p data-en="HTML, SVG, Markdown, CSV and images update while you type, before you save." data-it="HTML, SVG, Markdown, CSV e immagini si aggiornano mentre scrivi, prima di salvare.">HTML, SVG, Markdown, CSV and images update while you type, before you save.</p></div>
+    <div class="s-rv"><span class="label"><i>■</i>corvex</span><h3 data-en="Corvex reads every line" data-it="Corvex legge ogni riga">Corvex reads every line</h3><p data-en="A local bridge on 127.0.0.1: Corvex analyses what you write with its code agents and the issues land next to the lines. Code never leaves your computer." data-it="Un ponte locale su 127.0.0.1: Corvex analizza quello che scrivi con i suoi agenti del codice e le falle arrivano accanto alle righe. Il codice non lascia il computer.">A local bridge on 127.0.0.1: Corvex analyses what you write with its code agents and the issues land next to the lines. Code never leaves your computer.</p></div>
+    <div class="s-rv"><span class="label"><i>↻</i><span data-en="updates" data-it="aggiornamenti">updates</span></span><h3 data-en="Always up to date" data-it="Sempre aggiornato">Always up to date</h3><p data-en="New versions download by themselves and install when you quit, only after the Ed25519 signature and the fingerprint check out." data-it="Le nuove versioni si scaricano da sole e si installano alla chiusura, solo dopo il controllo della firma Ed25519 e dell&#x27;impronta.">New versions download by themselves and install when you quit, only after the Ed25519 signature and the fingerprint check out.</p></div>
+  </div>
+</section>
+
+<section class="s-sec" id="download">
+  <div class="s-head s-rv"><span class="label"><i>↓</i><span data-en="download · latest_version" data-it="download · ultima_versione">download · latest_version</span></span>
+    <h2 class="cm"><span class="g">/*</span>&nbsp;<span data-en="Download corvex-code" data-it="Scarica corvex-code">Download corvex-code</span>&nbsp;<span class="g">*/</span></h2>
+    <p class="s-lead" data-en="No installer: unzip on macOS, run the .exe on Windows. The app updates itself from then on." data-it="Nessun installer: su macOS si estrae lo zip, su Windows si avvia l&#x27;.exe. Da lì in poi l&#x27;app si aggiorna da sola.">No installer: unzip on macOS, run the .exe on Windows. The app updates itself from then on.</p></div>
+  <div class="s-dlg">
+    <div class="s-rv"><span class="label"><i>⌘</i>macos</span><h3>Apple silicon</h3><p class="mono" data-en="M1 to M4 · zip · about 110 MB" data-it="da M1 a M4 · zip · circa 110 MB">M1 to M4 · zip · about 110 MB</p>
+      <a class="btn primary" href="https://github.com/CorvexDevelops/corvex-code/releases/latest/download/corvex-code-mac-arm64.zip"><span>download_mac_arm()</span></a></div>
+    <div class="s-rv"><span class="label"><i>⌘</i>macos</span><h3>Intel</h3><p class="mono" data-en="older Macs · zip · about 118 MB" data-it="Mac meno recenti · zip · circa 118 MB">older Macs · zip · about 118 MB</p>
+      <a class="btn primary" href="https://github.com/CorvexDevelops/corvex-code/releases/latest/download/corvex-code-mac-x64.zip"><span>download_mac_intel()</span></a></div>
+    <div class="s-rv"><span class="label"><i>⊞</i>windows</span><h3>Windows 10 · 11</h3><p class="mono" data-en="x64 · portable .exe · about 105 MB" data-it="x64 · .exe portable · circa 105 MB">x64 · portable .exe · about 105 MB</p>
+      <a class="btn primary" href="https://github.com/CorvexDevelops/corvex-code/releases/latest/download/corvex-code-win-x64-portable.exe"><span>download_windows()</span></a></div>
+  </div>
+  <ul class="s-ticks s-rv">
+    <li data-en="macOS: the app isn't notarized by Apple yet, so the first time right-click it and choose Open" data-it="macOS: l&#x27;app non è ancora notarizzata da Apple, quindi la prima volta fai clic destro e scegli Apri">macOS: the app isn't notarized by Apple yet, so the first time right-click it and choose Open</li>
+    <li data-en="the interpreters you want to use (python3, node, gcc…) must be installed; the agents need their own CLI signed in" data-it="gli interpreti che vuoi usare (python3, node, gcc…) devono essere installati; gli agenti hanno bisogno della loro CLI con l&#x27;accesso fatto">the interpreters you want to use (python3, node, gcc…) must be installed; the agents need their own CLI signed in</li>
+    <li data-en="every release, with its notes, is on GitHub" data-it="ogni versione, con le sue note, è su GitHub">every release, with its notes, is on GitHub</li>
+  </ul>
+  <p class="s-os mono s-rv"><a href="https://github.com/CorvexDevelops/corvex-code/releases" target="_blank" rel="noopener noreferrer"><em data-en="// all versions on github.com/CorvexDevelops/corvex-code ↗" data-it="// tutte le versioni su github.com/CorvexDevelops/corvex-code ↗">// all versions on github.com/CorvexDevelops/corvex-code ↗</em></a></p>
+</section>
+
+</main>
+
+<!-- footer -->
+<footer class="s-foot2">
+  <div class="s-f-grid">
+    <div class="s-f-cell s-f-main">
+      <div class="s-f-brands">
+        <a class="s-brand" href="index.html" aria-label="Corvex"><img src="assets/logo.svg" alt=""><b>corvex</b></a>
+        <span class="s-f-x" aria-hidden="true">×</span>
+        <a class="s-brand s-f-ai" href="corvexai.html" aria-label="corvexai"><img src="assets/corvus.svg" alt=""><b>corvexai</b></a>
+      </div>
+      <p class="s-f-claim" data-en="Corvex defends the platforms you build. corvexai is the AI model built in-house by Corvex." data-it="Corvex difende le piattaforme che costruisci. corvexai è il modello AI sviluppato da Corvex.">Corvex defends the platforms you build. corvexai is the AI model built in-house by Corvex.</p>
+      <span class="s-nav-st"><i></i><span data-en="28 agents ready · local-first" data-it="28 agenti pronti · tutto in locale">28 agents ready · local-first</span></span>
+    </div>
+    <div class="s-f-cell"><h4><span class="g">//</span> <span data-en="site" data-it="sito">site</span></h4>
+      <nav class="s-foot-nav s-f-list">
+        <a href="index.html" data-page="home">home</a><a href="team.html" data-page="team">team</a><a href="features.html" data-page="features" data-en="features" data-it="funzioni">features</a>
+        <a href="corvexai.html" data-page="corvexai">corvexai</a><a href="corvex-code.html" data-page="code" class="on" aria-current="page">corvex-code</a><a href="trust.html" data-page="trust" data-en="security" data-it="sicurezza">security</a><a href="community.html" data-page="community">community</a><a href="updates.html" data-page="updates">updates</a>
+      </nav></div>
+    <div class="s-f-cell"><h4><span class="g">//</span> <span data-en="legal" data-it="legale">legal</span></h4>
+      <nav class="s-foot-nav s-f-list"><a href="legal/terms.html" data-en="terms" data-it="termini">terms</a><a href="legal/privacy.html">privacy</a><a href="legal/security.html" data-en="security policy" data-it="politica di sicurezza">security policy</a></nav></div>
+    <div class="s-f-cell"><h4><span class="g">//</span> open source</h4>
+      <a class="s-gh" href="https://github.com/CorvexDevelops" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/CorvexDevelops</span><em aria-hidden="true">↗</em></a>
+      <p class="s-f-note" data-en="Benchmark, network tools and AI security rules, open to everyone." data-it="Banco di prova, strumenti di rete e regole di sicurezza per l&#x27;AI, aperti a tutti.">Benchmark, network tools and AI security rules, open to everyone.</p></div>
+  </div>
+  <div class="s-f-word" aria-hidden="true">corvex</div>
+  <div class="s-f-bot"><span data-en="© 2026 Corvex · platform defense" data-it="© 2026 Corvex · difesa delle piattaforme">© 2026 Corvex · platform defense</span><span>windows · macos</span><a class="s-f-up" href="#top" data-en="back_to_top() ↑" data-it="torna_su() ↑">back_to_top() ↑</a></div>
+</footer>
+<!-- /footer -->
+
+</body>
+</html>

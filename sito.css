@@ -529,3 +529,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 @keyframes s-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes s-row { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .s-menu-open .s-nav, .s-menu-open .s-nav a, .s-menu-open .s-nav-f { animation: none; } }
+
+/* ------------------------------------------------------------------ corvex-code */
+.s-feat.s-feat3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.s-dlg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 28px; }
+.s-dlg > div { background: var(--obsidian); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.s-dlg h3 { font: 300 26px/1.2 var(--sans); color: var(--white); margin: 6px 0 0; letter-spacing: -.01em; }
+.s-dlg p { margin: 0; color: var(--t3); font-size: 12.5px; }
+.s-dlg .label { align-self: flex-start; }
+.s-dlg .btn { align-self: flex-start; margin-top: 8px; }
+@media (max-width: 900px) { .s-feat.s-feat3, .s-dlg { grid-template-columns: 1fr; } }
