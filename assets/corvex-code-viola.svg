@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" shape-rendering="crispEdges" role="img" aria-label="corvex-code">
+  <title>corvex-code</title>
+  <!-- <■>: parentesi angolari del codice in pixel, con il blocco del cursore di Corvex al centro -->
+  <g fill="#B69CFF"><rect x="24" y="16" width="10" height="8"/><rect x="46" y="16" width="10" height="8"/><rect x="16" y="24" width="10" height="8"/><rect x="54" y="24" width="10" height="8"/><rect x="8" y="32" width="10" height="8"/><rect x="62" y="32" width="10" height="8"/><rect x="8" y="40" width="10" height="8"/><rect x="62" y="40" width="10" height="8"/><rect x="16" y="48" width="10" height="8"/><rect x="54" y="48" width="10" height="8"/><rect x="24" y="56" width="10" height="8"/><rect x="46" y="56" width="10" height="8"/><rect x="34" y="34" width="12" height="12"/></g>
+</svg>
