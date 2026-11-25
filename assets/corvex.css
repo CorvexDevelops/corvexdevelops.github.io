@@ -690,7 +690,7 @@ ol.steps li::before { content: counter(s, decimal-leading-zero); position: absol
   .li { padding: 12px 16px; } .li-f { grid-template-columns: 76px minmax(0, 1fr); } .li-f .m { display: none; }
   .li-t { grid-template-columns: minmax(0, 1fr) auto; } .li-t .hide-m { display: none; }
   .panel { padding: 18px 16px; } .flush .p-head { padding: 16px 16px 0; }
-  .tabs.views { display: none; }
+  .toolbar:has(.tabs.views) { flex-wrap: wrap; } .tabs.views { max-width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; } .tabs.views .tab { flex: none; }
   .map-box { padding: 10px; }
   .term-b { height: calc(100vh - 300px); } .ln { grid-template-columns: 58px minmax(0, 1fr); } .ln .ag { display: none; }
   .cards { grid-template-columns: 1fr; } .card { min-height: 0; padding: 20px 16px; }
@@ -1639,3 +1639,35 @@ svg.raven { shape-rendering: crispEdges; }
 /* Piani senza prezzi né specifiche (non ancora decisi): nome, a chi è rivolto, pulsante. */
 .pl-n { margin: 2px 0 0; font: 300 30px/1.1 var(--sans); color: var(--white); }
 .pl-soon { font: 11.5px var(--mono); color: var(--t4); }
+
+/* ------------------------------------------------------------------ ritmo, ricontrollo e copertura */
+.pace-seg { flex-wrap: wrap; max-width: 100%; }
+.pace-seg button .dim { font-size: 10.5px; }
+.tmk.ok { color: var(--ok); border-color: #1f4a33; }
+.recheck-box { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 12px 16px; margin-bottom: 12px;
+  border: 1px solid var(--line); background: var(--obsidian); font: 12.5px var(--mono); color: var(--t2); }
+.recheck-box b { font-weight: 600; }
+.recheck-box .btn { margin-left: auto; }
+.cov-head { display: grid; gap: 14px; padding: 20px 22px; margin-bottom: 12px; border: 1px solid var(--line); background: var(--obsidian); }
+.cov-big { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.cov-big b { font-size: 40px; line-height: 1; color: var(--white); }
+.cov-big span { color: var(--t2); }
+.cov-bar { display: flex; height: 8px; gap: 2px; border-radius: 2px; overflow: hidden; background: var(--coal); }
+.cov-bar i { display: block; min-width: 3px; }
+.cov-bar i.ok, .dot.ok { background: var(--ok); } .cov-bar i.med, .dot.med { background: var(--med); }
+.cov-bar i.crit, .dot.crit { background: var(--crit); } .cov-bar i.dim, .dot.dim { background: var(--t4); }
+.cov-sts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.cov-st { display: grid; gap: 6px; text-align: left; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: var(--r); background: var(--black); color: var(--t2); cursor: pointer; font: 11.5px var(--mono); }
+.cov-st b { font-size: 22px; color: var(--white); font-weight: 400; }
+.cov-st span { display: inline-flex; align-items: center; gap: 6px; }
+.cov-st.on { border-color: var(--t2); background: #141414; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.cov-row { grid-template-columns: 150px minmax(0, 1fr) 90px 44px; cursor: default; }
+.cov-k { font: 11px var(--mono); }
+.cov-k.ok { color: var(--ok); } .cov-k.med { color: var(--med); } .cov-k.crit { color: var(--crit); } .cov-k.dim { color: var(--t3); }
+@media (max-width: 720px) {
+  .cov-sts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cov-head { padding: 16px; }
+  .cov-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .recheck-box .btn { margin-left: 0; }
+}
